@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/fonts/stylesheet.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Document</title>
 </head>
-<body7>
+<body>
     <!-- navigation bar -->
     <header>
         <nav class="navbar navbar-expand-lg pt-lg-4 pb-lg-3 border border-left-0 border-right-0 border-top-0 ">
@@ -25,13 +25,13 @@
               <ul class="navbar-nav mb-2 mb-lg-0">
 
                 <li class="nav-item py-2 py-lg-0">
-                  <a class="nav-link active" href="<?php echo base_url().'projects/' ?>">Semua Projek</a>
+                  <a class="nav-link active" href="<?=base_url('projects')?>">Semua Projek</a>
                 </li>
                 <li class="nav-item pb-2 pb-lg-0">
-                  <a class="nav-link" href="#">Mulai Projekmu</a>
+                  <a class="nav-link" href="<?=base_url('start')?>">Mulai Projekmu</a>
                 </li>
               </ul>
-              <a class="d-lg-block d-none mx-auto" href="">
+              <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
                 <img src="./img/logos/logo.png" alt="">LOGO
               </a>
               <form class="d-flex ms-lg-5 mb-lg-0 mb-3" role="search">
@@ -64,7 +64,7 @@
             </a>
           </div>
         </nav>
-        <div class="container-fluid category">
+        <div class="container-fluid category mt-3">
           <div class="col justify-content-center" >
             <div class="row">
               <ul class="list-group list-group-horizontal overflow-auto"  >

@@ -1,0 +1,445 @@
+/* css reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+:root {
+    --kf-color: #6c757d;
+    --kf-bg-grey-color: #FBFBFA;
+    --kf-border: #d5d8da;
+    --kf-border-gray: #dfdfdf;
+    --kf-color-rgb: 126, 126, 126;
+    --kf-base: #ffb846;
+    --kf-base-rgb: 252, 173, 48;
+    --kf-primary: #05CE78;
+    --kf-primary-rgb: 78, 205, 153;
+    --kf-secondary: #ed4b4b;
+    --kf-secondary-rgb: 237, 75, 75;
+    --kf-special: #5366c2;
+    --kf-special-rgb: 83, 102, 194;
+    --kf-black: #242323;
+    --kf-btn-black: #464646;
+    --kf-black-rgb: 36, 35, 35;
+    --kf-black2: #1d1c1c;
+    --kf-soft-black: #282828;
+    --kf-black2-rgb: 29, 28, 28;
+    --kf-black-grey: #303030;
+    --kf-grey: #656969;
+    --kf-dark-grey: #656969;
+    --kf-light-grey: #F3F3F3;
+    --kf-text-dark: #9e9e9e;
+    --kf-text-dark-rgb: 158, 158, 158;
+    --cl-white-text: rgb(249, 249, 249);
+    --cl-navbar-text: rgb(249, 249, 249);
+}
+
+body {
+    font-family: "cooper_lt_btlight";
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 1.rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--kf-black);
+}
+
+.active-border {
+    border-bottom: solid;
+    border-color: var(--kf-primary);
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.type-11{
+    font-size: 1.1rem;
+    color: var(--kf-soft-black);
+    font-weight: 500;
+}
+
+.type-13 {
+    font-size: 0.9rem;
+    color: var(--kf-grey);
+}
+
+.mt-100 {
+    margin-top: 6rem;
+}
+
+.px-100 {
+    padding-left: 9rem;
+    padding-right: 9rem;
+}
+
+.m-con {
+    margin-left: -3rem;
+    margin-top: 1.4rem;
+}
+
+/* navbar section */
+header a {
+    color: var(--kf-black);
+}
+
+.navbar-toggler {
+    color: transparent;
+    background-color: transparent;
+    padding-top: auto;
+}
+
+
+.navbar-toggler-icon {
+    color: black;
+}
+
+
+.list-group-item {
+    color: var(--kf-black);
+}
+
+.nav-link {
+    color: var(--kf-black);
+}
+
+/* end of navbar section */
+
+
+/* Form category section */
+
+.start-cat .ikon.border-active {
+    border-bottom: solid;
+    border-color: var(--kf-primary);
+}
+
+.start-cat .list-group .list-group-item {
+    background-color: transparent;
+    border: none;
+}
+
+
+.start-cat .ikon {
+    text-align: center;
+    font-family: "cooper_lt_btlight";
+    padding: 1.5rem;
+    padding-bottom: 1rem;
+    cursor: pointer;
+}
+
+.start-cat .ikon span {
+    font-size: 1.3rem;
+}
+
+.start-cat .ikon p {
+    font-size: 1 rem;
+}
+
+/*end of Form category section */
+
+
+/* story section */
+
+.people,
+.people-title {
+    font-family: 'maison_neuebook';
+    padding: 0;
+}
+.people .img-profile{
+    padding: 0;
+    width: 7rem;
+    height: 7rem;
+    position: relative;
+    top: -3rem;
+    margin: auto;
+}
+
+.people .box{
+    margin-top: -3rem;
+}
+.people-title h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--kf-black);
+    line-height: 4rem;
+}
+
+.people-title h3 {
+    font-size: 1rem;
+    font-weight: 100;
+    color: var(--kf-grey);
+}
+
+.people h4 {
+    font-size: 1.2rem;
+    color: var(--kf-black2);
+    font-weight: 580;
+}
+
+.type-d {
+    text-align: left;
+    font-size: 0.98rem;
+    color: var(--kf-grey);
+    line-height: 1.6;
+    padding-bottom: 1rem;
+}
+
+
+.people .side-form {
+    padding-left: 10rem;
+}
+
+.people .side-form textarea {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.people .side-form textarea::placeholder {
+    font-size: 0.8rem;
+    color: var(--kf-grey);
+    opacity: 0.7;
+}
+
+.people .side-form a {
+    text-decoration: none;
+}
+
+.people .side-form span a {
+    font-size: 0.8rem;
+    color: var(--kf-primary);
+    text-decoration: underline;
+}
+
+.people .save button{
+    background-color: var(--kf-primary);
+    color: white;
+    font-weight: 300;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    }
+
+/* end of story section */
+
+
+
+/* footer */
+
+footer .container-fluid {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    border-top-style: solid;
+    border-color: var(--kf-border-gray);
+    border-width: 1px;
+
+}
+
+footer .list-group .list-group-item {
+    background-color: transparents;
+    border: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0;
+}
+
+footer .pl-20 {
+    padding-left: 15rem;
+}
+
+footer li i {
+    font-size: large;
+    color: var(--kf-black);
+}
+
+footer .psc-8 {
+    padding-left: 8rem;
+}
+
+/* .accountmodal{
+  border: solid;
+  border-width: 0.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 15rem;
+  height: 18rem;
+  background-color: #ffff;
+  position: absolute;
+  top: 5rem;
+  left: 72rem;
+  z-index: 2;
+}  */
+.accountmodal {
+    border-width: 0.5px;
+    width: 15rem;
+    height: 20rem;
+    position: absolute;
+    top: 2rem;
+    left: 73rem;
+}
+
+.modal.accountmodal .modal-header {
+    border: solid;
+    border-width: 0.5px;
+    border-color: var(--kf-black);
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.modal.accountmodal .modal-body {
+    border: solid;
+    border-width: 0.5px;
+    border-color: var(--kf-black);
+    border-top: none;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding-top: 0;
+}
+
+.modal.accountmodal .modal-body a {
+    color: var(--kf-black);
+}

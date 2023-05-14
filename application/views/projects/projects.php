@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-4 px-3">
-                  <a href="project_detail.html">
+                  <a href="<?=base_url('Projects/project')?>">
                     <div class="procard">
                       <div class="img-box mx-auto">
                           <img src="" alt="">
