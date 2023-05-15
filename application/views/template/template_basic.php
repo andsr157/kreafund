@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/css/style.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/auth/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Document</title>
 </head>
@@ -34,7 +35,7 @@
               <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
                 <img src="./img/logos/logo.png" alt="">LOGO
               </a>
-              <form class="d-flex ms-lg-5 mb-lg-0 mb-3" role="search">
+              <form class="d-flex ms-lg-5 mb-lg-0 mb-3 " role="search">
                 <div class="input-group mw-320px me-3">
                   <span class="input-group-text pe-0 border-0 bg-white mx-3">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,10 +53,13 @@
                       </g>
                     </svg>                 
                   </span>
-                  <input class="form-control text-truncate ps-3" type="search" placeholder="Cari Project" aria-label="Search">
+                  <input class="form-control form-control-sm text-truncate ps-3 rounded-0" type="search" placeholder="Cari Project" aria-label="Search">
                 </div>
-                <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block" style="color: #242323" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">Log In</button>
-                <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#accountModal" type="button">Log In</button>
+                <button class="btn border-0 d-none d-lg-none p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                  <img src="<?=base_url('assets/img/user.avif')?>" alt="" class="img-fluid rounded-circle" >
+                </button>
+                <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block  " style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" data-bs-backdrop="false" type="button">Log In</button>
+                <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
               </form>
             </div>
             
@@ -64,21 +68,6 @@
             </a>
           </div>
         </nav>
-        <div class="container-fluid category mt-3">
-          <div class="col justify-content-center" >
-            <div class="row">
-              <ul class="list-group list-group-horizontal overflow-auto"  >
-                <li class="list-group-item">Musik</li>
-                <li class="list-group-item">Seni</li>
-                <li class="list-group-item">Film</li>
-                <li class="list-group-item">F&B</li>
-                <li class="list-group-item">Teknologi</li>
-                <li class="list-group-item">Publikasi</li>
-              </ul>
-            </div>
-            
-          </div>
-        </div>  
       </header>
 
       <!-- end of navigation bar -->
@@ -160,7 +149,7 @@
       <!-- <div class="overlay"></div> -->
 
 
-      <div class="modal fade" id="myModal" tabindex="-1"  aria-hidden="true">
+      <div class="modal fade" id="Login" tabindex="-1"  aria-hidden="true" style="font-family: 'maison_neuebook';">
         <div class="modal-dialog modal-dialog-centered modal">
           <div class="modal-content">
             <div class="modal-header">

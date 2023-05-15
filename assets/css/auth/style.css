@@ -1,0 +1,32 @@
+.auth-form{
+    font-family: 'maison_neuebook';
+}
+
+
+.auth-form .back{
+    background-color:#F7F7F6;
+}
+
+.auth-form button{
+    background-color: #05CE78;
+    color: #ffff;
+    border: none;
+}
+
+.auth-form button:hover{
+    background-color: #049959;
+}
+.type-18{
+    font-size: 1.7rem;
+    line-height: 3.6rem;
+}
+
+.px-8{
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
+
+.ps-8{
+    padding-right: 18.25rem;
+}
+

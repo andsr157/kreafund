@@ -5,7 +5,7 @@ class Reward extends CI_Controller {
 
 	public function add()
 	{
-		$this->template->load('p_form_template','project_form/reward/reward_form');
+		$this->template->load('template/p_form_template','project_form/reward/reward_form');
 	}
 
 

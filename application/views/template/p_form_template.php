@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/css/start/style.css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/css/reward/style.css" />

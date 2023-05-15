@@ -5,11 +5,11 @@ class Projects extends CI_Controller {
 
 	public function index()
 	{
-		$this->template->load('template','projects/projects');
+		$this->template->load('template/template','projects/projects');
 	}
 
 	public function project()
 	{
-		$this->template->load('template','projects/project_detail');
+		$this->template->load('template/template','projects/project_detail');
 	}
 }
