@@ -2,32 +2,38 @@
 
       <!-- end of navigation bar -->
       <section class="auth-form">
-        <div class="container-fluid w-100 h-100 p-0">
+        <div class="container-fluid w-100 p-0">
             <div class="d-flex py-5 justify-content-center align-items-center back">
                 <div class="form-box" style="background-color: white;">
                     <div class="py-4 px-8 mb-3" style="background-color: rgba(241,238,234,0.2);">
-                        <span>have account? <a href="">Login</a></span> 
+                        <span>have account? <a href="<?=base_url('auth_user/login')?>">Login</a></span> 
                     </div>
                     <div class="px-4 pb-4">
                         <p class="type-18 mb-3">Sign up</p>
-                        <form action="">
+                        <form action="<?=base_url('auth_user/process')?> " method="POST">
                             <div class="mb-3">
                                 <input type="text" name="username" id="username" class="form-control rounded-0" placeholder="Username">
+                                <?= form_error('username', '<div style="font-size:0.8rem;" class="text-danger pl-3 mt-2">', '</div>'); ?>
                             </div>
                             <div class="mb-3">
                                 <input type="text" name="email" id="email" class="form-control rounded-0" placeholder="Email" onclick="show_re()">
-                            </div>
+                                <?= form_error('email', '<div style="font-size:0.8rem;" class="text-danger pl-3 mt-2">', '</div>'); ?>
+                              </div>
                             <div class="mb-3">
                                 <input type="text" style="display: none;" name="re_email" id="re_email" class="form-control rounded-0" placeholder="Re-enter Email">
-                            </div>
+                                <?= form_error('re_email', '<div style="font-size:0.8rem;" class="text-danger pl-3 mt-2">', '</div>'); ?>
+                              </div>
                             <div class="mb-3">
-                                <input type="text" name="password" id="password" class="form-control rounded-0" placeholder="Password" onclick="show_rp()">
-                            </div>
+                                <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="Password" onclick="show_rp()">
+                                <?= form_error('password', '<div style="font-size:0.8rem;" class="text-danger pl-3 mt-2">', '</div>'); ?>
+                              </div>
                             <div class="mb-4">
-                              <input type="text" style="display: none;" name="re_password" id="re_password" class="form-control rounded-0" placeholder="Re-enter Password">
+                              <input type="password" style="display: none;" name="re_password" id="re_password" class="form-control rounded-0" placeholder="Re-enter Password">
+                              <?= form_error('re_password', '<div style="font-size:0.8rem;" class="text-danger pl-3 mt-2">', '</div>'); ?>
                             </div>
+                            <input type="hidden" name="level" value="2">
 
-                            <button class="btn w-100 btn-dark rounded-0 mt-5">Create Account</button>
+                            <button class="btn w-100 btn-dark rounded-0 mt-5" type="submit" name="signup" value="true">Create Account</button>
 
                         </form>
                     </div>
@@ -146,7 +152,6 @@
 
     </script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/bootstrap.js"></script>
     <script>
         function show_re(){
             document.getElementById('re_email').style.display = 'block';

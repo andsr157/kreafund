@@ -494,9 +494,9 @@ color: var(--kf-primary-dark);
 footer .container-fluid{
   padding-top: 4rem;
   padding-bottom: 4rem;
-  border-top-style: solid;
-  border-color: var(--kf-black);
-  border-width: 0.1rem;
+  border-top:solid ;
+  border-color: var(--kf-border);
+  border-width: 2px;
   
 }
 

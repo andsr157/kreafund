@@ -128,7 +128,6 @@
           </div>
         </div>
       </footer>
-      <button class="btn-open"></button>
 
 <!-- modal login -->
       <!-- <section class="modal hidden">
@@ -221,8 +220,9 @@
       
 
     <!-- end modal login -->
-    <script src="<?php echo base_url() ?>assets/https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <script>
       const modal = document.querySelector('.modal');
       // const overlay = document.querySelector('.overlay');     

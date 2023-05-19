@@ -54,13 +54,17 @@
                   </span>
                   <input class="form-control form-control-sm text-truncate ps-3 rounded-0" type="search" placeholder="Cari Project" aria-label="Search">
                 </div>
-                <button class="btn border-0 d-none d-lg-none p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                <?php
+                if(!empty($this->session->userdata('user_id'))) { ?>
+                <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                   <img src="<?=base_url('assets/img/user.avif')?>" alt="" class="img-fluid rounded-circle" >
                 </button>
+                <?php } else { ?>
                 <a href="<?=base_url('auth_user/login')?>">
                   <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
                 </a>
                 <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
+                <?php } ?>
               </form>
             </div>
             
@@ -228,7 +232,7 @@
                 <li class="my-3"><a href="#">Settings</a></li>
                 <li class="my-3"><a href="#">My Projects</a></li>
               </ul>
-              <a href="">Logout</a>
+              <a href="<?=base_url('auth_user/logout')?>">Logout</a>
             </div>
           </div>
         </div>

@@ -1,28 +1,23 @@
     <!-- end of navigation bar -->
       <section class="auth-form">
-        <div class="container-fluid w-100 h-100 p-0">
+        <div class="container-fluid w-100 p-0">
             <div class="d-flex py-5 justify-content-center align-items-center back">
                 <div class="form-box" style="background-color: white;">
                   
-                    <div class="px-4 pb-4">
-                        <p class="type-18 mb-3 ps-8 mt-3">Login</p>
-                        <form action="">
-                            <div class="mb-3">
-                                <input type="text" name="username" id="username" class="form-control rounded-0" placeholder="Username">
-                            </div>
+                    <div class="px-4 py-4">
+                    <?= $this->session->flashdata('pesan'); ?>
+                        <p class="type-18 mb-3 ps-8">Login</p>
+                        <form action="<?=base_url('auth_user/process')?>" method="POST">
                             <div class="mb-3">
                                 <input type="text" name="email" id="email" class="form-control rounded-0" placeholder="Email" onclick="show_re()">
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="password" id="password" class="form-control rounded-0" placeholder="Password" onclick="show_rp()">
+                                <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="Password" onclick="show_rp()">
                             </div>
                             <a href="">
                               <span style="font-size: 0.8rem;" class="pb-5">Forgot your password?</span>
                             </a>
-                    
-
-                            <button class="btn w-100 btn-dark rounded-0 mt-5">Login</button>
-
+                            <button class="btn w-100 btn-dark rounded-0 mt-5" value="true" type="submit" name="login">Login</button>
                         </form>
                         <div class="text-center mt-5">
                           <span>New on Kreafund? <a href="<?=base_url('auth_user/signup')?>">Sign Up</a></span>
@@ -140,7 +135,6 @@
 
     </script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/bootstrap.js"></script>
     <script>
         function show_re(){
             document.getElementById('re_email').style.display = 'block';
