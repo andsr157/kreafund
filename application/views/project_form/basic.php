@@ -134,25 +134,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mt-5    ">
-                        <div class="col-6">
-                            <label for="exampleInputEmail1" class="form-label mb-1">Primary category</label>
-                            <select class="form-select rounded-0" aria-label="Default select example">
-                                <option selected></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                        <div class="col-6"><label for="exampleInputEmail1" class="form-label mb-1">subcategory</label>
-                            <select class="form-select rounded-0" aria-label="Default select example">
-                                <option selected></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -288,13 +270,13 @@
                     <div class="outter mb-4">
                         <div class="radiobox pt-0">
                             <input class="form-check-input pt-0 mt-0" type="radio" id="rbtn1" onclick="show1()">
-                            <span class="ms-2">Fixed number of days (1-60)</span>
+                            <span class="ms-2">Standar</span>
                         </div>
                         <div id="radio1" style="display: none;">
                             <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
                             <div class="fixeddate mx-3">
-                                <label for="exampleInputEmail1" class="form-label my-2">Enter Number Of Days</label>
-                                <input type="text" class="form-control rounded-0 mb-5" placeholder="30">
+                                <label for="exampleInputEmail1" class="form-label my-2">Durasi standar</label>
+                                <input type="number" id="standar" class="form-control rounded-0 mb-5" placeholder="" readonly>
                             </div>
                         </div>
 
@@ -302,13 +284,13 @@
                     <div class="outter">
                         <div class="radiobox pt-0">
                             <input class="form-check-input pt-0 mt-0" type="radio" id="rbtn2" onclick="show2()">
-                            <span class="ms-2">Fixed number of days (1-60)</span>
+                            <span class="ms-2">Custom</span>
                         </div>
                         <div id="radio2" style="display: none;">
                             <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
-                            <div class=" fixeddate mx-3">
-                                <label for="exampleInputEmail1" class="form-label my-2">Enter Number Of Days</label>
-                                <input type="date" class="form-control rounded-0 mb-5">
+                            <div class="fixeddate mx-3">
+                                <label for="exampleInputEmail1" class="form-label my-2">Masukan hari</label>
+                                <input type="number" class="form-control rounded-0 mb-5" placeholder="0-60">
                             </div>
                         </div>
                     </div>

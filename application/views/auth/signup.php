@@ -9,7 +9,7 @@
                         <span>have account? <a href="<?=base_url('auth_user/login')?>">Login</a></span> 
                     </div>
                     <div class="px-4 pb-4">
-                        <p class="type-18 mb-3">Sign up</p>
+                        <p class="type-18 mb-3">Sign up to continue</p>
                         <form action="<?=base_url('auth_user/process')?> " method="POST">
                             <div class="mb-3">
                                 <input type="text" name="username" id="username" class="form-control rounded-0" placeholder="Username">

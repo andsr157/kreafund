@@ -4,23 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/start/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/reward/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/story/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/people/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/launch/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css"/>
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/start/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
     <title>Document</title>
 </head>
 
 <body>
     <!-- navigation bar -->
-    <header class="sticky-top bg-white">
+    <header>
         <nav class="navbar navbar-expand-lg pt-lg-4 pb-lg-3 border border-left-0 border-right-0 border-top-0">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -32,19 +27,12 @@
                     <img src="./img/logos/logo.png" alt="" />LOGO
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item py-2 py-lg-0">
-                            <a class="nav-link active" href="<?=base_url('start/project')?>"><- Judul Project</a>
-                        </li>
-                        <li class="nav-item pb-2 pb-lg-0">
-                            <a class="nav-link" href="#">Aturan</a>
-                        </li>
-                    </ul>
 
-                    <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>">
+
+                    <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
                         <img src="./img/logos/logo.png" alt="" />LOGO
                     </a>
-                    <p class="unselectable text-white">AAAAAAAAAAAA</p>
+                    <p class="unselectable text-white">AA</p>
 
                     <?php
                 if(!empty($this->session->userdata('user_id'))) { ?>
@@ -60,8 +48,8 @@
                     </form>
                 </div>
 
-                <a class="navbar-brand mx-auto d-lg-none d-block" href="../index.html">
-                    <img src="./img/logos/logo.png" alt="" />Logo
+                <a class="navbar-brand mx-auto d-lg-none d-block" href="#">
+                    <img src="./img/logos/logo.png" alt="" />
                 </a>
             </div>
         </nav>
@@ -198,89 +186,77 @@
             </div>
         </div>
     </div>
-    <script>
-    function time1() {
-        document.getElementById('time_form').style.display = 'none';
-        $("#time2").prop('checked', false);
-    }
-    function time2() {
-        document.getElementById('time_form').style.display = 'block';
-        $("#time1").prop('checked', false);
-    }
-</script>
 
-    <script>
-
-
-        function show11() {
-            document.getElementById('itemform-wrap').style.display = 'block';
-        }
-        function hide1() {
-            document.getElementById('itemform-wrap').style.display = 'none';
-        }
-
-        function show22() {
-            document.getElementById('itemlist').style.display = 'block';
-            document.getElementById('itemform-wrap').style.display = 'none';
-
-        }
-
-        var linkcontainer = document.getElementById('start-cat');
-        var linkcat = linkcontainer.getElementsByClassName('ikon');
-
-        for (var i = 0; i < linkcat.length; i++) {
-            linkcat[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("border-active");
-                current[0].className = current[0].className.replace(" border-active", "");
-                this.className += " border-active";
-            });
-        }
-    </script>
-    <script>
-        function show1() {
-            document.getElementById('radio1').style.display = 'block';
-            document.getElementById('radio2').style.display = 'none';
-            $("#rbtn2").prop('checked', false);
-            $('#standar:text').val('30');
-
-        }
-        function show2() {
-            document.getElementById('radio2').style.display = 'block';
-            document.getElementById('radio1').style.display = 'none';
-            $("#rbtn1").prop('checked', false);
-        }
-        function rqty1() {
-            document.getElementById('rqty_form').style.display = 'none';
-            $("#rqty2").prop('checked', false);
-        }
-        function rqty2() {
-            document.getElementById('rqty_form').style.display = 'block';
-            $("#rqty1").prop('checked', false);
-        }
-    </script>
-    <!-- end modal login -->
-    
-    <script>
-        var rewardcontainer = document.getElementById('rewardlink');
-        var linkr = rewardcontainer.getElementsByClassName('rcat');
-        
-
-        for (var ctrl = 0; ctrl < linkr.length; ctrl++) {
-            linkr[ctrl].addEventListener("click", function () {
-                var current = document.getElementsByClassName("rborder-active");
-                current[0].className = current[0].className.replace(" rborder-active", "");           
-                this.className += " rborder-active";
-            });
-        }
-    </script>
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+
+    
+    <script>
+        $(document).ready(function(){
+            $('#back').click(function(){
+                var current = $('.active');
+                var prev = $('.active').prev('section');
+                if(prev.length > 0){
+                    $('#' + current.attr('id')).hide();
+                    $('#' + prev.attr('id')).show();
+                    $('#next').show();
+                    $('#submit').hide();
+                    $('.active') .removeClass('active');
+                    prev.addClass('active');
+                    if($('.active').attr('id') == $('section').first().attr('id')){
+                        $('#back').hide();
+                    }
+                }
+            })
+
+            $('#next').click(function(){
+                var current = $('.active');
+                var next = $('.active').next('section');
+                if(next.length > 0){
+                    $('#' + current.attr('id')).hide();
+                    $('#' + next.attr('id')).show();
+                    $('#back').show();
+                    $('.active') .removeClass('active');
+                    next.addClass('active');
+                    if($('.active').attr('id') == $('section').last().attr('id')){
+                        $('#next').hide();
+                        $('#submit').show();
+                    }
+                }
+            })
+
+        })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var category_id = $('#category').val();
+
+                if(category_id != ''){
+                    $.ajax({
+                        url:"<?= base_url();?>start/fetch_subcat/",
+                        method:'POST',
+                        data:{'category_id':category_id},
+                        type:JSON,
+                        success:function(data){
+                            $('#subcat').html(data);
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+
+
+
+
+    
+    
+    
     <script>
         AOS.init();
     </script>
