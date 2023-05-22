@@ -1,5 +1,5 @@
 <!-- end of header section -->
-
+<form action="<?=base_url('projects/process')?>" method="POST"> 
 <section class="project_init active" style="display: block;" id="init_category">
     <div class="container p-5">
         <div class="row d-flex justify-content-center mt-5">
@@ -48,10 +48,10 @@
             <div class="row px-18">
                 <div class="col-12">
                     <select class="form-select rounded-0 py-3" name="location" id="location" aria-label="Default select example" style="font-size:1rem ; color:var(--kf-soft-black)">
-                        <option style="color: var(--kf-color); ">Primary category</option>
+                        <option style="color: var(--kf-color); margin-bottom:1rem;">Lokasi</option>
                         <?php
-                        foreach ($category as $row) {
-                            echo '<option value="' . $row->category_id . '">' . $row->category_name . '</option>';
+                        foreach ($location as $row) {
+                            echo '<option class="py-2" value="' . $row->location_id . '">' . $row->location_name . '</option>';
                         }
                         ?>
                     </select>
@@ -73,7 +73,7 @@
             </div>
             <div class="row px-18">
                 <div class="col-12">
-                <input type="text" class="form-control rounded-0 py-3" placeholder="Inputkan  Judul Projectmu">
+                <input type="text" class="form-control rounded-0 py-3" name="title" placeholder="Inputkan  Judul Projectmu">
                 </div>
             </div>
 
@@ -83,12 +83,15 @@
 
 <div class="container px-21 d-flex justify-content-end mt-100">
     <div class="backbtn me-4">
-        <button class="btn rounded-0 px-5" id="back" style="display: none;">Back</button>
+        <button class="btn rounded-0 px-5" type="button" id="back" style="display: none;">Back</button>
     </div>
     <div class="nextbtn">
-        <button class="btn rounded-0 px-5" id="next">Next</button>
+        <button class="btn rounded-0 px-5" type="button" id="next">Next</button>
     </div>
     <div class="submitbtn">
-        <button class="btn  rounded-0 px-5" id="submit" style="display: none;">Submit</button>
+        <button class="btn rounded-0 px-5" type="submit" id="submit" style="display: none;">Submit</button>
     </div>
+    <input type="hidden" name="add" value="add">
 </div>
+
+</form>

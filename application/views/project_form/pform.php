@@ -5,7 +5,7 @@
       <div class="container px-5 mt-100 " >
         <div class="row">
           <div class="mt-3 pb-5">
-            <h2 class="mb-2">Your Project Title</h2>
+            <h2 class="mb-2"><?=$project->title?></h2>
             <h3>by author</h3>
           </div>
         </div>

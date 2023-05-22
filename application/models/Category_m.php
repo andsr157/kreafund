@@ -16,9 +16,15 @@ class Category_m extends CI_Model
         $query = $this->db->get("subcategory");
         $output = '<option value="">Subcategory</option>';
         foreach ($query->result() as $row){
-            $output .= '<option value="'.$row->subcat_name.'">'.$row->subcat_name.'</option>';
+            $output .= '<option value="'.$row->subcat_id.'">'.$row->subcat_name.'</option>';
         }
         return $output;
         
+    }
+
+    function get_location(){
+        $this->db->order_by('location_name','ASC');
+        $query = $this->db->get('location');
+        return $query->result();
     }
 }

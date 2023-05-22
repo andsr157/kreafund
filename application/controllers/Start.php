@@ -13,6 +13,7 @@ class Start extends CI_Controller {
 	{
 		check_not_login();
 		$data['category'] = $this->category_m->get();
+		$data['location'] = $this->category_m->get_location();
 		$this->template->load('template/template_flat','project_form/start',$data);
 	}
 
@@ -21,11 +22,6 @@ class Start extends CI_Controller {
 			echo $this->category_m->fetch_subcat($this->input->post('category_id'));
 		}
 		
-	}
-
-	public function project(){
-
-		$this->template->load('template/p_form_template', 'project_form/start2');
 	}
 
 	public function basic(){
