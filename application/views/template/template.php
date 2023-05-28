@@ -31,9 +31,11 @@
                   <a class="nav-link" href="<?=base_url('start')?>">Mulai Projekmu</a>
                 </li>
               </ul>
+              <p class="unselectable text-white">AAAAAAAAAAA</p>
               <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
                 <img src="./img/logos/logo.png" alt="">LOGO
               </a>
+              
               <form class="d-flex ms-lg-5 mb-lg-0 mb-3 " role="search">
                 <div class="input-group mw-320px me-3">
                   <span class="input-group-text pe-0 border-0 bg-white mx-3">
@@ -230,7 +232,7 @@
               <ul class="mb-5">
                 <li class="my-3"><a href="#">Profile</a></li>
                 <li class="my-3"><a href="#">Settings</a></li>
-                <li class="my-3"><a href="#">My Projects</a></li>
+                <li class="my-3"><a href="<?=base_url('profile/projects')?>">My Projects</a></li>
               </ul>
               <a href="<?=base_url('auth_user/logout')?>">Logout</a>
             </div>

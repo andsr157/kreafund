@@ -19,13 +19,18 @@ class Start extends CI_Controller {
 
 	function fetch_subcat(){
 		if($this->input->post('category_id')){
-			echo $this->category_m->fetch_subcat($this->input->post('category_id'));
+			echo $this->category_m->fetch_project_subcat($this->input->post('category_id'), $this->input->post('project_id'));
 		}
 		
 	}
 
 	public function basic(){
-		$this->template->load('template/p_form_template', 'project_form/basic');
+		$id = $this->uri->segment(3);
+		$query = $this->project_m->get_join_all($id);
+		$data['row'] = $query->row();
+		$data['category'] = $this->category_m->get();
+		$data['location'] = $this->category_m->get_location();
+		$this->template->load('template/p_form_template', 'project_form/basic', $data);
 	}
 
 	public function reward(){

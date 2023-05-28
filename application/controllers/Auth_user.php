@@ -86,7 +86,8 @@ class Auth_user extends CI_Controller
                 $row = $query->row();
                 $params = array(
                     'user_id' => $row->id,
-                    'level' => $row->level
+                    'level' => $row->level,
+                    'username' => $row->username
                 );
                 $this->session->set_userdata($params);
                 $this->session->set_flashdata('pesan',

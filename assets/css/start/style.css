@@ -654,3 +654,8 @@ footer .psc-8 {
 .modal.accountmodal .modal-body a {
   color: var(--kf-black);
 }
+
+.side-form .media-button{
+  background-color: #d1d1d1;
+  
+} 

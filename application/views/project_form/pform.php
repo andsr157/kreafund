@@ -1,12 +1,10 @@
 
-
-
 <section class="project_start">
       <div class="container px-5 mt-100 " >
         <div class="row">
           <div class="mt-3 pb-5">
-            <h2 class="mb-2"><?=$project->title?></h2>
-            <h3>by author</h3>
+            <h2 class="mb-2"><?=$row->title?></h2>
+            <h3>by <?=$row->username?></h3>
           </div>
         </div>
       </div>
@@ -20,7 +18,7 @@
             <li class="list-group-item">
               <div class="col-2">
               </div>
-              <a href="<?=base_url('start/basic')?>">
+              <a href="<?=base_url('project/'.$this->session->userdata('username').'/'.$row->project_id.'/edit/basic')?>">
                 <div class="col-10">
                   <h4>Info Dasar</h4>
                   <p>Name your project, upload an image or video, and establish your campaign details.</p>

@@ -46,6 +46,7 @@
 
 :root{
     --kf-color: #6c757d;
+    --kf-blue:#0c6efd;
     --kf-bg-grey-color:#FBFBFA;
     --kf-border:#d5d8da;
     --kf-color-rgb: 126, 126, 126;
@@ -1244,5 +1245,44 @@ footer .psc-8 ul{
 /* --------------------------end of project detail page------------------------------------- */
 
 
+.myproject{
+  font-family: 'maison_neuebook';
+}
+.myproject.bg-grey{
+  background-color: var(--kf-bg-grey-color);
+}
+
+.myproject .nav-profile ul li a{
+  font-size: 1rem;
+  color: var(--kf-black);
+  font-weight: 600;
+}
+
+.myproject .type-t4{
+  font-size: 3rem;
+  line-height: 4rem;
+}
+.myproject .type-st2{
+  font-size: 1.3rem;
+}
+
+.myproject .started ul li img{
+  object-fit: cover;
+}
+
+.myproject .started-title{
+  text-decoration: none;
+  color: var(--kf-black2);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
 
 
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

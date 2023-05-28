@@ -15,7 +15,7 @@
     <!-- navigation bar -->
     <header>
         <nav class="navbar navbar-expand-lg pt-lg-4 pb-lg-3 border border-left-0 border-right-0 border-top-0 ">
-          <div class="container">
+          <div class="container ">
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
               <span class="navbar-toggler-icon" ></span>
             </button>
@@ -35,31 +35,20 @@
               <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
                 <img src="./img/logos/logo.png" alt="">LOGO
               </a>
+              <p class="unselectable text-white">AAAAAAAAAAAAAA</p>
               <form class="d-flex ms-lg-5 mb-lg-0 mb-3 " role="search">
-                <div class="input-group mw-320px me-3">
-                  <span class="input-group-text pe-0 border-0 bg-white mx-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <mask id="mask0_3_316" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H21.4768V21.477H2V2Z" fill="white"/>
-                      </mask>
-                        <g mask="url(#mask0_3_316)">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7388 3.5C7.1958 3.5 3.4998 7.195 3.4998 11.738C3.4998 16.281 7.1958 19.977 11.7388 19.977C16.2808 19.977 19.9768 16.281 19.9768 11.738C19.9768 7.195 16.2808 3.5 11.7388 3.5M11.7388 21.477C6.3688 21.477 1.9998 17.108 1.9998 11.738C1.9998 6.368 6.3688 2 11.7388 2C17.1088 2 21.4768 6.368 21.4768 11.738C21.4768 17.108 17.1088 21.477 11.7388 21.477" fill="#858585"/>
-                      </g>
-                      <mask id="mask1_3_316" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="17" y="17" width="6" height="6">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.24 17.7069H22.264V22.7217H17.24V17.7069Z" fill="white"/>
-                      </mask>
-                      <g mask="url(#mask1_3_316)">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.5142 22.7217C21.3232 22.7217 21.1312 22.6487 20.9842 22.5027L17.4602 18.9887C17.1672 18.6957 17.1662 18.2207 17.4592 17.9277C17.7512 17.6327 18.2262 17.6347 18.5202 17.9257L22.0442 21.4407C22.3372 21.7337 22.3382 22.2077 22.0452 22.5007C21.8992 22.6487 21.7062 22.7217 21.5142 22.7217" fill="#858585"/>
-                      </g>
-                    </svg>                 
-                  </span>
-                  <input class="form-control form-control-sm text-truncate ps-3 rounded-0" type="search" placeholder="Cari Project" aria-label="Search">
-                </div>
-                <button class="btn border-0 d-none d-lg-none p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                
+                <?php
+                if(!empty($this->session->userdata('user_id'))) { ?>
+                <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                   <img src="<?=base_url('assets/img/user.avif')?>" alt="" class="img-fluid rounded-circle" >
                 </button>
-                <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block  " style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" data-bs-backdrop="false" type="button">Log In</button>
+                <?php } else { ?>
+                <a href="<?=base_url('auth_user/login')?>">
+                  <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
+                </a>
                 <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
+                <?php } ?>
               </form>
             </div>
             

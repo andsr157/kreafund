@@ -5,16 +5,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/start/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/reward/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/story/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/people/style.css" />
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/launch/style.css" />
-    
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/stylesheet.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/start/style.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/reward/style.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/story/style.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/people/style.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/launch/style.css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 
@@ -23,9 +23,7 @@
     <header class="sticky-top bg-white">
         <nav class="navbar navbar-expand-lg pt-lg-4 pb-lg-3 border border-left-0 border-right-0 border-top-0">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation" style="border: none">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="d-lg-none d-block mx-auto" href="#">
@@ -34,29 +32,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item py-2 py-lg-0">
-                            <a class="nav-link active" href="<?=base_url('start/project')?>"><- Judul Project</a>
+                            <a class="nav-link active" href="<?= base_url('start/project') ?>"><- Judul Project</a>
                         </li>
                         <li class="nav-item pb-2 pb-lg-0">
                             <a class="nav-link" href="#">Aturan</a>
                         </li>
                     </ul>
 
-                    <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>">
+                    <a class="d-lg-block d-none mx-auto" href="<?= base_url() ?>">
                         <img src="./img/logos/logo.png" alt="" />LOGO
                     </a>
                     <p class="unselectable text-white">AAAAAAAAAAAA</p>
 
                     <?php
-                if(!empty($this->session->userdata('user_id'))) { ?>
-                <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img src="<?=base_url('assets/img/user.avif')?>" alt="" class="img-fluid rounded-circle" >
-                </button>
-                <?php } else { ?>
-                <a href="<?=base_url('auth_user/login')?>">
-                  <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
-                </a>
-                <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
-                <?php } ?>
+                    if (!empty($this->session->userdata('user_id'))) { ?>
+                        <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                            <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
+                        </button>
+                    <?php } else { ?>
+                        <a href="<?= base_url('auth_user/login') ?>">
+                            <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
+                        </a>
+                        <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
+                    <?php } ?>
                     </form>
                 </div>
 
@@ -68,7 +66,7 @@
     </header>
     <!-- end of header section -->
 
-    
+
 
     <?php echo $contents ?>
 
@@ -184,8 +182,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Your Account</h4>
-                    <button type="button" class="btn btn-sm btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn btn-sm btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <ul class="mb-5">
@@ -198,23 +195,79 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-    function time1() {
-        document.getElementById('time_form').style.display = 'none';
-        $("#time2").prop('checked', false);
-    }
-    function time2() {
-        document.getElementById('time_form').style.display = 'block';
-        $("#time1").prop('checked', false);
-    }
-</script>
+        AOS.init();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#del-prev').click(function() {
+
+                var image_name = $('#image_project').val();
+                var project_id = <?= $row->project_id ?>
+
+                if (image_name != '') {
+                    $.ajax({
+                        url: "<?= base_url(); ?>projects/del_basic_image/",
+                        method: 'POST',
+                        data: {
+                            'image': image_name,
+                            'project_id': project_id
+                        },
+                        type: JSON,
+                        success: function(result) {
+                            console.log(result)
+                            if (result.success === true) {
+                                alert('Gagal Hapus item gambar')
+                            } else {
+                                $('#image_side_form').load(' #image_basic_form')
+                                
+                            }
+                        }
+                    })
+                }
+
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById('gambar_basic').onchange = function() {
+            document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
+
+            document.getElementById('upload_box').style.display = "none";
+            document.getElementById('uploaded_box').style.display = 'block';
+        }
+
+
+        document.getElementById('delcurrent_image').onclick = function() {
+            document.getElementById('upload_box').style.display = "flex";
+            document.getElementById('uploaded_box').style.display = 'none';
+        }
+    </script>
+
+
 
     <script>
+        function time1() {
+            document.getElementById('time_form').style.display = 'none';
+            $("#time2").prop('checked', false);
+        }
 
+        function time2() {
+            document.getElementById('time_form').style.display = 'block';
+            $("#time1").prop('checked', false);
+        }
+    </script>
 
+    <script>
         function show11() {
             document.getElementById('itemform-wrap').style.display = 'block';
         }
+
         function hide1() {
             document.getElementById('itemform-wrap').style.display = 'none';
         }
@@ -229,7 +282,7 @@
         var linkcat = linkcontainer.getElementsByClassName('ikon');
 
         for (var i = 0; i < linkcat.length; i++) {
-            linkcat[i].addEventListener("click", function () {
+            linkcat[i].addEventListener("click", function() {
                 var current = document.getElementsByClassName("border-active");
                 current[0].className = current[0].className.replace(" border-active", "");
                 this.className += " border-active";
@@ -241,34 +294,37 @@
             document.getElementById('radio1').style.display = 'block';
             document.getElementById('radio2').style.display = 'none';
             $("#rbtn2").prop('checked', false);
-            $('#standar:text').val('30');
+            $('#standar').val(30);
 
         }
+
         function show2() {
             document.getElementById('radio2').style.display = 'block';
             document.getElementById('radio1').style.display = 'none';
             $("#rbtn1").prop('checked', false);
         }
+
         function rqty1() {
             document.getElementById('rqty_form').style.display = 'none';
             $("#rqty2").prop('checked', false);
         }
+
         function rqty2() {
             document.getElementById('rqty_form').style.display = 'block';
             $("#rqty1").prop('checked', false);
         }
     </script>
     <!-- end modal login -->
-    
+
     <script>
         var rewardcontainer = document.getElementById('rewardlink');
         var linkr = rewardcontainer.getElementsByClassName('rcat');
-        
+
 
         for (var ctrl = 0; ctrl < linkr.length; ctrl++) {
-            linkr[ctrl].addEventListener("click", function () {
+            linkr[ctrl].addEventListener("click", function() {
                 var current = document.getElementsByClassName("rborder-active");
-                current[0].className = current[0].className.replace(" rborder-active", "");           
+                current[0].className = current[0].className.replace(" rborder-active", "");
                 this.className += " rborder-active";
             });
         }
@@ -278,11 +334,29 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<?=base_url()?>assets/js/bootstrap.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+
     <script>
-        AOS.init();
+        $(document).ready(function() {
+            $('#category').change(function() {
+                var category_id = $('#category').val();
+                var project_id = <?= $row->project_id ?>
+
+                if (category_id != '') {
+                    $.ajax({
+                        url: "<?= base_url(); ?>start/fetch_subcat/",
+                        method: 'POST',
+                        data: {
+                            'category_id': category_id
+                        },
+                        type: JSON,
+                        success: function(data) {
+                            $('#subcat').html(data);
+                        }
+                    })
+                }
+            })
+        })
     </script>
 
 
