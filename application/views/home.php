@@ -3,7 +3,7 @@
           <div class="row align-items-center">
             <div class="col text-center px-lg-5">
               <a href=""><h1>"Jadilah pahlawan kreatif dengan menyumbang<br> untuk projek-projek inovatif."</h1></a>
-              <p class="lead">Kami menyediakan platform untuk menggalang dana bagi proyek kreatifmu.<br> Bergabunglah sekarang dan jadilah bagian dari perubahan positif dalam industri kreatif di Indonesia.</p>
+              <p class="lead d-none d-lg-block">Kami menyediakan platform untuk menggalang dana bagi proyek kreatifmu.<br> Bergabunglah sekarang dan jadilah bagian dari perubahan positif dalam industri kreatif di Indonesia.</p>
             </div>
           </div>
         </div>
@@ -36,26 +36,33 @@
                     <h3 class=" pt-5 mb-4">Featured Project</h3>  
                 </div>
                 <div class="row pt-3 pt-lg-1 pbox justify-content-beetween">
-                    <div class="col-12 col-lg-8 pt-5 px-lg-5 bg-fit border border-light border-5" style="background-image: url(<?=base_url('assets/')?>img/4.png);">
-                        <a href="" ><h4 class="fp">Short Movie <br>About William <br> McChaster</h4></a><br>
-                        <a href=""><p>Project mengangkat kisah tentang william seseorang yang <br>nyata yang memiliki kisah inspiratif yang sangat menyentuh </p></a>
+                  <div class="col-12 col-lg-8 wrapper p-0" style="overflow: hidden;">
+                    <div class=" bg-child pt-5 px-lg-5 bg-fit border border-light border-5 w-100 h-100" style="background-image: url(<?=base_url('assets/')?>img/4.png);">
+                        <a href="" ><h4 class="fp ps-3">Short Movie <br>About William <br> McChaster</h4></a><br>
+                        <a href=""><p class="ps-3">Project mengangkat kisah tentang william seseorang yang <br>nyata yang memiliki kisah inspiratif yang sangat menyentuh </p></a>
                     </div>
-                    <div class="col-12 col-lg-4 px-3 bg-fit pt-5 px-lg-5 border border-light border-5" style="background-image: url(<?=base_url('assets/')?>img/2.png);">
+                  </div>
+                  <div class="col-12 col-lg-4 wrapper p-0" style="overflow: hidden;">
+                    <div class=" bg-child px-3 bg-fit pt-5 px-lg-5 border border-light border-5 w-100 h-100" style="background-image: url(<?=base_url('assets/')?>img/2.png);">
                         <a href=""><h4>Sharles <br>Squel Book</h4></a>
                     </div>
+                  </div>
                 </div>
                 <div class="row pt-lg-1 pt-sm-0 pbox justify-content-beetween">
-                    
-                    <div class="col-lg-4 bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0" style="background-image: url(<?=base_url('assets/')?>img/3.png);">
-                        <a href=""><h4>Gal Gallery Project</h4></a>
+                    <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
+                      <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?=base_url('assets/')?>img/3.png);">
+                          <a href=""><h4>Gal Gallery Project</h4></a>
+                      </div>
                     </div>
-                    
-                    <div class="col-lg-4 bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0" style="background-image: url(<?=base_url('assets/')?>img/5.png);">
-                        <a href=""><h4>Samurai War <br> Stop Motion</h4></a>
+                    <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
+                      <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?=base_url('assets/')?>img/5.png);">
+                          <a href=""><h4>Samurai War <br> Stop Motion</h4></a>
+                      </div>
                     </div>
-                    
-                    <div class="col-lg-4 px-3 bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0" style="background-image: url(<?=base_url('assets/')?>img/6.jpg);">
-                        <a href=""><h4>Forgoten World <br> Discovery</h4></a>
+                    <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
+                      <div class=" bg-child px-3 bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?=base_url('assets/')?>img/6.jpg);">
+                          <a href=""><h4>Forgoten World <br> Discovery</h4></a>
+                      </div>
                     </div>
                 </div>
 

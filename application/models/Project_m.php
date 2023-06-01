@@ -60,7 +60,6 @@ class Project_m extends CI_Model
         $params['subcat_id'] = $post['subcat'];
         $params['location_id'] = $post['location'];
         $params['goal'] = $post['goal'];
-        $params['image'] = $post['image'];
 
         if(isset($post['standar'])){
             $params['duration'] = $post['standar'];
@@ -84,6 +83,12 @@ class Project_m extends CI_Model
 
     public function delete_image($where){
         $this->db->set('image', 'default.jpg');
+		$this->db->where('project_id', $where);
+		$this->db->update('project');
+	}
+
+    public function delete_video($where){
+        $this->db->set('video', 'default.mp4');
 		$this->db->where('project_id', $where);
 		$this->db->update('project');
 	}

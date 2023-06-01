@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 
@@ -198,10 +199,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#del-prev').click(function() {
@@ -223,8 +222,22 @@
                             if (result.success === true) {
                                 alert('Gagal Hapus item gambar')
                             } else {
-                                $('#image_side_form').load(' #image_basic_form')
-                                
+                                $('#image_side_form').load(' #image_basic_form', function() {
+                                    document.getElementById('gambar_basic').onchange = function() {
+                                        document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
+                                        console.log(URL.createObjectURL(gambar_basic.files[0]))
+
+                                        document.getElementById('upload_box').style.display = "none";
+                                        document.getElementById('uploaded_box').style.display = 'block';
+                                    }
+
+
+                                    document.getElementById('delcurrent_image').onclick = function() {
+                                        document.getElementById('upload_box').style.display = "flex";
+                                        document.getElementById('uploaded_box').style.display = 'none';
+                                    }
+                                })
+
                             }
                         }
                     })
@@ -232,11 +245,196 @@
 
             })
         })
+
+        $(document).ready(function() {
+            $('#del-prev-video').click(function() {
+
+                var video_name = $('#video_project').val();
+                var project_id = <?= $row->project_id ?>
+
+                if (video_name != '') {
+                    $.ajax({
+                        url: "<?= base_url(); ?>projects/del_basic_video/",
+                        method: 'POST',
+                        data: {
+                            'video': video_name,
+                            'project_id': project_id
+                        },
+                        type: JSON,
+                        success: function(result) {
+                            console.log(result)
+                            if (result.success === true) {
+                                alert('Gagal Hapus item gambar')
+                            } else {
+                                $('#video_side_form').load(' #video_basic_form')
+
+                            }
+                        }
+                    })
+                }
+
+            })
+        })
+
+        $(document).ready(function() {
+            $('#upload_p_image').click(function() {
+                var myFormData = new FormData();
+                var gambar = $('#gambar_basic')[0].files[0];
+                myFormData.append('image', gambar)
+                myFormData.append('project_id', <?= $row->project_id ?>)
+                var filename = $('#gambar_basic')[0].files[0]
+                console.log(filename)
+                var project_id = <?= $row->project_id ?>
+
+                if (filename != '') {
+                    $.ajax({
+                        url: '<?= base_url(); ?>projects/upload_image',
+                        processData: false, // important
+                        contentType: false,
+                        method: 'POST',
+                        data: myFormData,
+                        type: JSON,
+                        success: function(result) {
+                            console.log(result)
+                            if (result.success === true) {
+                                alert('Gagal tambah')
+                            } else {
+                                $('#image_side_form').load(' #preview', function() {
+                                    $(document).ready(function() {
+                                        $('#del-prev').click(function() {
+
+                                            var image_name = $('#image_project').val();
+                                            var project_id = <?= $row->project_id ?>
+
+                                            if (image_name != '') {
+                                                $.ajax({
+                                                    url: "<?= base_url(); ?>projects/del_basic_image/",
+                                                    method: 'POST',
+                                                    data: {
+                                                        'image': image_name,
+                                                        'project_id': project_id
+                                                    },
+                                                    type: JSON,
+                                                    success: function(result) {
+                                                        console.log(result)
+                                                        if (result.success === true) {
+                                                            alert('Gagal Hapus item gambar')
+                                                        } else {
+                                                            $('#image_side_form').load(' #image_basic_form', function() {
+                                                                document.getElementById('gambar_basic').onchange = function() {
+                                                                    document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
+                                                                    console.log(URL.createObjectURL(gambar_basic.files[0]))
+
+                                                                    document.getElementById('upload_box').style.display = "none";
+                                                                    document.getElementById('uploaded_box').style.display = 'block';
+                                                                }
+
+
+                                                                document.getElementById('delcurrent_image').onclick = function() {
+                                                                    document.getElementById('upload_box').style.display = "flex";
+                                                                    document.getElementById('uploaded_box').style.display = 'none';
+                                                                }
+                                                            })
+
+                                                        }
+                                                    }
+                                                })
+                                            }
+
+                                        })
+                                    })
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+        $(document).ready(function() {
+            $('#upload_p_video').click(function() {
+                var myFormData = new FormData();
+                var video = $('#video_basic')[0].files[0];
+                myFormData.append('video', video)
+                myFormData.append('project_id', <?= $row->project_id ?>)
+                var filename = $('#video_basic')[0].files[0]
+                console.log(filename)
+                var project_id = <?= $row->project_id ?>
+
+                if (filename != '') {
+                    $.ajax({
+                        url: '<?= base_url(); ?>projects/upload_video',
+                        processData: false, // important
+                        contentType: false,
+                        method: 'POST',
+                        data: myFormData,
+                        type: JSON,
+                        success: function(result) {
+                            console.log(result)
+                            if (result.success === true) {
+                                alert('Gagal tambah')
+                            } else {
+                                $('#video_side_form').load(' #video_preview', function() {
+                                    videojs('project_video ');
+                                    $(document).ready(function() {
+                                        $('#del-prev-video').click(function() {
+
+                                            var video_name = $('#video_project').val();
+                                            var project_id = <?= $row->project_id ?>
+
+                                            if (video_name != '') {
+                                                $.ajax({
+                                                    url: "<?= base_url(); ?>projects/del_basic_video/",
+                                                    method: 'POST',
+                                                    data: {
+                                                        'video': video_name,
+                                                        'project_id': project_id
+                                                    },
+                                                    type: JSON,
+                                                    success: function(result) {
+                                                        console.log(result)
+                                                        if (result.success === true) {
+                                                            alert('Gagal Hapus item gambar')
+                                                        } else {
+                                                            $('#video_side_form').load(' #video_basic_form', function() {
+                                                                document.getElementById('video_basic').onchange = function(event) {
+                                                                    videojs('project_video ');
+                                                                    let file = event.target.files[0];
+                                                                    let blobURL = URL.createObjectURL(file);
+
+                                                                    document.querySelector("video").src = blobURL;
+
+                                                                    document.getElementById('upload_box_video').style.display = "none";
+                                                                    document.getElementById('uploaded_box_video').style.display = 'block';
+                                                                }
+
+
+                                                                document.getElementById('delcurrent_video').onclick = function() {
+                                                                    document.getElementById('upload_box_video').style.display = "flex";
+                                                                    document.getElementById('uploaded_box_video').style.display = 'none';
+                                                                }
+                                                            })
+
+                                                        }
+                                                    }
+                                                })
+                                            }
+
+                                        })
+                                    })
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        })
     </script>
 
     <script type="text/javascript">
         document.getElementById('gambar_basic').onchange = function() {
             document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
+            console.log(URL.createObjectURL(gambar_basic.files[0]))
 
             document.getElementById('upload_box').style.display = "none";
             document.getElementById('uploaded_box').style.display = 'block';
@@ -246,6 +444,24 @@
         document.getElementById('delcurrent_image').onclick = function() {
             document.getElementById('upload_box').style.display = "flex";
             document.getElementById('uploaded_box').style.display = 'none';
+        }
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById('video_basic').onchange = function(event) {
+            let file = event.target.files[0];
+            let blobURL = URL.createObjectURL(file);
+
+            document.querySelector("video").src = blobURL;
+
+            document.getElementById('upload_box_video').style.display = "none";
+            document.getElementById('uploaded_box_video').style.display = 'block';
+        }
+
+
+        document.getElementById('delcurrent_video').onclick = function() {
+            document.getElementById('upload_box_video').style.display = "flex";
+            document.getElementById('uploaded_box_video').style.display = 'none';
         }
     </script>
 
@@ -334,7 +550,7 @@
 
 
 
-    
+
 
     <script>
         $(document).ready(function() {

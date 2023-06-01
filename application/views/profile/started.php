@@ -13,7 +13,7 @@
                     <h1 class="mb-3 type-t4">Created Project</h1>
                     <p class="type-st2">A place to keep track of all your created projects</p>
                 </div>
-                <div class="row mt-5 mb-4" >
+                <div class="row mt-5 mb-4">
                     <div class="type-st2 fw-bold">Started</div>
                 </div>
 
@@ -45,7 +45,7 @@
                                 <div class="row py-2">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="<?=base_url('assets/')?>img/started/<?=$row->image?>" alt="" height="89" width="158" >
+                                        <img src="<?=base_url('assets/')?>img/<?=$row->image?>" alt="" height="89" width="158" >
                                     </a>
                                 </div>
                                 <div class="col-8 ms-5">

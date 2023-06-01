@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-8 side-form" id="image_side_form">
                     <?php
-                    
+
                     if (isset($row->image) && $row->image == 'default.jpg') { ?>
                         <div id="image_basic_form">
                             <div style="display: flex;" class="media-form h-75 w-100  justify-content-center align-items-center flex-column" id="upload_box">
@@ -192,7 +192,7 @@
                                     <label for="gambar_basic">
                                         <i class="fa-sharp fa-regular fa-image"></i>
                                     </label>
-                                    <input type="file" name="gambar" id="gambar_basic" style="display: none;">
+                                    <input value="<?= $row->image ?>" type="file" name="gambar" id="gambar_basic" style="display: none;">
                                 </div>
                                 <p class="type-1 mt-3">Drop an image here, or select a file.</p>
                                 <p class="type-2 mt-2">It must be a JPG, PNG, GIF, TIFF, or BMP, no larger than 200 MB.</p>
@@ -201,18 +201,23 @@
                             <div class="shadow p-3 mb-5 bg-body overflow-auto" id="uploaded_box" style="display: none;">
                                 <img src="<?= $row->image ?>" alt="" style="object-fit: cover;" width="100%" height="387" id="uploaded_image">
                                 <div class="d-flex flex-row mt-2">
+                                    <!-- <form method="post" enctype="multipart/form-data" action="<?= base_url('project/upload_image') ?>">
+                                    <input type="hidden" name="project_id" value="<?= $row->project_id ?>"> -->
+                                    <button class="btn media-button p-2 px-3 me-3 rounded-0" style="font-size: 0.9rem;" id="upload_p_image" type="button">
+                                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                    </button>
                                     <button class="btn media-button p-2 px-3 rounded-0" style="font-size: 0.9rem;" type="button" id="delcurrent_image">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+                                    <!-- </form> -->
                                 </div>
                             </div>
 
                         </div>
-                    <?php
-                    } else { ?>
 
-                        <div class="shadow p-3 mb-5 bg-body overflow-auto" id="preview">
+                        <div class="shadow p-3 mb-5 bg-body overflow-auto" id="preview" style="display: none;">
                             <input type="hidden" value="<?= $row->image ?>" id="image_project">
+                            <input type="file" name="gambar" style="display: none;" value="<?= $row->image ?>">
                             <img src="<?= base_url('assets/img/') . $row->image ?>" alt="" style="object-fit: cover;" width="100%" height="387" id="uploaded_image">
                             <div class="d-flex flex-row mt-2">
 
@@ -220,6 +225,33 @@
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
+                        </div>
+                    <?php
+                    } else { ?>
+
+                        <div class="shadow p-3 mb-5 bg-body overflow-auto" id="preview">
+                            <input type="hidden" value="<?= $row->image ?>" id="image_project">
+                            <input type="file" name="gambar" style="display: none;" value="<?= $row->image ?>">
+                            <img src="<?= base_url('assets/img/') . $row->image ?>" alt="" style="object-fit: cover;" width="100%" height="387" id="uploaded_image">
+                            <div class="d-flex flex-row mt-2">
+
+                                <button class="btn media-button p-2 px-3 rounded-0" id="del-prev" style="font-size: 0.9rem;" type="button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                            <!-- <div class="shadow p-3 mb-5 bg-body overflow-auto" id="uploaded_video" style="display: none;">
+                                <img src="<?= $row->image ?>" alt="" style="object-fit: cover;" width="100%" height="387" id="uploaded_video_basic">
+                                <div class="d-flex flex-row mt-2">
+
+                                    <button class="btn media-button p-2 px-3 me-3 rounded-0" style="font-size: 0.9rem;" id="upload_p_image" type="button">
+                                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                    </button>
+                                    <button class="btn media-button p-2 px-3 rounded-0" style="font-size: 0.9rem;" type="button" id="delcurrent_image">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div> -->
                         </div>
                     <?php
                     } ?>
@@ -246,20 +278,86 @@
                         is more accessible to everyone.
                     </p>
                 </div>
-                <div class="col-8 side-form h-100">
-                    <div class="media-form h-100 w-100 d-flex justify-content-center align-items-center flex-column">
-                        <div class="btn-circle" style="padding-left: 2.2rem; padding-right:2.2rem;">
-                            <a href="">
-                                <label for="input-gambar">
-                                    <i class="fa-sharp fa-regular fa-file-video"></i>
-                                </label>
-                                <input type="file" id="input-gambar" style="display: none;">
-                            </a>
+                <div class="col-8 side-form h-100" id="video_side_form">
+                <?php
+
+                if (isset($row->video) && $row->video == 'default.mp4') { ?>
+                    <div id="video_basic_form">
+                        <div style="display: flex;" class="media-form h-100 w-100 justify-content-center align-items-center flex-column" id="upload_box_video">
+                            <div class="btn-circle" style="padding-left: 2.2rem; padding-right:2.2rem;">
+                                <a href="">
+                                    <label for="video_basic">
+                                        <i class="fa-sharp fa-regular fa-file-video"></i>
+                                    </label>
+                                    <input type="file" value="<?= $row->video ?>" name="video" id="video_basic" style="display:none;">
+                                </a>
+                            </div>
+                            <p class="type-1 mt-3">Drop a video here, or select a file.</p>
+                            <p class="type-2 mt-2">It must be a MOV, MPEG, AVI, MP4, 3GP, WMV, or FLV, no larger than 5120
+                                MB.</p>
                         </div>
-                        <p class="type-1 mt-3">Drop a video here, or select a file.</p>
-                        <p class="type-2 mt-2">It must be a MOV, MPEG, AVI, MP4, 3GP, WMV, or FLV, no larger than 5120
-                            MB.</p>
+                        
+
+                        <div class="shadow p-3 mb-5 bg-body overflow-auto" id="uploaded_box_video" style="display: none;">
+                            <video id="project_video" class="video-js" controls preload="auto" width="640" height="387" poster="<?=base_url('assets/img/placeholder.jpg')?>" data-setup="{}">
+            
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                </p>
+                            </video>
+                            <div class="d-flex flex-row mt-2">
+                                <button class="btn media-button p-2 px-3 me-3 rounded-0" style="font-size: 0.9rem;" id="upload_p_video" type="button">
+                                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                </button>
+                                <button class="btn media-button p-2 px-3 rounded-0" style="font-size: 0.9rem;" type="button" id="delcurrent_video">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="shadow p-3 mb-5 bg-body overflow-auto" id="video_previewx" style="display: none;">
+                            <input type="hidden" value="<?= $row->video ?>" id="video_project">
+                            <video id="project_videox" class="video-js" controls preload="auto" width="640" height="387" poster="<?=base_url('assets/img/placeholder.jpg')?>" data-setup="{}">
+                            <source src="<?=base_url('assets/vid/'.$row->video)?>" type="video/mp4">
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                </p>
+                            </video>
+                            <div class="d-flex flex-row mt-2">
+                                <button class="btn media-button p-2 px-3 rounded-0" style="font-size: 0.9rem;" type="button" id="del-prev-video">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div> -->
+
                     </div>
+                    <?php 
+                    } else {?>
+                        <div class="shadow p-3 mb-5 bg-body overflow-auto" id="video_preview">
+                            <input type="hidden" value="<?= $row->video ?>" id="video_project">
+                            <video id="project_video" width="640" height="387" class="video-js" controls preload="auto"  data-setup="{}">
+                            <source src="<?=base_url('assets/vid/'.$row->video)?>" type="video/mp4">
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                </p>
+                            </video>
+                            <div class="d-flex flex-row mt-2">
+                                <button class="btn media-button p-2 px-3 rounded-0" style="font-size: 0.9rem;" type="button" id="del-prev-video">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <?php
+                    }?>
+
+
                     <span class="mt-4">
                         <a href="">
                             80% of successful projects have a video. Make a great one, regardless of your budget.

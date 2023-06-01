@@ -92,6 +92,10 @@ a{
   text-decoration: none;
 }
 
+
+header{
+  font-family: 'maison_neuebook';
+}
 /* navbar section */
 header a{
   color: var(--kf-black);
@@ -121,9 +125,7 @@ header .category .list-group .list-group-item{
     color: var(--kf-black);
 }
 
-.nav-link{
-    color: var(--kf-black);
-}
+
 
 
 
@@ -208,6 +210,26 @@ header .category .list-group .list-group-item{
 
   .pbox{
     height: 20rem;
+  }
+
+  
+  .pbox .wrapper{
+    overflow: hidden;
+  }
+
+  .pbox .bg-child:hover {
+    -ms-transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+    -o-transform: scale(1.15);
+    transform: scale(1.15);
+    cursor: pointer;
+  }
+  .pbox .bg-child{
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
   }
 
   .project .pbox p{
@@ -544,7 +566,7 @@ footer .psc-8{
     width: 15rem;
     height: 20rem;
     position: absolute;
-    top: 2rem;
+    top: 10rem;
     left: 73rem;
   }
 
@@ -605,8 +627,15 @@ nav .pxc{
   padding-right: 1000px;
 }
 
-.navbar .collapse ul{
-  font-size: 0.9rem;
+header .mobile-nav .mobile-nav-link{
+  font-size: 0.8rem;
+  color: var(--kf-soft-black);
+  margin-right: 5px;
+}
+
+header .mobile-nav .mobile-nav-link:hover{
+  text-decoration: underline !important;
+  color: var(--kf-primary)  !important;
 }
 /* hero */
 .hero{
@@ -868,7 +897,7 @@ footer .psc-8 ul{
   width: 100%;
   height: auto;
   position: absolute;
-  top: 12rem;
+  top: 5rem;
   left: 0rem;
   font-size: 0.9rem;
 }
