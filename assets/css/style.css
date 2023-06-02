@@ -213,11 +213,16 @@ header .category .list-group .list-group-item{
   }
 
   
-  .pbox .wrapper{
+  .wrapper{
     overflow: hidden;
   }
 
-  .pbox .bg-child:hover {
+  .wrapperimg{
+    width: 24rem;
+    overflow: hidden;
+  }
+
+  .bg-child:hover {
     -ms-transform: scale(1.15);
     -moz-transform: scale(1.15);
     -webkit-transform: scale(1.15);
@@ -225,12 +230,14 @@ header .category .list-group .list-group-item{
     transform: scale(1.15);
     cursor: pointer;
   }
-  .pbox .bg-child{
+  .bg-child{
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     -o-transition: all .5s;
     transition: all .5s;
   }
+  
+  
 
   .project .pbox p{
     background-color: #1d1c1c78;
@@ -808,6 +815,10 @@ header .mobile-nav .mobile-nav-link:hover{
 
 .fresh p{
   font-size: 0.7rem;
+}
+
+.wrapperimg{
+  width: 12rem;
 }
 
 .fresh .boxImage{

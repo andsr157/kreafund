@@ -158,6 +158,7 @@ table {
     --kf-text-dark-rgb: 158, 158, 158;
     --cl-white-text: rgb(249, 249, 249);
     --cl-navbar-text: rgb(249, 249, 249);
+    --kf-grey-text:#696969;
 }
 
 body {
@@ -312,8 +313,15 @@ header a {
     text-align: left;
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+.reward .type-d-active{
     color: var(--kf-soft-black);
-    vertical-align: middle;
+}
+
+
+.reward .type-d-deactive {
+    color: var(--kf-grey-text);
 }
 .reward a {
     text-decoration: none;
@@ -338,6 +346,7 @@ header a {
     font-weight: 200;
     color: var(--kf-soft-black);
     vertical-align: middle;
+    line-height: 1.4;
 }
 
 .reward span a {

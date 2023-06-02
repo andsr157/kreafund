@@ -22,52 +22,89 @@
 <body>
     <!-- navigation bar -->
     <header class="sticky-top bg-white">
-        <nav class="navbar navbar-expand-lg pt-lg-4 pb-lg-3 border border-left-0 border-right-0 border-top-0">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none">
-                    <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg pt-lg-4 pb-0 pb-lg-3 border border-left-0 border-right-0 border-top-0 ">
+      <div class="container d-none d-lg-block">
+        <div class="row">
+          <div class="col-3">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+
+              <li class="nav-item py-2 py-lg-0">
+                <a class="nav-link" href="<?= base_url('project/' . $this->session->userdata('username') . '/' .$this->uri->segment(3)) ?>">Dashboard project</a>
+              </li>
+              <li class="nav-item pb-2 pb-lg-0">
+                <a class="nav-link" href="<?= base_url('start') ?>">Aturan</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 ">
+            <a class="d-flex justify-content-center align-items-center h-100" href="<?= base_url() ?>" style="color: var(--kf-primary); font-weight: 700;">
+              <img src="./img/logos/logo.png" alt="">
+              <span style="font-size: larger;">
+                Kreafund
+              </span>
+            </a>
+          </div>
+
+          <div class="col-3 ">
+          
+            <div class="d-flex justify-content-end me-3">
+            <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
+            <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_form">Cancel</button>
+            <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_item">Cancel</button>
+              <!-- <?php
+              if (!empty($this->session->userdata('user_id'))) { ?>
+                <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                  <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
                 </button>
-                <a class="d-lg-none d-block mx-auto" href="#">
-                    <img src="./img/logos/logo.png" alt="" />LOGO
+              <?php } else { ?>
+                <a href="<?= base_url('auth_user/login') ?>">
+                  <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
                 </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item py-2 py-lg-0">
-                            <a class="nav-link active" href="<?= base_url('start/project') ?>"><- Judul Project</a>
-                        </li>
-                        <li class="nav-item pb-2 pb-lg-0">
-                            <a class="nav-link" href="#">Aturan</a>
-                        </li>
-                    </ul>
-
-                    <a class="d-lg-block d-none mx-auto" href="<?= base_url() ?>">
-                        <img src="./img/logos/logo.png" alt="" />LOGO
-                    </a>
-                    <p class="unselectable text-white">AAAAAAAAAAAA</p>
-
-                    <?php
-                    if (!empty($this->session->userdata('user_id'))) { ?>
-                        <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                            <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
-                        </button>
-                    <?php } else { ?>
-                        <a href="<?= base_url('auth_user/login') ?>">
-                            <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
-                        </a>
-                        <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
-                    <?php } ?>
-                    </form>
-                </div>
-
-                <a class="navbar-brand mx-auto d-lg-none d-block" href="../index.html">
-                    <img src="./img/logos/logo.png" alt="" />Logo
-                </a>
+                  
+              <?php } ?> -->
             </div>
+          </div>
+        </div>
+      </div>
+      <!-- ------ -->
+      <div class="container d-block d-lg-none mobile-nav">
+        <div class="row py-3 border-bottom">
+          <a class="d-lg-none d-block mx-auto text-center" href="#" style="color: var(--kf-primary); font-weight: 700;">
+            <img src="./img/logos/logo.png" alt="">Kreafund
+          </a>
+        </div>
+        <div class="row py-2">
+          <div class="col-8 py-2">
+            <p style="display: inline-block;">
+              <a class="mobile-nav-link" href="<?= base_url('projects') ?>">Semua Projek</a>
+              <a class="mobile-nav-link" href="<?= base_url('start') ?>">Mulai Projekmu</a>
+            </p>
+          </div>
+          <div class="col-4">
+            <div class="d-flex justify-content-center">
+              <?php
+              if (!empty($this->session->userdata('user_id'))) { ?>
+                <button class="btn border-0  p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                  <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
+                </button>
+              <?php } else { ?>
+                <a href="<?= base_url('auth_user/login') ?>">
+                  <button class="btn btn-dark-info text-nowrap border-0  " style="color: #242323" type="button">Log In</button>
+                </a>
+                
+              <?php } ?>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>
         </nav>
     </header>
     <!-- end of header section -->
 
-
+  
 
     <?php echo $contents ?>
 
@@ -532,7 +569,7 @@
     </script>
     <!-- end modal login -->
 
-    <script>
+    <!-- <script>
         var rewardcontainer = document.getElementById('rewardlink');
         var linkr = rewardcontainer.getElementsByClassName('rcat');
 
@@ -542,10 +579,109 @@
                 var current = document.getElementsByClassName("rborder-active");
                 current[0].className = current[0].className.replace(" rborder-active", "");
                 this.className += " rborder-active";
+                var ikon = document.getElementsByClassName('type-d');
+                ikon[0].className = ikon[0].classname.replace (" type-d", "type-d-deactive");
+                $this.className +=" type-d";
             });
         }
-    </script>
+    </script> -->\
 
+    <script>
+    $(document).ready(function(){
+        $('#add_reward').click(function(){
+            $('#rewardlink').hide();
+            $('#start-cat').hide()
+            $('#reward_form').show();
+            $('#cancel_form').show();
+        })
+
+        $('#add_reward2').click(function(){
+            $('#rewardlink').hide();
+            $('#reward_form').show();
+            $('#cancel_form').show();
+        })
+
+
+        $('#cancel_form').click(function(){
+            $('#rewardlink').show();
+            $('#start-cat').show()
+            $('#reward_form').hide();
+            $('#cancel_form').hide();
+        })
+
+        $('#add_item').click(function(){
+            $('#rewardlink').hide();
+            $('#start-cat').hide()
+            $('#item_form').show();
+            $('#cancel_item').show();
+        })
+
+        $('#cancel_item').click(function(){
+            $('#rewardlink').show();
+            $('#reward-wrapper2').show();
+            $('#start-cat').show()
+            $('#item_form').hide();
+            $('#cancel_item').hide();
+        })
+
+
+    })
+</script>
+    
+
+    <script>
+  const rewardItem = document.querySelector('.rcat.rborder-active');
+  const rewardItemIcon = document.querySelector('.ikonr.text-light');
+  const rewardItemType = document.querySelector('.type-d-active');
+  const itemsCategory = document.querySelector('.rcat:not(.rborder-active)');
+  const itemsCategoryIcon = document.querySelector('.ikonr.text-secondary');
+  const itemsCategoryType = document.querySelector('.type-d-deactive');
+
+  rewardItem.addEventListener('click', () => {
+    if (!rewardItem.classList.contains('rborder-active')) {
+      rewardItem.classList.add('rborder-active');
+      rewardItemIcon.style.backgroundColor = '#05CE78';
+      rewardItemIcon.classList.remove('text-secondary');
+      rewardItemIcon.classList.add('text-light');
+      rewardItemType.classList.remove('type-d-deactive');
+      rewardItemType.classList.add('type-d-active');
+
+      itemsCategory.classList.remove('rborder-active');
+      itemsCategoryIcon.classList.remove('text-light');
+      itemsCategoryIcon.classList.add('text-secondary');
+      itemsCategoryType.classList.remove('type-d-active');
+      itemsCategoryType.classList.add('type-d-deactive');
+
+      
+      itemsCategoryIcon.style.backgroundColor = 'transparent';
+      document.getElementById('reward-wrapper1').style.display = 'block';
+      document.getElementById('reward-wrapper2').style.display = 'none';
+    }
+  });
+
+  itemsCategory.addEventListener('click', () => {                             
+    if (!itemsCategory.classList.contains('rborder-active')) {
+      itemsCategory.classList.add('rborder-active');
+      itemsCategoryIcon.style.backgroundColor = '#05CE78';
+      itemsCategoryIcon.classList.remove('bg-transparent');
+      itemsCategoryIcon.classList.remove('text-secondary');
+      itemsCategoryIcon.classList.add('text-light');
+      itemsCategoryType.classList.remove('type-d-deactive');
+      itemsCategoryType.classList.add('type-d-active');
+
+      rewardItem.classList.remove('rborder-active');
+      rewardItemIcon.classList.remove('text-light');
+      rewardItemIcon.classList.add('text-secondary');
+      rewardItemType.classList.remove('type-d-active');
+      rewardItemType.classList.add('type-d-deactive');
+
+    
+      rewardItemIcon.style.backgroundColor = 'transparent';
+      document.getElementById('reward-wrapper1').style.display = 'none';
+      document.getElementById('reward-wrapper2').style.display = 'block';
+    }
+  });
+</script>
 
 
 
@@ -574,6 +710,9 @@
             })
         })
     </script>
+
+
+
 
 
     <!-- <script>

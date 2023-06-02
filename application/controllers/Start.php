@@ -33,8 +33,9 @@ class Start extends CI_Controller {
 		$this->template->load('template/p_form_template', 'project_form/basic', $data);
 	}
 
-	public function reward(){
-		$this->template->load('template/p_form_template' ,'project_form/reward');
+	public function reward(){ 
+		$data['id'] = $this->uri->segment(3);
+		$this->template->load('template/p_form_template' ,'project_form/reward',$data);
 	}
 
 	public function story(){

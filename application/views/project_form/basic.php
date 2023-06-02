@@ -3,7 +3,7 @@
         <div class="row px-5 mb-5">
             <ul class="list-group list-group-horizontal justify-content-center">
                 <li class="list-group-item mx-5 cat1">
-                    <a href="<?= base_url('start/basic') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/basic')?>">
                         <div class="ikon border-active">
                             <span>✍️</span>
                             <p class="mt-3">Basic</p>
@@ -12,7 +12,7 @@
 
                 </li>
                 <li class="list-group-item mx-5 cat2">
-                    <a href="<?= base_url('start/reward') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/reward') ?>">
                         <div class="ikon">
                             <span>🎁</span>
                             <p class="mt-3">Reward</p>
