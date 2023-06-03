@@ -92,4 +92,5 @@ class Project_m extends CI_Model
 		$this->db->where('project_id', $where);
 		$this->db->update('project');
 	}
+
 }

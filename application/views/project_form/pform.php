@@ -29,7 +29,7 @@
             <li class="list-group-item">
               <div class="col-2">
               </div>
-              <a href="<?=base_url('start/reward')?>">
+              <a href="<?=base_url('project/'.$this->session->userdata('username').'/'.$row->project_id.'/edit/reward')?>">
                 <div class="col-10">
                   <h4>Rewards</h4>
                   <p>Set your rewards and shipping costs.</p>

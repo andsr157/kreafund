@@ -22,38 +22,38 @@
 <body>
     <!-- navigation bar -->
     <header class="sticky-top bg-white">
-    <nav class="navbar navbar-expand-lg pt-lg-4 pb-0 pb-lg-3 border border-left-0 border-right-0 border-top-0 ">
-      <div class="container d-none d-lg-block">
-        <div class="row">
-          <div class="col-3">
-            <ul class="navbar-nav mb-2 mb-lg-0">
+        <nav class="navbar navbar-expand-lg pt-lg-4 pb-0 pb-lg-3 border border-left-0 border-right-0 border-top-0 ">
+            <div class="container d-none d-lg-block">
+                <div class="row">
+                    <div class="col-3">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
 
-              <li class="nav-item py-2 py-lg-0">
-                <a class="nav-link" href="<?= base_url('project/' . $this->session->userdata('username') . '/' .$this->uri->segment(3)) ?>">Dashboard project</a>
-              </li>
-              <li class="nav-item pb-2 pb-lg-0">
-                <a class="nav-link" href="<?= base_url('start') ?>">Aturan</a>
-              </li>
-            </ul>
-          </div>
+                            <li class="nav-item py-2 py-lg-0">
+                                <a class="nav-link" href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3)) ?>">Dashboard project</a>
+                            </li>
+                            <li class="nav-item pb-2 pb-lg-0">
+                                <a class="nav-link" href="<?= base_url('start') ?>">Aturan</a>
+                            </li>
+                        </ul>
+                    </div>
 
-          <div class="col-6 ">
-            <a class="d-flex justify-content-center align-items-center h-100" href="<?= base_url() ?>" style="color: var(--kf-primary); font-weight: 700;">
-              <img src="./img/logos/logo.png" alt="">
-              <span style="font-size: larger;">
-                Kreafund
-              </span>
-            </a>
-          </div>
+                    <div class="col-6 ">
+                        <a class="d-flex justify-content-center align-items-center h-100" href="<?= base_url() ?>" style="color: var(--kf-primary); font-weight: 700;">
+                            <img src="./img/logos/logo.png" alt="">
+                            <span style="font-size: larger;">
+                                Kreafund
+                            </span>
+                        </a>
+                    </div>
 
-          <div class="col-3 ">
-          
-            <div class="d-flex justify-content-end me-3">
-            <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
-            <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_form">Cancel</button>
-            <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_item">Cancel</button>
-              <!-- <?php
-              if (!empty($this->session->userdata('user_id'))) { ?>
+                    <div class="col-3 ">
+
+                        <div class="d-flex justify-content-end me-3">
+                            <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
+                            <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_form">Cancel</button>
+                            <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_item">Cancel</button>
+                            <!-- <?php
+                                    if (!empty($this->session->userdata('user_id'))) { ?>
                 <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                   <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
                 </button>
@@ -63,48 +63,48 @@
                 </a>
                   
               <?php } ?> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- ------ -->
-      <div class="container d-block d-lg-none mobile-nav">
-        <div class="row py-3 border-bottom">
-          <a class="d-lg-none d-block mx-auto text-center" href="#" style="color: var(--kf-primary); font-weight: 700;">
-            <img src="./img/logos/logo.png" alt="">Kreafund
-          </a>
-        </div>
-        <div class="row py-2">
-          <div class="col-8 py-2">
-            <p style="display: inline-block;">
-              <a class="mobile-nav-link" href="<?= base_url('projects') ?>">Semua Projek</a>
-              <a class="mobile-nav-link" href="<?= base_url('start') ?>">Mulai Projekmu</a>
-            </p>
-          </div>
-          <div class="col-4">
-            <div class="d-flex justify-content-center">
-              <?php
-              if (!empty($this->session->userdata('user_id'))) { ?>
-                <button class="btn border-0  p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
-                </button>
-              <?php } else { ?>
-                <a href="<?= base_url('auth_user/login') ?>">
-                  <button class="btn btn-dark-info text-nowrap border-0  " style="color: #242323" type="button">Log In</button>
-                </a>
-                
-              <?php } ?>
-            </div>
+            <!-- ------ -->
+            <div class="container d-block d-lg-none mobile-nav">
+                <div class="row py-3 border-bottom">
+                    <a class="d-lg-none d-block mx-auto text-center" href="#" style="color: var(--kf-primary); font-weight: 700;">
+                        <img src="./img/logos/logo.png" alt="">Kreafund
+                    </a>
+                </div>
+                <div class="row py-2">
+                    <div class="col-8 py-2">
+                        <p style="display: inline-block;">
+                            <a class="mobile-nav-link" href="<?= base_url('projects') ?>">Semua Projek</a>
+                            <a class="mobile-nav-link" href="<?= base_url('start') ?>">Mulai Projekmu</a>
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                            <?php
+                            if (!empty($this->session->userdata('user_id'))) { ?>
+                                <button class="btn border-0  p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                                    <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
+                                </button>
+                            <?php } else { ?>
+                                <a href="<?= base_url('auth_user/login') ?>">
+                                    <button class="btn btn-dark-info text-nowrap border-0  " style="color: #242323" type="button">Log In</button>
+                                </a>
 
-          </div>
-        </div>
-      </div>
-    </nav>
+                            <?php } ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
         </nav>
     </header>
     <!-- end of header section -->
 
-  
+
 
     <?php echo $contents ?>
 
@@ -238,6 +238,36 @@
     <script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        function show1() {
+            document.getElementById('radio1').style.display = 'block';
+            document.getElementById('radio2').style.display = 'none';
+            $("#rbtn2").prop('checked', false);
+            $('#standar').val(30);
+
+        }
+
+        function show2() {
+            document.getElementById('radio2').style.display = 'block';
+            document.getElementById('radio1').style.display = 'none';
+            $("#rbtn1").prop('checked', false);
+        }
+
+        function rqty11() {
+            document.getElementById('rqty_form').style.display = 'none';
+            document.getElementById('rqty_form2').style.display = 'block';
+            $("#rqty2").prop('checked', false);
+        }
+
+        function rqty22() {
+            document.getElementById('rqty_form').style.display = 'block';
+            document.getElementById('rqty_form2').style.display = 'none';
+            $("#rqty1").prop('checked', false);
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $('#del-prev').click(function() {
@@ -468,6 +498,8 @@
         })
     </script>
 
+
+
     <script type="text/javascript">
         document.getElementById('gambar_basic').onchange = function() {
             document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
@@ -483,6 +515,10 @@
             document.getElementById('uploaded_box').style.display = 'none';
         }
     </script>
+
+
+
+
 
     <script type="text/javascript">
         document.getElementById('video_basic').onchange = function(event) {
@@ -505,13 +541,15 @@
 
 
     <script>
-        function time1() {
+        function time11() {
             document.getElementById('time_form').style.display = 'none';
+            document.getElementById('time_form2').style.display = 'block';
             $("#time2").prop('checked', false);
         }
 
-        function time2() {
+        function time22() {
             document.getElementById('time_form').style.display = 'block';
+            document.getElementById('time_form2').style.display = 'none';
             $("#time1").prop('checked', false);
         }
     </script>
@@ -542,31 +580,7 @@
             });
         }
     </script>
-    <script>
-        function show1() {
-            document.getElementById('radio1').style.display = 'block';
-            document.getElementById('radio2').style.display = 'none';
-            $("#rbtn2").prop('checked', false);
-            $('#standar').val(30);
 
-        }
-
-        function show2() {
-            document.getElementById('radio2').style.display = 'block';
-            document.getElementById('radio1').style.display = 'none';
-            $("#rbtn1").prop('checked', false);
-        }
-
-        function rqty1() {
-            document.getElementById('rqty_form').style.display = 'none';
-            $("#rqty2").prop('checked', false);
-        }
-
-        function rqty2() {
-            document.getElementById('rqty_form').style.display = 'block';
-            $("#rqty1").prop('checked', false);
-        }
-    </script>
     <!-- end modal login -->
 
     <!-- <script>
@@ -584,104 +598,197 @@
                 $this.className +=" type-d";
             });
         }
-    </script> -->\
+    </script> -->
+
 
     <script>
-    $(document).ready(function(){
-        $('#add_reward').click(function(){
-            $('#rewardlink').hide();
-            $('#start-cat').hide()
-            $('#reward_form').show();
-            $('#cancel_form').show();
-        })
+        $(document).ready(function() {
+            $('#btn_add_item').click(function() {
+                var id = '<?= $this->uri->segment(3) ?>'
+                var item = $('#item').val();
+                $.ajax({
+                    url: '<?= base_url('reward/add_item') ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'item': item,
+                        'project_id': id
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            $('#item').val('');
+                            $('#rewardlink').show();
+                            $('#reward-wrapper2').show();
+                            $('#start-cat').show()
+                            $('#item_form').hide();
+                            $('#cancel_item').hide();
 
-        $('#add_reward2').click(function(){
-            $('#rewardlink').hide();
-            $('#reward_form').show();
-            $('#cancel_form').show();
-        })
-
-
-        $('#cancel_form').click(function(){
-            $('#rewardlink').show();
-            $('#start-cat').show()
-            $('#reward_form').hide();
-            $('#cancel_form').hide();
-        })
-
-        $('#add_item').click(function(){
-            $('#rewardlink').hide();
-            $('#start-cat').hide()
-            $('#item_form').show();
-            $('#cancel_item').show();
-        })
-
-        $('#cancel_item').click(function(){
-            $('#rewardlink').show();
-            $('#reward-wrapper2').show();
-            $('#start-cat').show()
-            $('#item_form').hide();
-            $('#cancel_item').hide();
-        })
-
-
-    })
-</script>
-    
+                            $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>', function() {
+                                $('#add_item').click(function() {
+                                    $('#rewardlink').hide();
+                                    $('#start-cat').hide()
+                                    $('#item_form').show();
+                                    $('#cancel_item').show();
+                                })
+                            });
+                        } else if (response.status === 'error') {
+                            $('#item_error').text(response.errors.item);
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
-  const rewardItem = document.querySelector('.rcat.rborder-active');
-  const rewardItemIcon = document.querySelector('.ikonr.text-light');
-  const rewardItemType = document.querySelector('.type-d-active');
-  const itemsCategory = document.querySelector('.rcat:not(.rborder-active)');
-  const itemsCategoryIcon = document.querySelector('.ikonr.text-secondary');
-  const itemsCategoryType = document.querySelector('.type-d-deactive');
+        $(document).ready(function() {
+            $('form#data_reward').submit(function(e) {
+                e.preventDefault();
+                var desc = $('textarea#desc').val();
+                var formData = new FormData(this);
+                formData.append('description', desc);
+                console.log(formData);
+                $.ajax({
+                    url: '<?= base_url('reward/add') ?>',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response.message);
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            location.reload();
+                        } else if (response.status === 'error') {
+                            alert('error');
+                        } else {
+                            console.log('fail');
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                })
+            })
+        });
+    </script>
 
-  rewardItem.addEventListener('click', () => {
-    if (!rewardItem.classList.contains('rborder-active')) {
-      rewardItem.classList.add('rborder-active');
-      rewardItemIcon.style.backgroundColor = '#05CE78';
-      rewardItemIcon.classList.remove('text-secondary');
-      rewardItemIcon.classList.add('text-light');
-      rewardItemType.classList.remove('type-d-deactive');
-      rewardItemType.classList.add('type-d-active');
+    <script>
+        $(document).ready(function() {
+            $('#add_reward').click(function() {
+                $('#rewardlink').hide();
+                $('#start-cat').hide()
+                $('#reward_form').show();
+                $('#cancel_form').show();
+            })
 
-      itemsCategory.classList.remove('rborder-active');
-      itemsCategoryIcon.classList.remove('text-light');
-      itemsCategoryIcon.classList.add('text-secondary');
-      itemsCategoryType.classList.remove('type-d-active');
-      itemsCategoryType.classList.add('type-d-deactive');
+            $('#add_reward2').click(function() {
+                $('#rewardlink').hide();
+                $('#start-cat').hide()
+                $('#item_form').show();
+                $('#cancel_item').show();
+            })
 
-      
-      itemsCategoryIcon.style.backgroundColor = 'transparent';
-      document.getElementById('reward-wrapper1').style.display = 'block';
-      document.getElementById('reward-wrapper2').style.display = 'none';
-    }
-  });
 
-  itemsCategory.addEventListener('click', () => {                             
-    if (!itemsCategory.classList.contains('rborder-active')) {
-      itemsCategory.classList.add('rborder-active');
-      itemsCategoryIcon.style.backgroundColor = '#05CE78';
-      itemsCategoryIcon.classList.remove('bg-transparent');
-      itemsCategoryIcon.classList.remove('text-secondary');
-      itemsCategoryIcon.classList.add('text-light');
-      itemsCategoryType.classList.remove('type-d-deactive');
-      itemsCategoryType.classList.add('type-d-active');
+            $('#cancel_form').click(function() {
+                $('#rewardlink').show();
+                $('#start-cat').show()
+                $('#reward_form').hide();
+                $('#cancel_form').hide();
+            })
 
-      rewardItem.classList.remove('rborder-active');
-      rewardItemIcon.classList.remove('text-light');
-      rewardItemIcon.classList.add('text-secondary');
-      rewardItemType.classList.remove('type-d-active');
-      rewardItemType.classList.add('type-d-deactive');
+            $('#add_item').click(function() {
+                $('#rewardlink').hide();
+                $('#start-cat').hide()
+                $('#item_form').show();
+                $('#cancel_item').show();
+            })
 
-    
-      rewardItemIcon.style.backgroundColor = 'transparent';
-      document.getElementById('reward-wrapper1').style.display = 'none';
-      document.getElementById('reward-wrapper2').style.display = 'block';
-    }
-  });
-</script>
+            $('#cancel_item').click(function() {
+                $('#rewardlink').show();
+                $('#reward-wrapper2').show();
+                $('#start-cat').show()
+                $('#item_form').hide();
+                $('#cancel_item').hide();
+            })
+
+
+        })
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById('reward-gambar').onchange = function() {
+            document.getElementById('uploaded_reward_image').src = URL.createObjectURL(document.getElementById('reward-gambar').files[0]);
+            console.log(URL.createObjectURL(document.getElementById('reward-gambar').files[0]));
+
+            document.getElementById('upload_reward_box').style.display = "none";
+            document.getElementById('uploaded_reward_box').style.display = 'block';
+        }
+
+        document.getElementById('delcurrent_image').onclick = function() {
+            document.getElementById('upload_reward_box').style.display = "flex";
+            document.getElementById('uploaded_reward_box').style.display = 'none';
+        }
+    </script>
+
+
+
+    <script>
+        const rewardItem = document.querySelector('.rcat.rborder-active');
+        const rewardItemIcon = document.querySelector('.ikonr.text-light');
+        const rewardItemType = document.querySelector('.type-d-active');
+        const itemsCategory = document.querySelector('.rcat:not(.rborder-active)');
+        const itemsCategoryIcon = document.querySelector('.ikonr.text-secondary');
+        const itemsCategoryType = document.querySelector('.type-d-deactive');
+
+        rewardItem.addEventListener('click', () => {
+            if (!rewardItem.classList.contains('rborder-active')) {
+                rewardItem.classList.add('rborder-active');
+                rewardItemIcon.style.backgroundColor = '#05CE78';
+                rewardItemIcon.classList.remove('text-secondary');
+                rewardItemIcon.classList.add('text-light');
+                rewardItemType.classList.remove('type-d-deactive');
+                rewardItemType.classList.add('type-d-active');
+
+                itemsCategory.classList.remove('rborder-active');
+                itemsCategoryIcon.classList.remove('text-light');
+                itemsCategoryIcon.classList.add('text-secondary');
+                itemsCategoryType.classList.remove('type-d-active');
+                itemsCategoryType.classList.add('type-d-deactive');
+
+
+                itemsCategoryIcon.style.backgroundColor = 'transparent';
+                document.getElementById('reward-wrapper1').style.display = 'block';
+                document.getElementById('reward-wrapper2').style.display = 'none';
+            }
+        });
+
+        itemsCategory.addEventListener('click', () => {
+            if (!itemsCategory.classList.contains('rborder-active')) {
+                itemsCategory.classList.add('rborder-active');
+                itemsCategoryIcon.style.backgroundColor = '#05CE78';
+                itemsCategoryIcon.classList.remove('bg-transparent');
+                itemsCategoryIcon.classList.remove('text-secondary');
+                itemsCategoryIcon.classList.add('text-light');
+                itemsCategoryType.classList.remove('type-d-deactive');
+                itemsCategoryType.classList.add('type-d-active');
+
+                rewardItem.classList.remove('rborder-active');
+                rewardItemIcon.classList.remove('text-light');
+                rewardItemIcon.classList.add('text-secondary');
+                rewardItemType.classList.remove('type-d-active');
+                rewardItemType.classList.add('type-d-deactive');
+
+
+                rewardItemIcon.style.backgroundColor = 'transparent';
+                document.getElementById('reward-wrapper1').style.display = 'none';
+                document.getElementById('reward-wrapper2').style.display = 'block';
+            }
+        });
+    </script>
 
 
 
