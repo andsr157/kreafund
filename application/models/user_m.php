@@ -29,4 +29,24 @@ class User_m extends CI_Model
 
         $this->db->insert('users', $params);
     }
+
+    public function getuserbyEmail($params){
+        $this->db->where('email', $params);
+        $query  = $this->db->get('users');
+        return $query;
+
+
+    }
+
+    public function getValidUser(){
+        $this->db->get_where();
+    }
+
+
+    public function updatePassword($post, $email){
+        $this->db->set('password', sha1($post['password']));
+        $this->db->where('email', $email);
+        $this->db->update('users');
+
+    }
 }

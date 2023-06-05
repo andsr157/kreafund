@@ -14,7 +14,7 @@
                             <div class="mb-3">
                                 <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="Password" onclick="show_rp()">
                             </div>
-                            <a href="">
+                            <a href="<?=base_url('auth_user/forgotPassword')?>">
                               <span style="font-size: 0.8rem;" class="pb-5">Forgot your password?</span>
                             </a>
                             <button class="btn w-100 btn-dark rounded-0 mt-5" value="true" type="submit" name="login">Login</button>

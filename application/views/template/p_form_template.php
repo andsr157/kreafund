@@ -498,6 +498,89 @@
         })
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $('#save_item').click(function() {
+                var newItem = $('#item_reward').val();
+                var newCustomItem = $('#custom_item').val();
+                var id = '<?= $this->uri->segment(3) ?>'
+
+
+                if (newItem !== "" && newCustomItem === "") {
+                    // Item yang ada dipilih dari dropdown
+                    var itemData = {
+                        item: newItem
+                    };
+
+                    $.ajax({
+                        url: "<?= base_url('reward/save_item') ?>",
+                        type: "POST",
+                        data: {
+                            'item': newItem,
+                            'project_id': id
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status === "success") {
+                                // Item berhasil disimpan
+                                // Lakukan tindakan yang diperlukan
+                                document.getElementById('itemlist').style.display = 'block';
+                                document.getElementById('itemform-wrap').style.display = 'none';
+                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
+
+                                })
+                                $('#item_reward').val('');
+                            } else {
+                                // Terjadi error saat menyimpan item
+                                alert(response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Terjadi kesalahan saat menyimpan item: " + error);
+                        }
+                    });
+                } else if (newItem === "" && newCustomItem !== "") {
+                    // Custom item diinputkan
+                    var customItemData = {
+                        customItem: newCustomItem
+                    };
+
+                    $.ajax({
+                        url: "<?= base_url('reward/save_item') ?>",
+                        type: "POST",
+                        data: {
+                            'item_custom': newCustomItem,
+                            'project_id': id
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status === "success") {
+                                // Item berhasil disimpan
+                                // Lakukan tindakan yang diperlukan
+                                document.getElementById('itemlist').style.display = 'block';
+                                document.getElementById('itemform-wrap').style.display = 'none';
+                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
+
+                                })
+                                $('#custom_item').val('');
+                            } else {
+                                // Terjadi error saat menyimpan item
+                                alert(response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Terjadi kesalahan saat menyimpan item: " + error);
+                        }
+                    });
+                } else {
+                    // Kondisi jika tidak memilih item atau custom item tidak diisi
+                    alert("Please select an item from the list or enter a custom item.");
+                }
+            });
+        });
+    </script>
 
 
     <script type="text/javascript">
@@ -651,14 +734,27 @@
                 var desc = $('textarea#desc').val();
                 var formData = new FormData(this);
                 formData.append('description', desc);
+
+                var project_id = <?=$this->uri->segment(3)?>
+                formData.append('project_id', project_id);
+
+                var itemQty = [];
+                $('input[name="save_item_qty"]').each(function() {
+                    var qty = $(this).val();
+                    console.log(qty);
+                    itemQty.push(qty);
+                });
+                formData.append('qty_item', JSON.stringify(itemQty));
                 console.log(formData);
+
                 $.ajax({
                     url: '<?= base_url('reward/add') ?>',
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
                     success: function(response) {
-                        console.log(response.message);
+                        console.log('AJAX success');
+                        console.log(response.status);
                         if (response.status === 'success') {
                             alert(response.message);
                             location.reload();
@@ -667,6 +763,12 @@
                         } else {
                             console.log('fail');
                         }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('AJAX error');
+                        console.log(xhr.responseText);
+                        console.log(status);
+                        console.log(error);
                     },
                     cache: false,
                     contentType: false,

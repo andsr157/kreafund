@@ -96,7 +96,7 @@
                         </div>
 
                         <div class="row">
-                            <button class="btn w-100 p-2 btn-dark rounded-0 " style="background-color: var(--kf-btn-grey);" onclick="show11()"> + New Item</button>
+                            <button class="btn w-100 p-2 btn-dark rounded-0 " style="background-color: var(--kf-btn-grey);" onclick="show11()" type="button"> + New Item</button>
                         </div>
 
 
@@ -110,7 +110,7 @@
                                         <option value="">item</option>
                                         <?php
                                         foreach ($item->result() as $row_item) { ?>
-                                            <option value="<?= $row_item->reward_item_id ?>"> <?= $row_item->item_name ?></option>';
+                                            <option value="<?= $row_item->item_name ?>"> <?= $row_item->item_name ?></option>';
                                         <?php
                                         } ?>
                                     </select>
@@ -121,15 +121,15 @@
 
                                 <div>
                                     <label class="form-label mb-3">Create New Item</label>
-                                    <input type="text" class="form-control rounded-0 " placeholder="Sticker">
+                                    <input type="text" class="form-control rounded-0 " placeholder="Sticker" id="custom_item">
                                 </div>
                                 <div class="row px-3 mt-3">
-                                    <button class="btn w-100 p-2 btn-dark rounded-0" style="background-color: var(--kf-btn-grey);" onclick="show22()">
+                                    <button class="btn w-100 p-2 btn-dark rounded-0" style="background-color: var(--kf-btn-grey);"  id="save_item" type="button">
                                         save
                                     </button>
                                 </div>
                                 <div class="row px-3 mt-3">
-                                    <button class="btn w-100 p-2 btn-light rounded-0" style="background-color: var(--kf-bg-grey-color);" onclick="hide1()">
+                                    <button class="btn w-100 p-2 btn-light rounded-0" style="background-color: var(--kf-bg-grey-color);"  onclick="hide1()" type="button">
                                         cancel
                                     </button>
                                 </div>
