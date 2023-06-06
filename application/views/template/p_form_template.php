@@ -735,7 +735,7 @@
                 var formData = new FormData(this);
                 formData.append('description', desc);
 
-                var project_id = <?=$this->uri->segment(3)?>
+                var project_id = '<?=$this->uri->segment(3)?>';
                 formData.append('project_id', project_id);
 
                 var itemQty = [];

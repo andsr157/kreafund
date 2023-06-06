@@ -46,7 +46,7 @@ class Start extends CI_Controller
 		$data['id'] = $this->uri->segment(3);
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$data['temp'] = $this->item_m->get_temp();
-		
+		// var_dump(intval($this->uri->segment(3))).die();
 		// var_dump($data['item']->result()).die();
 		$this->template->load('template/p_form_template', 'project_form/reward', $data);
 	}
