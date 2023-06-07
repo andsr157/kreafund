@@ -126,123 +126,72 @@
                 </div>
                 <div class="col-3 pe-0"><span>GAMBAR</span></div>
             </div>
+            <?php foreach ($rewards as  $reward) { ?>
+                <div class="row r-outter mb-4">
+                    <a href="">
+                        <div class="row rbox">
+                            <div class="col-2 ">
+                                <h3><?=$reward->amount?></h3>
+                            </div>
+                            <div class="col-4 ">
+                                <h3 class="mb-4">Digital Poster Exclusive</h3>
+                                <div class="type-9 mb-1">
+                                    <span>Estimated delivery:</span>
+                                    <span>7 Juny 2023</span>
+                                </div>
+                                <div class="type-9 mb-1">
+                                    <span>Reward Located</span>
+                                    <span>Sukoharjo</span>
+                                </div>
+                                <div class="type-9 mb-1">
+                                    <span>Includes some physical goods</span>
+                                </div>
+                                <div class="type-10 mt-5">
+                                    <span>Limited(100/100)</span>
+                                </div>
 
-            <div class="row r-outter mb-4">
-                <a href="">
-                    <div class="row rbox">
-                        <div class="col-2 ">
-                            <h3>Rp. 50K</h3>
+                            </div>
+                            <div class="col-3 ">
+                                <ul>
+                                    <?php
+                                    $items = $this->reward_m->getItems($reward->reward_id);
+                                    foreach($items as $item){?>
+                                        <li><?=$item->item_name?></li>
+                                   <?php }
+                                    ?>
+                                </ul>
+                            </div>
+                            <div class="col-3">
+                                <div class="rimage">
+                                    <img src="../img/1.jpg" class="img-fluid" alt="">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-4 ">
-                            <h3 class="mb-4">Digital Poster Exclusive</h3>
-                            <div class="type-9 mb-1">
-                                <span>Estimated delivery:</span>
-                                <span>7 Juny 2023</span>
-                            </div>
-                            <div class="type-9 mb-1">
-                                <span>Reward Located</span>
-                                <span>Sukoharjo</span>
-                            </div>
-                            <div class="type-9 mb-1">
-                                <span>Includes some physical goods</span>
-                            </div>
-                            <div class="type-10 mt-5">
-                                <span>Limited(100/100)</span>
-                            </div>
+                    </a>
+                    <div class="continer-fluid px-0 border-bottom border-1 "></div>
+                    <div class="row my-3">
+                        <div class="col-6 type-13 d-flex align-items-center">
+                            <span class="me-1">0</span>
+                            <span>Backers</span>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end ">
+                            <button class="btn ms-2 type-13">
+                                <span>Edit</span>
+                            </button>
+                            <button class="btn ms-2 type-13">
+                                <span>Duplicate</span>
+                            </button>
+                            <button class="btn ms-2 type-13">
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
 
-                        </div>
-                        <div class="col-3 ">
-                            <ul>
-                                <li>Digital Print</li>
-                                <li>Sticker</li>
-                                <li>Cloth</li>
-                            </ul>
-                        </div>
-                        <div class="col-3">
-                            <div class="rimage">
-                                <img src="../img/1.jpg" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <div class="continer-fluid px-0 border-bottom border-1 "></div>
-                <div class="row my-3">
-                    <div class="col-6 type-13 d-flex align-items-center">
-                        <span class="me-1">0</span>
-                        <span>Backers</span>
-                    </div>
-                    <div class="col-6 d-flex justify-content-end ">
-                        <button class="btn ms-2 type-13">
-                            <span>Edit</span>
-                        </button>
-                        <button class="btn ms-2 type-13">
-                            <span>Duplicate</span>
-                        </button>
-                        <button class="btn ms-2 type-13">
-                            <span>Delete</span>
-                        </button>
-                    </div>
                 </div>
+            <?php
+            } ?>
 
-            </div>
-            <div class="row r-outter mb-4">
-                <a href="">
-                    <div class="row rbox">
-                        <div class="col-2 ">
-                            <h3>Rp. 50K</h3>
-                        </div>
-                        <div class="col-4 ">
-                            <h3 class="mb-4">Digital Poster Exclusive</h3>
-                            <div class="type-9 mb-1">
-                                <span>Estimated delivery:</span>
-                                <span>7 Juny 2023</span>
-                            </div>
-                            <div class="type-9 mb-1">
-                                <span>Reward Located</span>
-                                <span>Sukoharjo</span>
-                            </div>
-                            <div class="type-9 mb-1">
-                                <span>Includes some physical goods</span>
-                            </div>
-                            <div class="type-10 mt-5">
-                                <span>Limited(100/100)</span>
-                            </div>
 
-                        </div>
-                        <div class="col-3 ">
-                            <ul>
-                                <li>Digital Print</li>
-                                <li>Sticker</li>
-                                <li>Cloth</li>
-                            </ul>
-                        </div>
-                        <div class="col-3">
-                            <div class="rimage">
-                                <img src="../img/3.png" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <div class="continer-fluid px-0 border-bottom border-1 "></div>
-                <div class="row my-3">
-                    <div class="col-6 type-13 d-flex align-items-center">
-                        <span class="me-1">0</span>
-                        <span>Backers</span>
-                    </div>
-                    <div class="col-6 d-flex justify-content-end ">
-                        <button class="btn ms-2 type-13">
-                            <span>Edit</span>
-                        </button>
-                        <button class="btn ms-2 type-13">
-                            <span>Duplicate</span>
-                        </button>
-                        <button class="btn ms-2 type-13">
-                            <span>Delete</span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
 
             <div class="row dummy">
                 <a href="">
@@ -261,7 +210,7 @@
     </div>
 </section>
 <section class="reward_form mt-5" id="reward_form" style="display: none;">
-    <?php $this->view('project_form/reward/reward_form');?>
+    <?php $this->view('project_form/reward/reward_form'); ?>
 </section>
 
 
@@ -299,4 +248,3 @@
         </div>
     </div>
 </section>
-

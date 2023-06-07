@@ -23,6 +23,7 @@ class Reward extends CI_Controller
 			$params['image'] = 'default.jpg';
 			$params['description'] = $post['desc'];
 			$params['est_delivery'] = $post['month'] . "/" . $post['year'];
+			$params['project_id'] = $post['project_id'];
 			if (isset($post['unlimited'])) {
 				$params['qty'] = $post['unlimited'];
 			} else if (isset($post['limited'])) {

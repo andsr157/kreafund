@@ -46,7 +46,8 @@ class Start extends CI_Controller
 		$data['id'] = $this->uri->segment(3);
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$data['temp'] = $this->item_m->get_temp();
-		// var_dump(intval($this->uri->segment(3))).die();
+		$data['rewards']  = $this->reward_m->getRewardWithPid($this->uri->segment(3));
+		// var_dump(intval($this->uri->segment(3))).die(); 
 		// var_dump($data['item']->result()).die();
 		$this->template->load('template/p_form_template', 'project_form/reward', $data);
 	}
@@ -63,5 +64,14 @@ class Start extends CI_Controller
 	public function launch()
 	{
 		$this->template->load('template/p_form_template', 'project_form/launch');
+	}
+
+	public function test(){
+		// $data['rewards'] = $this->reward_m->getRewardWithDetails(4);
+		// $this->load->view('test', $data);
+
+		$data = $this->reward_m->getItems(90);
+		var_dump($data).die();
+		
 	}
 }
