@@ -2,7 +2,7 @@
     <div class="container px-5">
         <div class="ms-5">
             <div class="row">
-                <div class="title-form">
+                <div class="title-form" >
                     <h2>Add Rewardd</h2>
                 </div>
                 <div class="type-13">
@@ -17,11 +17,10 @@
                         <div>
                             <label class="form-label mb-3">Title</label>
                             <input type="text" class="form-control rounded-0" name="rtitle" id="rtitle" placeholder="Inputkan Judul Projectmu">
+                            <input type="hidden" class="form-control rounded-0" name="reward_id" id="reward_id" placeholder="Inputkan Judul Projectmu">
                         </div>
                     </div>
-
                     <div class="continer-fluid px-0 border-bottom border-2 my-5 "></div>
-
                     <div>
                         <label for="amount" class="form-label mb-3">Amount</label>
                         <div class="input-group">
@@ -55,16 +54,16 @@
                             <img src="" alt="" style="object-fit: cover;" width="100%" height="387" id="uploaded_reward_image">
                             <div class="d-flex flex-row mt-2">
 
-                                <button class="btn media-button p-2 px-3 me-3 rounded-0" style="font-size: 0.9rem;" id="upload_reward_image" type="button">
+                                <!-- <button class="btn media-button p-2 px-3 me-3 rounded-0" style="font-size: 0.9rem;" id="upload_reward_image" type="button">
                                     <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                                </button>
+                                </button> -->
                                 <button class="btn media-button p-2 px-3 rounded-0" style="font-size: 0.9rem;" type="button" id="delcurrent_image">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="continer-fluid px-0 border-bottom border-2 my-5 "></div>
 
                     <div>
@@ -99,7 +98,7 @@
                             <button class="btn w-100 p-2 btn-dark rounded-0 " style="background-color: var(--kf-btn-grey);" onclick="show11()" type="button"> + New Item</button>
                         </div>
 
-
+    
 
                         <div class="row p-3 mt-3 border border-1 hide" id="itemform-wrap">
                             <div class="item-form">
@@ -198,7 +197,7 @@
                                 <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
                                 <div class="fixeddate mx-3">
                                     <label for="exampleInputEmail1" class="form-label my-2">Total Available</label>
-                                    <input type="number" value="9999999999" name="unlimited" class="form-control rounded-0 mb-4 " placeholder="unlimited" readonly>
+                                    <input type="number" value="99999" name="unlimited" id="unlimited" class="form-control rounded-0 mb-4 " placeholder="unlimited" readonly>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +210,7 @@
                                 <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
                                 <div class="fixeddate mx-3">
                                     <label for="exampleInputEmail1" class="form-label my-2">Total Available</label>
-                                    <input type="number" name="limited" class="form-control rounded-0 mb-4 " placeholder="100">
+                                    <input type="number" name="limited" id="limited" class="form-control rounded-0 mb-4 " placeholder="100">
                                 </div>
                             </div>
 
@@ -241,7 +240,7 @@
                             <div id="time_form2" class="hide">
                                 <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
                                 <div class=" mx-3">
-                                    <input type="number" name="time-unlimit" class="form-control rounded-0 mb-5" value="99999" readonly>
+                                    <input type="number" name="time-unlimit" id="time-unlimit" class="form-control rounded-0 mb-5" value="99999" readonly>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +248,7 @@
                             <div class="radiobox pt-0">
                                 <input class="form-check-input pt-0 mt-0" name="rtime" type="radio" id="time2" onclick="time22()">
                                 <span class="ms-2">Fixed number of days (1-60)</span>
-                                <input type="hidden" name="time-unlimit" class="form-control rounded-0 mb-5" value="999999">
+                                <input type="hidden" name="time-unlimit" class="form-control rounded-0 mb-5" value="99999">
                             </div>
                             <div id="time_form" class="hide">
                                 <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
@@ -270,11 +269,12 @@
                         </button>
                     </div>
                     <div class="row">
-                        <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/reward') ?>">
+                        
                             <button class="btn w-100 p-2 border-0 rounded-0" style="background-color: var(--kf-bg-grey-color);">
-                                cancel
+                            <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/reward') ?>">
+                                cancel</a>
                             </button>
-                        </a>
+                        
                     </div>
                 </div>
 

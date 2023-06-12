@@ -239,6 +239,90 @@
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
 
+    <!-------------------------------------------- script for basic --------------------------------------------->
+
+    <script>
+        const rewardItem = document.querySelector('.rcat.rborder-active');
+        const rewardItemIcon = document.querySelector('.ikonr.text-light');
+        const rewardItemType = document.querySelector('.type-d-active');
+        const itemsCategory = document.querySelector('.rcat:not(.rborder-active)');
+        const itemsCategoryIcon = document.querySelector('.ikonr.text-secondary');
+        const itemsCategoryType = document.querySelector('.type-d-deactive');
+
+        rewardItem.addEventListener('click', () => {
+            if (!rewardItem.classList.contains('rborder-active')) {
+                rewardItem.classList.add('rborder-active');
+                rewardItemIcon.style.backgroundColor = '#05CE78';
+                rewardItemIcon.classList.remove('text-secondary');
+                rewardItemIcon.classList.add('text-light');
+                rewardItemType.classList.remove('type-d-deactive');
+                rewardItemType.classList.add('type-d-active');
+
+                itemsCategory.classList.remove('rborder-active');
+                itemsCategoryIcon.classList.remove('text-light');
+                itemsCategoryIcon.classList.add('text-secondary');
+                itemsCategoryType.classList.remove('type-d-active');
+                itemsCategoryType.classList.add('type-d-deactive');
+
+
+                itemsCategoryIcon.style.backgroundColor = 'transparent';
+                document.getElementById('reward-wrapper1').style.display = 'block';
+                document.getElementById('reward-wrapper2').style.display = 'none';
+            }
+        });
+
+        itemsCategory.addEventListener('click', () => {
+            if (!itemsCategory.classList.contains('rborder-active')) {
+                itemsCategory.classList.add('rborder-active');
+                itemsCategoryIcon.style.backgroundColor = '#05CE78';
+                itemsCategoryIcon.classList.remove('bg-transparent');
+                itemsCategoryIcon.classList.remove('text-secondary');
+                itemsCategoryIcon.classList.add('text-light');
+                itemsCategoryType.classList.remove('type-d-deactive');
+                itemsCategoryType.classList.add('type-d-active');
+
+                rewardItem.classList.remove('rborder-active');
+                rewardItemIcon.classList.remove('text-light');
+                rewardItemIcon.classList.add('text-secondary');
+                rewardItemType.classList.remove('type-d-active');
+                rewardItemType.classList.add('type-d-deactive');
+
+
+                rewardItemIcon.style.backgroundColor = 'transparent';
+                document.getElementById('reward-wrapper1').style.display = 'none';
+                document.getElementById('reward-wrapper2').style.display = 'block';
+            }
+        });
+    </script>
+
+
+    <script>
+        function show11() {
+            document.getElementById('itemform-wrap').style.display = 'block';
+        }
+
+        function hide1() {
+            document.getElementById('itemform-wrap').style.display = 'none';
+        }
+
+        function show22() {
+            document.getElementById('itemlist').style.display = 'block';
+            document.getElementById('itemform-wrap').style.display = 'none';
+
+        }
+
+        var linkcontainer = document.getElementById('start-cat');
+        var linkcat = linkcontainer.getElementsByClassName('ikon');
+
+        for (var i = 0; i < linkcat.length; i++) {
+            linkcat[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("border-active");
+                current[0].className = current[0].className.replace(" border-active", "");
+                this.className += " border-active";
+            });
+        }
+    </script>
+
 
 
     <script type="text/javascript">
@@ -268,12 +352,70 @@
             $("#rqty1").prop('checked', false);
         }
     </script>
+
+    <script type="text/javascript">
+        document.getElementById('gambar_basic').onchange = function() {
+            document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
+            console.log(URL.createObjectURL(gambar_basic.files[0]))
+
+            document.getElementById('upload_box').style.display = "none";
+            document.getElementById('uploaded_box').style.display = 'block';
+        }
+
+
+        document.getElementById('delcurrent_image').onclick = function() {
+            document.getElementById('upload_box').style.display = "flex";
+            document.getElementById('uploaded_box').style.display = 'none';
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        document.getElementById('video_basic').onchange = function(event) {
+            let file = event.target.files[0];
+            let blobURL = URL.createObjectURL(file);
+
+            document.querySelector("video").src = blobURL;
+
+            document.getElementById('upload_box_video').style.display = "none";
+            document.getElementById('uploaded_box_video').style.display = 'block';
+        }
+
+
+        document.getElementById('delcurrent_video').onclick = function() {
+            document.getElementById('upload_box_video').style.display = "flex";
+            document.getElementById('uploaded_box_video').style.display = 'none';
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#category').change(function() {
+                var category_id = $('#category').val();
+                var project_id = <?= $row->project_id ?>
+
+                if (category_id != '') {
+                    $.ajax({
+                        url: "<?= base_url(); ?>start/fetch_subcat/",
+                        method: 'POST',
+                        data: {
+                            'category_id': category_id
+                        },
+                        type: JSON,
+                        success: function(data) {
+                            $('#subcat').html(data);
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+
     <script>
         $(document).ready(function() {
             $('#del-prev').click(function() {
-
                 var image_name = $('#image_project').val();
-                var project_id = <?= $row->project_id ?>
+                var project_id = <?= $row->project_id ?>;
 
                 if (image_name != '') {
                     $.ajax({
@@ -498,286 +640,11 @@
         })
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#save_item').click(function() {
-                var newItem = $('#item_reward').val();
-                var newCustomItem = $('#custom_item').val();
-                var id = '<?= $this->uri->segment(3) ?>'
+
+    <!-- -------------------------------------------------end basic script -------------------------------------------------------->
 
 
-                if (newItem !== "" && newCustomItem === "") {
-                    // Item yang ada dipilih dari dropdown
-                    var itemData = {
-                        item: newItem
-                    };
-
-                    $.ajax({
-                        url: "<?= base_url('reward/save_item') ?>",
-                        type: "POST",
-                        data: {
-                            'item': newItem,
-                            'project_id': id
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log(response);
-                            if (response.status === "success") {
-                                // Item berhasil disimpan
-                                // Lakukan tindakan yang diperlukan
-                                document.getElementById('itemlist').style.display = 'block';
-                                document.getElementById('itemform-wrap').style.display = 'none';
-                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
-
-                                })
-                                $('#item_reward').val('');
-                            } else {
-                                // Terjadi error saat menyimpan item
-                                alert(response.message);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            alert("Terjadi kesalahan saat menyimpan item: " + error);
-                        }
-                    });
-                } else if (newItem === "" && newCustomItem !== "") {
-                    // Custom item diinputkan
-                    var customItemData = {
-                        customItem: newCustomItem
-                    };
-
-                    $.ajax({
-                        url: "<?= base_url('reward/save_item') ?>",
-                        type: "POST",
-                        data: {
-                            'item_custom': newCustomItem,
-                            'project_id': id
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log(response);
-                            if (response.status === "success") {
-                                // Item berhasil disimpan
-                                // Lakukan tindakan yang diperlukan
-                                document.getElementById('itemlist').style.display = 'block';
-                                document.getElementById('itemform-wrap').style.display = 'none';
-                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
-
-                                })
-                                $('#custom_item').val('');
-                            } else {
-                                // Terjadi error saat menyimpan item
-                                alert(response.message);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            alert("Terjadi kesalahan saat menyimpan item: " + error);
-                        }
-                    });
-                } else {
-                    // Kondisi jika tidak memilih item atau custom item tidak diisi
-                    alert("Please select an item from the list or enter a custom item.");
-                }
-            });
-        });
-    </script>
-
-
-    <script type="text/javascript">
-        document.getElementById('gambar_basic').onchange = function() {
-            document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
-            console.log(URL.createObjectURL(gambar_basic.files[0]))
-
-            document.getElementById('upload_box').style.display = "none";
-            document.getElementById('uploaded_box').style.display = 'block';
-        }
-
-
-        document.getElementById('delcurrent_image').onclick = function() {
-            document.getElementById('upload_box').style.display = "flex";
-            document.getElementById('uploaded_box').style.display = 'none';
-        }
-    </script>
-
-
-
-
-
-    <script type="text/javascript">
-        document.getElementById('video_basic').onchange = function(event) {
-            let file = event.target.files[0];
-            let blobURL = URL.createObjectURL(file);
-
-            document.querySelector("video").src = blobURL;
-
-            document.getElementById('upload_box_video').style.display = "none";
-            document.getElementById('uploaded_box_video').style.display = 'block';
-        }
-
-
-        document.getElementById('delcurrent_video').onclick = function() {
-            document.getElementById('upload_box_video').style.display = "flex";
-            document.getElementById('uploaded_box_video').style.display = 'none';
-        }
-    </script>
-
-
-
-    <script>
-        function time11() {
-            document.getElementById('time_form').style.display = 'none';
-            document.getElementById('time_form2').style.display = 'block';
-            $("#time2").prop('checked', false);
-        }
-
-        function time22() {
-            document.getElementById('time_form').style.display = 'block';
-            document.getElementById('time_form2').style.display = 'none';
-            $("#time1").prop('checked', false);
-        }
-    </script>
-
-    <script>
-        function show11() {
-            document.getElementById('itemform-wrap').style.display = 'block';
-        }
-
-        function hide1() {
-            document.getElementById('itemform-wrap').style.display = 'none';
-        }
-
-        function show22() {
-            document.getElementById('itemlist').style.display = 'block';
-            document.getElementById('itemform-wrap').style.display = 'none';
-
-        }
-
-        var linkcontainer = document.getElementById('start-cat');
-        var linkcat = linkcontainer.getElementsByClassName('ikon');
-
-        for (var i = 0; i < linkcat.length; i++) {
-            linkcat[i].addEventListener("click", function() {
-                var current = document.getElementsByClassName("border-active");
-                current[0].className = current[0].className.replace(" border-active", "");
-                this.className += " border-active";
-            });
-        }
-    </script>
-
-    <!-- end modal login -->
-
-    <!-- <script>
-        var rewardcontainer = document.getElementById('rewardlink');
-        var linkr = rewardcontainer.getElementsByClassName('rcat');
-
-
-        for (var ctrl = 0; ctrl < linkr.length; ctrl++) {
-            linkr[ctrl].addEventListener("click", function() {
-                var current = document.getElementsByClassName("rborder-active");
-                current[0].className = current[0].className.replace(" rborder-active", "");
-                this.className += " rborder-active";
-                var ikon = document.getElementsByClassName('type-d');
-                ikon[0].className = ikon[0].classname.replace (" type-d", "type-d-deactive");
-                $this.className +=" type-d";
-            });
-        }
-    </script> -->
-
-
-    <script>
-        $(document).ready(function() {
-            $('#btn_add_item').click(function() {
-                var id = '<?= $this->uri->segment(3) ?>'
-                var item = $('#item').val();
-                $.ajax({
-                    url: '<?= base_url('reward/add_item') ?>',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'item': item,
-                        'project_id': id
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        if (response.status === 'success') {
-                            alert(response.message);
-                            $('#item').val('');
-                            $('#rewardlink').show();
-                            $('#reward-wrapper2').show();
-                            $('#start-cat').show()
-                            $('#item_form').hide();
-                            $('#cancel_item').hide();
-
-                            $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>', function() {
-                                $('#add_item').click(function() {
-                                    $('#rewardlink').hide();
-                                    $('#start-cat').hide()
-                                    $('#item_form').show();
-                                    $('#cancel_item').show();
-                                })
-                            });
-                        } else if (response.status === 'error') {
-                            $('#item_error').text(response.errors.item);
-                        } else {
-                            alert(response.message);
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('form#data_reward').submit(function(e) {
-                e.preventDefault();
-                var desc = $('textarea#desc').val();
-                var formData = new FormData(this);
-                formData.append('description', desc);
-
-                var project_id = '<?=$this->uri->segment(3)?>';
-                formData.append('project_id', project_id);
-
-                var itemQty = [];
-                $('input[name="save_item_qty"]').each(function() {
-                    var qty = $(this).val();
-                    console.log(qty);
-                    itemQty.push(qty);
-                });
-                formData.append('qty_item', JSON.stringify(itemQty));
-                console.log(formData);
-
-                $.ajax({
-                    url: '<?= base_url('reward/add') ?>',
-                    type: 'POST',
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log('AJAX success');
-                        console.log(response.status);
-                        if (response.status === 'success') {
-                            alert(response.message);
-                            location.reload();
-                        } else if (response.status === 'error') {
-                            alert('error');
-                        } else {
-                            console.log('fail');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('AJAX error');
-                        console.log(xhr.responseText);
-                        console.log(status);
-                        console.log(error);
-                    },
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                })
-            })
-        });
-    </script>
-
+    <!--------------------------------------------------- reward script ------------------------------------------------------------>
     <script>
         $(document).ready(function() {
             $('#add_reward').click(function() {
@@ -821,6 +688,20 @@
         })
     </script>
 
+    <script>
+        function time11() {
+            document.getElementById('time_form').style.display = 'none';
+            document.getElementById('time_form2').style.display = 'block';
+            $("#time2").prop('checked', false);
+        }
+
+        function time22() {
+            document.getElementById('time_form').style.display = 'block';
+            document.getElementById('time_form2').style.display = 'none';
+            $("#time1").prop('checked', false);
+        }
+    </script>
+
     <script type="text/javascript">
         document.getElementById('reward-gambar').onchange = function() {
             document.getElementById('uploaded_reward_image').src = URL.createObjectURL(document.getElementById('reward-gambar').files[0]);
@@ -837,105 +718,558 @@
     </script>
 
 
-
     <script>
-        const rewardItem = document.querySelector('.rcat.rborder-active');
-        const rewardItemIcon = document.querySelector('.ikonr.text-light');
-        const rewardItemType = document.querySelector('.type-d-active');
-        const itemsCategory = document.querySelector('.rcat:not(.rborder-active)');
-        const itemsCategoryIcon = document.querySelector('.ikonr.text-secondary');
-        const itemsCategoryType = document.querySelector('.type-d-deactive');
+        $(document).ready(function() {
+            var isEdit = false;
 
-        rewardItem.addEventListener('click', () => {
-            if (!rewardItem.classList.contains('rborder-active')) {
-                rewardItem.classList.add('rborder-active');
-                rewardItemIcon.style.backgroundColor = '#05CE78';
-                rewardItemIcon.classList.remove('text-secondary');
-                rewardItemIcon.classList.add('text-light');
-                rewardItemType.classList.remove('type-d-deactive');
-                rewardItemType.classList.add('type-d-active');
+            $(document).on('click', '.edit_reward', function(e) {
+                e.preventDefault();
+                $('#rewardlink').hide();
+                $('#start-cat').hide();
+                $('#reward_form').show();
+                $('.title-form h2').text('Edit Reward')
+                $('#save_reward').text('Save change');
+                $('#save_reward').attr('id', 'update_reward');
+                $("#itemlist").removeClass("hide");
+                $('#cancel_form').show();
 
-                itemsCategory.classList.remove('rborder-active');
-                itemsCategoryIcon.classList.remove('text-light');
-                itemsCategoryIcon.classList.add('text-secondary');
-                itemsCategoryType.classList.remove('type-d-active');
-                itemsCategoryType.classList.add('type-d-deactive');
+                var reward_id = $(this).data('reward_id');
+                var title = $(this).data('title');
+                var amount = $(this).data('amount');
+                var image = $(this).data('image');
+                var desc = $(this).data('desc');
+                var month = $(this).data('month');
+                var year = $(this).data('year');
+                var qty = $(this).data('qty');
+                var timelimit = $(this).data('timelimit');
+                var item = $(this).data('items').result_object;
+                console.log(item);
+
+                $('#rtitle').val(title);
+                $('#reward_id').val(reward_id);
+                $('#amount').val(amount);
+                document.getElementById('uploaded_reward_image').src = '<?= base_url('assets/img/reward/') ?>' + image;
+                document.getElementById('upload_reward_box').style.display = "none";
+                document.getElementById('uploaded_reward_box').style.display = 'block';
+                $('#desc').val(desc);
+                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', {
+                    items: item
+                }, function() {});
+                $('#month').val(month);
+                $('#year').val(year);
+
+                if (qty === 99999) {
+                    $('#rqty1').prop('checked', true);
+                    $('#rqty2').prop('checked', false);
+                    $('#unlimited').val(qty);
+                } else {
+                    $('#rqty1').prop('checked', false);
+                    $('#rqty2').prop('checked', true);
+                    $('#limited').val(qty);
+                }
+
+                if (timelimit === 99999) {
+                    $('#time1').prop('checked', true);
+                    $('#time2').prop('checked', false);
+                    $('#time-unlimit').val(qty);
+                } else {
+                    $('#time1').prop('checked', false);
+                    $('#time2').prop('checked', true);
+                    $('#time-limit').val(qty);
+                }
+
+                $('#cancel_form').click(function() {
+                    $('#rewardlink').show();
+                    $('#start-cat').show();
+                    $('#reward_form').hide();
+                    $('#cancel_form').hide();
+                    $('#rtitle').val('');
+                    $('#reward_id').val('');
+                    $('#amount').val('');
+                    document.getElementById('uploaded_reward_image').src = '';
+                    document.getElementById('upload_reward_box').style.display = "flex";
+                    document.getElementById('uploaded_reward_box').style.display = 'none';
+                    $('#desc').val('');
+                    $('#month').val('');
+                    $('#year').val('');
+                    $('#unlimited').val('');
+                    $('#limited').val('');
+                    $('#time-unlimit').val('');
+                    $('#time-limit').val('');
+                    $('#time1').prop('checked', false);
+                    $('#time2').prop('checked', false);
+                    $('#rqty1').prop('checked', false);
+                    $('#rqty2').prop('checked', false);
+
+                });
+
+                isEdit = true;
+            });
 
 
-                itemsCategoryIcon.style.backgroundColor = 'transparent';
-                document.getElementById('reward-wrapper1').style.display = 'block';
-                document.getElementById('reward-wrapper2').style.display = 'none';
-            }
-        });
+            $('form#data_reward').submit(function(e) {
+                e.preventDefault();
 
-        itemsCategory.addEventListener('click', () => {
-            if (!itemsCategory.classList.contains('rborder-active')) {
-                itemsCategory.classList.add('rborder-active');
-                itemsCategoryIcon.style.backgroundColor = '#05CE78';
-                itemsCategoryIcon.classList.remove('bg-transparent');
-                itemsCategoryIcon.classList.remove('text-secondary');
-                itemsCategoryIcon.classList.add('text-light');
-                itemsCategoryType.classList.remove('type-d-deactive');
-                itemsCategoryType.classList.add('type-d-active');
+                if (!isEdit) {
+                    var desc = $('textarea#desc').val();
+                    var formData = new FormData(this);
+                    formData.append('description', desc);
 
-                rewardItem.classList.remove('rborder-active');
-                rewardItemIcon.classList.remove('text-light');
-                rewardItemIcon.classList.add('text-secondary');
-                rewardItemType.classList.remove('type-d-active');
-                rewardItemType.classList.add('type-d-deactive');
+                    var project_id = '<?= $this->uri->segment(3) ?>';
+                    formData.append('project_id', project_id);
 
+                    var itemQty = [];
+                    $('input[name="save_item_qty"]').each(function() {
+                        var qty = $(this).val();
+                        console.log(qty);
+                        itemQty.push(qty);
+                    });
+                    formData.append('qty_item', JSON.stringify(itemQty));
+                    console.log(formData);
 
-                rewardItemIcon.style.backgroundColor = 'transparent';
-                document.getElementById('reward-wrapper1').style.display = 'none';
-                document.getElementById('reward-wrapper2').style.display = 'block';
-            }
+                    $.ajax({
+                        url: '<?= base_url('reward/add') ?>',
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('AJAX success');
+                            console.log(response.status);
+                            if (response.status === 'success') {
+                                alert(response.message);
+                                location.reload();
+                            } else if (response.status === 'error') {
+                                alert('error skuy');
+                            } else if(response.status === 'fail'){
+                                console.log('fail');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+                } else {
+                    var desc = $('textarea#desc').val();
+                    var formData = new FormData(this);
+                    formData.append('description', desc);
+
+                    var project_id = '<?= $this->uri->segment(3) ?>';
+                    formData.append('project_id', project_id);
+
+                    $.ajax({
+                        url: '<?= base_url('reward/update') ?>',
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response.status);
+                            console.log(formData)
+                            if (response.status === 'success') {
+                                alert(response.message);
+                                location.reload();
+                            } else if (response.status === 'error') {
+                                alert('error');
+                                console.log(xhr.responseText);
+                            } else {
+                                alert('belum ada data yang diubah')
+                                console.log('fail');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log('AJAX error');
+                            console.log(xhr.responseText);
+                            console.log(status);
+                            console.log(error);
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+
+                }
+            });
+            
         });
     </script>
 
 
+    <!-- <script>
+        $(document).ready(function() {
+            $(document).on('click', '.edit_reward', function(e) {
+                e.preventDefault();
+                $('#rewardlink').hide();
+                $('#start-cat').hide();
+                $('#reward_form').show();
+                $('#save_reward').text('Edit Reward');
+                $('#save_reward').attr('id', 'update_reward');
+                $("#itemlist").removeClass("hide");
+                $('#cancel_form').show();
+
+                var reward_id = $(this).data('reward_id');
+                var title = $(this).data('title');
+                var amount = $(this).data('amount');
+                var image = $(this).data('image');
+                var desc = $(this).data('desc');
+                var month = $(this).data('month');
+                var year = $(this).data('year');
+                var qty = $(this).data('qty');
+                var timelimit = $(this).data('timelimit');
+                var item = $(this).data('items').result_object;
+                console.log(item);
+                // var items = JSON.parse($(this).data('items'));
+                // console.log(items);
+                $('#rtitle').val(title);
+                $('#reward_id').val(reward_id);
+                $('#amount').val(amount);
+                document.getElementById('uploaded_reward_image').src = '<?= base_url('assets/img/reward/') ?>' + image;
+                document.getElementById('upload_reward_box').style.display = "none";
+                document.getElementById('uploaded_reward_box').style.display = 'block';
+                $('#desc').val(desc);
+                $('#itemlist').load('<?= base_url('reward/save_item_data',) ?>', {
+                    items: item
+                }, function() {})
+                $('#month').val(month);
+                $('#year').val(year);
+
+                if (qty === 99999) {
+                    $('#rqty1').prop('checked', true);
+                    $('#rqty2').prop('checked', false);
+                    $('#unlimited').val(qty);
+                } else {
+                    $('#rqty1').prop('checked', false);
+                    $('#rqty2').prop('checked', true);
+                    $('#limited').val(qty);
+                }
+
+                if (timelimit === 99999) {
+                    $('#time1').prop('checked', true);
+                    $('#time2').prop('checked', false);
+                    $('#time-unlimit').val(qty);
+                } else {
+                    $('#time1').prop('checked', false);
+                    $('#time2').prop('checked', true);
+                    $('#time-limit').val(qty);
+                }
 
 
+                $('#cancel_form').click(function() {
+                    $('#rewardlink').show();
+                    $('#start-cat').show()
+                    $('#reward_form').hide();
+                    $('#cancel_form').hide();
+                })
+
+
+                $('form#data_reward').submit(function(e) {
+                    e.preventDefault();
+                    var desc = $('textarea#desc').val();
+                    var formData = new FormData(this);
+                    formData.append('description', desc);
+
+
+                    var project_id = '<?= $this->uri->segment(3) ?>';
+                    formData.append('project_id', project_id);
+
+                    // var itemQty = [];
+                    // $('input[name="save_item_qty"]').each(function() {
+                    //     var qty = $(this).val();
+                    //     console.log(qty);
+                    //     itemQty.push(qty);
+                    // });
+                    // formData.append('qty_item', JSON.stringify(itemQty));
+
+                    $.ajax({
+                        url: '<?= base_url('reward/update') ?>',
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('AJAX success');
+                            console.log(response.status);
+                            if (response.status === 'success') {
+                                alert(response.message);
+                                location.reload();
+                            } else if (response.status === 'error') {
+                                alert('error');
+                            } else {
+                                console.log('fail');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log('AJAX error');
+                            console.log(xhr.responseText);
+                            console.log(status);
+                            console.log(error);
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    })
+                })
+
+
+
+                // $(document).on('click', '#reward_form .remove_tem', function(e) {
+                //     e.preventDefault();
+                //     var id = $(this).data('temp_id');
+                //     console.log(id);
+                //     $.ajax({
+                //         url: "<?= base_url('reward/del_temp') ?>",
+                //         type: "POST",
+                //         data: {
+                //             'temp_id': id
+                //         },
+                //         dataType: 'json',
+                //         success: function(response) {
+                //             console.log(response);
+                //             if (response.status === "success") {
+                //                 $('#itemlist').removeClass('hide');
+                //                 $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
+                //                     // Code to execute after loading the itemlist
+                //                 });
+                //             } else {
+                //                 alert(response.message);
+                //             }
+                //         }
+                //     });
+                // });
+            });
+        });
+    </script> -->
+
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#btn_add_item', function() {
+                console.log('Clicked on add button');
+                var id = '<?= $this->uri->segment(3) ?>';
+                var item = $('#item').val();
+                $.ajax({
+                    url: '<?= base_url('reward/add_item') ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'item': item,
+                        'project_id': id
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            $('#item').val('');
+                            $('#rewardlink').show();
+                            $('#reward-wrapper2').show();
+                            $('#start-cat').show();
+                            $('#item_form').hide();
+                            $('#cancel_item').hide();
+
+                            $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>', function() {
+                                $('#add_item').click(function() {
+                                    $('#rewardlink').hide();
+                                    $('#start-cat').hide();
+                                    $('#item_form').show();
+                                    $('#cancel_item').show();
+                                });
+                            });
+                        } else if (response.status === 'error') {
+                            $('#item_error').text(response.errors.item);
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '.edit_item', function(e) {
+
+                console.log('Clicked on openedit button');
+                e.preventDefault();
+                $('#rewardlink').hide();
+                $('#start-cat').hide();
+                $('#item_form').show();
+                $('#cancel_item').show();
+                $('#btn_add_item').attr('id', 'btn_edit_item');
+
+
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+
+                $('#item').val(name);
+                $('#item_id').val(id);
+
+                $('#cancel_item').click(function() {
+                    $('#rewardlink').show();
+                    $('#reward-wrapper2').show();
+                    $('#start-cat').show();
+                    $('#item_form').hide();
+                    $('#cancel_item').hide();
+                });
+
+
+                console.log(id);
+            });
+
+            $(document).on('click', '.del_item', function(e) {
+                var id = $(this).data('id');
+                var confirmDelete = confirm('Apakah Anda yakin ingin menghapus item ini?');
+                e.preventDefault();
+                if (confirmDelete) {
+                    $.ajax({
+                        url: '<?= base_url('reward/delete_item') ?>',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'item_id': id
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status === 'success') {
+                                alert(response.message);
+                                $('#item').val('');
+                                $('#rewardlink').show();
+                                $('#reward-wrapper2').show();
+                                $('#start-cat').show();
+                                $('#item_form').hide();
+                                $('#cancel_item').hide();
+
+                                $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>');
+                            } else if (response.status === 'error') {
+                                alert(response.message);
+                            } else {
+                                alert('Terjadi kesalahan saat menghapus item.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                            alert('Terjadi kesalahan saat menghapus item: ' + error);
+                        }
+                    });
+                }
+            })
+        });
+
+        $(document).on('click', '#btn_edit_item', function(e) {
+            e.preventDefault();
+            console.log('Clicked on edit button');
+            var item_id = $('#item_id').val();
+            var item = $('#item').val();
+
+
+            $.ajax({
+                url: '<?= base_url('reward/update_item') ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'item_id': item_id,
+                    'item': item,
+                    'project_id': <?= $project_id ?>
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status === 'success') {
+                        alert(response.message);
+                        $('#item').val('');
+                        $('#rewardlink').show();
+                        $('#reward-wrapper2').show(); // Tampilkan dulu elemen #reward-wrapper2
+                        $('#start-cat').show();
+                        $('#item_form').hide();
+                        $('#cancel_item').hide();
+
+                        // Load konten ke dalam #reward-wrapper2 setelah ditampilkan
+                        $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>');
+                    } else if (response.status === 'error') {
+                        $('#item_error').text(response.errors.item);
+                    } else if (response.status === 'fail') {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                    alert('An error occurred while updating the item: ' + error);
+                }
+            });
+        });
+    </script>
 
 
     <script>
         $(document).ready(function() {
-            $('#category').change(function() {
-                var category_id = $('#category').val();
-                var project_id = <?= $row->project_id ?>
+            $('#save_item').click(function() {
+                var newItem = $('#item_reward').val();
+                var newCustomItem = $('#custom_item').val();
+                var id = '<?= $this->uri->segment(3) ?>';
 
-                if (category_id != '') {
-                    $.ajax({
-                        url: "<?= base_url(); ?>start/fetch_subcat/",
-                        method: 'POST',
-                        data: {
-                            'category_id': category_id
-                        },
-                        type: JSON,
-                        success: function(data) {
-                            $('#subcat').html(data);
-                        }
-                    })
+                if (newItem !== "" && newCustomItem === "") {
+                    saveItem(newItem, id);
+                } else if (newItem === "" && newCustomItem !== "") {
+                    saveItem(newCustomItem, id);
+                } else {
+                    alert("Please select an item from the list or enter a custom item.");
                 }
-            })
-        })
+            });
+
+            function saveItem(item, projectID) {
+                $.ajax({
+                    url: "<?= base_url('reward/save_item') ?>",
+                    type: "POST",
+                    data: {
+                        'item': item,
+                        'project_id': projectID
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            // Item saved successfully
+                            document.getElementById('itemlist').style.display = 'block';
+                            document.getElementById('itemform-wrap').style.display = 'none';
+                            $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {});
+                            $('#item_reward, #custom_item').val('');
+                        } else {
+                            // Error occurred while saving item
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("An error occurred while saving the item: " + error);
+                    }
+                });
+            }
+        });
     </script>
 
-
-
-
-
     <!-- <script>
-      const modal = document.querySelector('.modal');
-      // const overlay = document.querySelector('.overlay');     
-      const openModalBtn = document.querySelector("header nav .btn-open");
-      const closeModalBtn = document.querySelector(".btn-close");
-
-      const openModal = function () {
-      modal.classList.remove("hidden");
-      openModalBtn.addEventListener('click', openModal);
-};
-
+        $(document).ready(function(){
+            $(document).on('click', '.remove_temp', function(e) {
+                    e.preventDefault();
+                    var id = $(this).data('temp_id');
+                    console.log(id);
+                    $.ajax({
+                        url: "<?= base_url('reward/del_temp') ?>",
+                        type: "POST",
+                        data: {
+                            'temp_id': id
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status === "success") {
+                                $('#itemlist').removeClass('hide');
+                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
+                                    // Code to execute after loading the itemlist
+                                });
+                            } else {
+                                alert(response.message);
+                            }
+                        }
+                    });
+                });\
+        })
     </script> -->
+
+
 </body>
 
 </html>

@@ -36,19 +36,16 @@ if ($item->num_rows() > 0) {
             <div class="continer-fluid px-0 border-bottom border-1 "></div>
             <div class="row my-3">
                 <div class="col-12 d-flex justify-content-end ">
-                    <button class="btn ms-2 type-13">
-                        <span>Edit</span>
+                    <button class="btn ms-2 type-13 edit_item" data-id = "<?=$row_item->reward_item_id?>" 
+                    data-name = "<?=$row_item->item_name?>">
+                        Edit
                     </button>
-                    <button class="btn ms-2 type-13">
-                        <span>Duplicate</span>
-                    </button>
-                    <button class="btn ms-2 type-13">
-                        <span>Delete</span>
+                    <button class="btn ms-2 type-13 del_item" data-id = "<?=$row_item->reward_item_id?>">
+                        Delete
                     </button>
                 </div>
             </div>
         </div>
-
 <?php
     }
 } else {

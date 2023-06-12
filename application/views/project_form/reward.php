@@ -1,3 +1,5 @@
+
+
 <section class="start-cat" id="start-cat">
     <div class="container">
         <div class="row px-5 mb-5">
@@ -126,12 +128,18 @@
                 </div>
                 <div class="col-3 pe-0"><span>GAMBAR</span></div>
             </div>
-            <?php foreach ($rewards as  $reward) { ?>
+            <?php foreach ($rewards as  $reward) { 
+                $estDelivery = $reward->est_delivery;
+                $dateParts = explode("/", $estDelivery);
+
+                $month = $dateParts[0]; 
+                $year = $dateParts[1]; ?>
+
                 <div class="row r-outter mb-4">
                     <a href="">
                         <div class="row rbox">
                             <div class="col-2 ">
-                                <h3><?=$reward->amount?></h3>
+                                <h3><?= $reward->amount ?></h3>
                             </div>
                             <div class="col-4 ">
                                 <h3 class="mb-4">Digital Poster Exclusive</h3>
@@ -151,13 +159,19 @@
                                 </div>
 
                             </div>
-                            <div class="col-3 ">
+                            <div class="col-3">
                                 <ul>
                                     <?php
+                                    $itemlist = [];
+                                    $itemQty = [];
                                     $items = $this->reward_m->getItems($reward->reward_id);
-                                    foreach($items as $item){?>
-                                        <li><?=$item->item_name?></li>
-                                   <?php }
+                                    foreach ($items->result() as $item) {
+                                        $itemlist[] = $item->item_name;
+                                        $itemQty[] = $item->qty;
+                                        echo '<li>' . $item->item_name . '</li>';
+                                    }   
+                                    $itemdata = implode(', ', $itemlist);
+                                    $itemQtydata = implode(', ', $itemQty);
                                     ?>
                                 </ul>
                             </div>
@@ -175,8 +189,19 @@
                             <span>Backers</span>
                         </div>
                         <div class="col-6 d-flex justify-content-end ">
-                            <button class="btn ms-2 type-13">
-                                <span>Edit</span>
+                            <button class="btn ms-2 type-13 edit_reward"  type="button"
+                            data-reward_id= "<?=$reward->reward_id?>"
+                            data-title="<?= $reward->title ?>"
+                             data-amount="<?= $reward->amount ?>"
+                              data-image="<?= $reward->image ?>" 
+                              data-desc="<?= $reward->description ?>" 
+                              data-month="<?= $month ?>" 
+                              data-year="<?= $year?>" 
+                              data-qty="<?= $reward->qty ?>"
+                               data-timelimit="<?= $reward->time_limit ?>"
+                                data-items= "<?= htmlspecialchars(json_encode($items), ENT_QUOTES, 'UTF-8') ?>"
+                                data-itemsQty="<?= $itemQtydata?>"> 
+                                Edit
                             </button>
                             <button class="btn ms-2 type-13">
                                 <span>Duplicate</span>
@@ -234,6 +259,7 @@
                     </div>
                 </div>
                 <div class="col-8">
+                    <input type="hidden" class="form-control rounded-0 py-3 mb-2" name="item_id" id="item_id" placeholder="Inputkan Judul Projectmu">
                     <input type="text" class="form-control rounded-0 py-3 mb-2" name="item" id="item" placeholder="Inputkan Judul Projectmu">
                     <span id="item_error" class="text-danger"></span>
                 </div>

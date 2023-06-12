@@ -43,7 +43,7 @@ class Start extends CI_Controller
 
 	public function reward()
 	{
-		$data['id'] = $this->uri->segment(3);
+		$data['project_id'] = $this->uri->segment(3);
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$data['temp'] = $this->item_m->get_temp();
 		$data['rewards']  = $this->reward_m->getRewardWithPid($this->uri->segment(3));
@@ -70,7 +70,7 @@ class Start extends CI_Controller
 		// $data['rewards'] = $this->reward_m->getRewardWithDetails(4);
 		// $this->load->view('test', $data);
 
-		$data = $this->reward_m->getItems(90);
+		$data = $this->reward_m->getItems(91);
 		var_dump($data).die();
 		
 	}
