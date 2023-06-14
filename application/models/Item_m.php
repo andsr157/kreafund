@@ -8,6 +8,7 @@ class Item_m extends CI_Model
         return $query;
     }
 
+
     function get_id($id) {
     $this->db->from('reward_item');
     $this->db->select('reward_item_id');

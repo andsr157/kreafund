@@ -1,4 +1,5 @@
     <?php
+
     if ($temp->num_rows() > 0) {
         foreach ($temp->result() as $data) {
     ?>
@@ -9,7 +10,7 @@
                     <input type="number" name="save_item_qty"  value="<?= $data->qty ?>" class="form-control rounded-0 " placeholder="0">
                 </div>
                 <div class="col-1 d-flex  align-items-end">
-                    <button class="btn bg-transparent type-13 " data-temp_id="<?= $data->item_temp_id ?>" type="button">Remove</button>
+                    <button class="btn bg-transparent type-13 del_item_temp" data-temp_id="<?= $data->item_temp_id ?>" type="button">Remove</button>
                 </div>
             </div>
     <?php

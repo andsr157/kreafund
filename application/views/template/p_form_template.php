@@ -646,12 +646,34 @@
 
     <!--------------------------------------------------- reward script ------------------------------------------------------------>
     <script>
+        function reloadItemList() {
+            $.ajax({
+                url: '<?= base_url('reward/reload_item_list/' . $this->uri->segment(3)) ?>',
+                type: 'POST',
+                dataType: 'html',
+                success: function(response) {
+                    $('#itemListContainer').html(response);
+                },
+                error: function(xhr, status, error) {
+                    // Tangani error jika ada
+                    console.log('AJAX error');
+                    console.log(xhr.responseText);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+
+    <script>
         $(document).ready(function() {
             $('#add_reward').click(function() {
+                reloadItemList();
                 $('#rewardlink').hide();
                 $('#start-cat').hide()
                 $('#reward_form').show();
                 $('#cancel_form').show();
+
             })
 
             $('#add_reward2').click(function() {
@@ -727,11 +749,12 @@
                 $('#rewardlink').hide();
                 $('#start-cat').hide();
                 $('#reward_form').show();
-                $('.title-form h2').text('Edit Reward')
+                $('.title-form h2').text('Edit Reward');
                 $('#save_reward').text('Save change');
                 $('#save_reward').attr('id', 'update_reward');
                 $("#itemlist").removeClass("hide");
                 $('#cancel_form').show();
+
 
                 var reward_id = $(this).data('reward_id');
                 var title = $(this).data('title');
@@ -752,7 +775,7 @@
                 document.getElementById('upload_reward_box').style.display = "none";
                 document.getElementById('uploaded_reward_box').style.display = 'block';
                 $('#desc').val(desc);
-                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', {
+                $('#itemlist').load('<?= base_url('reward/submit_item_data') ?>', {
                     items: item
                 }, function() {});
                 $('#month').val(month);
@@ -779,6 +802,9 @@
                 }
 
                 $('#cancel_form').click(function() {
+                    $('.title-form h2').text('Add Reward');
+                    $('#update_reward').attr('id', 'save_reward');
+                    $('#save_reward').text('Save reward');
                     $('#rewardlink').show();
                     $('#start-cat').show();
                     $('#reward_form').hide();
@@ -789,6 +815,7 @@
                     document.getElementById('uploaded_reward_image').src = '';
                     document.getElementById('upload_reward_box').style.display = "flex";
                     document.getElementById('uploaded_reward_box').style.display = 'none';
+                    $('#itemlist').load('<?= base_url('reward/save_item_data') ?>');
                     $('#desc').val('');
                     $('#month').val('');
                     $('#year').val('');
@@ -800,11 +827,58 @@
                     $('#time2').prop('checked', false);
                     $('#rqty1').prop('checked', false);
                     $('#rqty2').prop('checked', false);
+                    isEdit = false;
 
                 });
 
                 isEdit = true;
             });
+            $('#save_item').click(function() {
+                var newItem = $('#item_reward').val();
+                var newCustomItem = $('#custom_item').val();
+                var id = '<?= $this->uri->segment(3) ?>';
+
+                if (newItem !== "" && newCustomItem === "") {
+                    saveItem(newItem, id);
+                } else if (newItem === "" && newCustomItem !== "") {
+                    saveItem(newCustomItem, id);
+                } else {
+                    alert("Please select an item from the list or enter a custom item.");
+                }
+            });
+
+            function saveItem(item, projectID) {
+                if(!isEdit){
+
+                }else{
+                    $.ajax({
+                    url: "<?= base_url('reward/save_plus_item') ?>",
+                    type: "POST",
+                    data: {
+                        'item': item,
+                        'project_id': projectID
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            // Item saved successfully
+                            document.getElementById('itemlist').style.display = 'block';
+                            document.getElementById('itemform-wrap').style.display = 'none';
+                            $('#itemlist').load('<?= base_url('reward/submit_item_data') ?>', function() {});
+                            $('#item_reward, #custom_item').val('');
+                        } else {
+                            // Error occurred while saving item
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("An error occurred while saving the item: " + error);
+                    }
+                });
+                }
+                
+            }
 
 
             $('form#data_reward').submit(function(e) {
@@ -839,8 +913,8 @@
                                 alert(response.message);
                                 location.reload();
                             } else if (response.status === 'error') {
-                                alert('error skuy');
-                            } else if(response.status === 'fail'){
+                                alert('data belum diisi');
+                            } else if (response.status === 'fail') {
                                 console.log('fail');
                             }
                         },
@@ -891,154 +965,38 @@
 
                 }
             });
-            
+
+
+            $(document).on('click', '.del_item_temp', function(e) {
+                e.preventDefault();
+                var id = $(this).data('temp_id');
+                console.log(id);
+                $.ajax({
+                    url: "<?= base_url('reward/del_temp') ?>",
+                    type: "POST",
+                    data: {
+                        'temp_id': id
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            $('#itemlist').removeClass('hide');
+                            $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
+                                // Code to execute after loading the itemlist
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+
         });
     </script>
 
 
-    <!-- <script>
-        $(document).ready(function() {
-            $(document).on('click', '.edit_reward', function(e) {
-                e.preventDefault();
-                $('#rewardlink').hide();
-                $('#start-cat').hide();
-                $('#reward_form').show();
-                $('#save_reward').text('Edit Reward');
-                $('#save_reward').attr('id', 'update_reward');
-                $("#itemlist").removeClass("hide");
-                $('#cancel_form').show();
 
-                var reward_id = $(this).data('reward_id');
-                var title = $(this).data('title');
-                var amount = $(this).data('amount');
-                var image = $(this).data('image');
-                var desc = $(this).data('desc');
-                var month = $(this).data('month');
-                var year = $(this).data('year');
-                var qty = $(this).data('qty');
-                var timelimit = $(this).data('timelimit');
-                var item = $(this).data('items').result_object;
-                console.log(item);
-                // var items = JSON.parse($(this).data('items'));
-                // console.log(items);
-                $('#rtitle').val(title);
-                $('#reward_id').val(reward_id);
-                $('#amount').val(amount);
-                document.getElementById('uploaded_reward_image').src = '<?= base_url('assets/img/reward/') ?>' + image;
-                document.getElementById('upload_reward_box').style.display = "none";
-                document.getElementById('uploaded_reward_box').style.display = 'block';
-                $('#desc').val(desc);
-                $('#itemlist').load('<?= base_url('reward/save_item_data',) ?>', {
-                    items: item
-                }, function() {})
-                $('#month').val(month);
-                $('#year').val(year);
-
-                if (qty === 99999) {
-                    $('#rqty1').prop('checked', true);
-                    $('#rqty2').prop('checked', false);
-                    $('#unlimited').val(qty);
-                } else {
-                    $('#rqty1').prop('checked', false);
-                    $('#rqty2').prop('checked', true);
-                    $('#limited').val(qty);
-                }
-
-                if (timelimit === 99999) {
-                    $('#time1').prop('checked', true);
-                    $('#time2').prop('checked', false);
-                    $('#time-unlimit').val(qty);
-                } else {
-                    $('#time1').prop('checked', false);
-                    $('#time2').prop('checked', true);
-                    $('#time-limit').val(qty);
-                }
-
-
-                $('#cancel_form').click(function() {
-                    $('#rewardlink').show();
-                    $('#start-cat').show()
-                    $('#reward_form').hide();
-                    $('#cancel_form').hide();
-                })
-
-
-                $('form#data_reward').submit(function(e) {
-                    e.preventDefault();
-                    var desc = $('textarea#desc').val();
-                    var formData = new FormData(this);
-                    formData.append('description', desc);
-
-
-                    var project_id = '<?= $this->uri->segment(3) ?>';
-                    formData.append('project_id', project_id);
-
-                    // var itemQty = [];
-                    // $('input[name="save_item_qty"]').each(function() {
-                    //     var qty = $(this).val();
-                    //     console.log(qty);
-                    //     itemQty.push(qty);
-                    // });
-                    // formData.append('qty_item', JSON.stringify(itemQty));
-
-                    $.ajax({
-                        url: '<?= base_url('reward/update') ?>',
-                        type: 'POST',
-                        data: formData,
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log('AJAX success');
-                            console.log(response.status);
-                            if (response.status === 'success') {
-                                alert(response.message);
-                                location.reload();
-                            } else if (response.status === 'error') {
-                                alert('error');
-                            } else {
-                                console.log('fail');
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.log('AJAX error');
-                            console.log(xhr.responseText);
-                            console.log(status);
-                            console.log(error);
-                        },
-                        cache: false,
-                        contentType: false,
-                        processData: false
-                    })
-                })
-
-
-
-                // $(document).on('click', '#reward_form .remove_tem', function(e) {
-                //     e.preventDefault();
-                //     var id = $(this).data('temp_id');
-                //     console.log(id);
-                //     $.ajax({
-                //         url: "<?= base_url('reward/del_temp') ?>",
-                //         type: "POST",
-                //         data: {
-                //             'temp_id': id
-                //         },
-                //         dataType: 'json',
-                //         success: function(response) {
-                //             console.log(response);
-                //             if (response.status === "success") {
-                //                 $('#itemlist').removeClass('hide');
-                //                 $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
-                //                     // Code to execute after loading the itemlist
-                //                 });
-                //             } else {
-                //                 alert(response.message);
-                //             }
-                //         }
-                //     });
-                // });
-            });
-        });
-    </script> -->
 
     <script>
         $(document).ready(function() {
@@ -1134,7 +1092,16 @@
                                 $('#item_form').hide();
                                 $('#cancel_item').hide();
 
-                                $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>');
+                                $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>', function() {
+                                    $('#add_item').click(function() {
+                                        $('#rewardlink').hide();
+                                        $('#start-cat').hide()
+                                        $('#item_form').show();
+                                        $('#cancel_item').show();
+                                    })
+                                });
+
+
                             } else if (response.status === 'error') {
                                 alert(response.message);
                             } else {

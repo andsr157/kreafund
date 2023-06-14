@@ -102,7 +102,7 @@
 
                         <div class="row p-3 mt-3 border border-1 hide" id="itemform-wrap">
                             <div class="item-form">
-                                <div>
+                                <div id="itemListContainer">
                                     <label for="exampleInputEmail1" class="form-label mb-2">Item List</label>
 
                                     <select class="form-select rounded-0" aria-label="Default select example" placeholder="item list" name="item_reward" id="item_reward">
