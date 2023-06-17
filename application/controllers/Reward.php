@@ -439,4 +439,26 @@ class Reward extends CI_Controller
 		$view_content = $this->load->view('project_form/reward/itemlist_select', $data, true);
 		echo $view_content;
 	}
+
+
+
+
+
+	public function del_reward(){
+		$reward_id = $this->input->post('reward_id');
+		$this->db->where('reward_id', $reward_id);
+		$this->db->delete('reward');
+		$this->db->where('reward_id', $reward_id);
+		$this->db->delete('reward_detail');
+		
+		if ($this->db->affected_rows() > 0) {
+			$response['status'] = 'success';
+			$response['message'] = 'Reward deleted successfully';
+		} else {
+			$response['status'] = 'fail';
+			$response['message'] = 'Reward deleted failed';
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($response));
+	}
 }
