@@ -1118,6 +1118,33 @@
                          }
                      });
                  });
+
+
+                 $(document).on('click', '.delete_reward', function(e) {
+                     e.preventDefault();
+                     var id = $(this).data('reward_id');
+                     console.log(id);
+                     $.ajax({
+                         url: "<?= base_url('reward/del_reward') ?>",
+                         type: "POST",
+                         data: {
+                             'reward_id': id,
+                         },
+                         dataType: 'json',
+                         success: function(response) {
+                             console.log(response);
+                             if (response.status === "fail") {
+                                alert(success);
+                                location.reload();
+                             } else {
+                                 alert(response.message);
+                             }
+                         }
+                     });
+                 });
+
+
+                 
         });
     </script>
 
