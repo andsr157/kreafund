@@ -1042,15 +1042,15 @@
                         success: function(response) {
                             console.log(response.status);
                             console.log(formData)
-                            if (response.status === 'success') {
-                                alert(response.message);
+                            if (response.status === 'fail') {
+                                alert('berhasil update data');
                                 location.reload();
                             } else if (response.status === 'error') {
                                 alert('error');
                                 console.log(xhr.responseText);
                             } else {
                                 alert('belum ada data yang diubah')
-                                console.log('fail');
+                                console.log(response);
                             }
                         },
                         error: function(xhr, status, error) {
@@ -1122,6 +1122,7 @@
 
                  $(document).on('click', '.delete_reward', function(e) {
                      e.preventDefault();
+                     var project_id = '<?=$this->uri->segment(3)?>';
                      var id = $(this).data('reward_id');
                      console.log(id);
                      $.ajax({
@@ -1133,9 +1134,11 @@
                          dataType: 'json',
                          success: function(response) {
                              console.log(response);
-                             if (response.status === "fail") {
-                                alert(success);
-                                location.reload();
+                             if (response.status === "success") {
+                                alert(response.message);
+                                $('#reward-list').load('<?= base_url('reward/show_reward_list/') ?>' + project_id, function() {
+                                    // Code to execute after loading the itemlist
+                                });
                              } else {
                                  alert(response.message);
                              }
@@ -1143,8 +1146,32 @@
                      });
                  });
 
+                 $(document).on('click', '.duplicate_reward', function(e) {
+                     e.preventDefault();
+                     var id = $(this).data('reward_id');
+                     var project_id = '<?=$this->uri->segment(3)?>';
+                     console.log(id);
+                     $.ajax({
+                         url: "<?= base_url('reward/duplicate_reward') ?>",
+                         type: "POST",
+                         data: {
+                             'reward_id': id,
+                         },
+                         dataType: 'json',
+                         success: function(response) {
+                             console.log(response);
+                             if (response.status === "success") {
+                                alert(response.message);
+                                $('#reward-list').load('<?= base_url('reward/show_reward_list/') ?>' + project_id, function() {
+                                    // Code to execute after loading the itemlist
+                                });
+                             } else {
+                                 alert(response.message);
+                             }
+                         }
+                     });
+                 });
 
-                 
         });
     </script>
 

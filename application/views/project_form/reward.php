@@ -126,7 +126,7 @@
                 </div>
                 <div class="col-3 pe-0"><span>GAMBAR</span></div>
             </div>
-            <div class="reward-list">
+            <div class="reward-list" id="reward-list">
                 <?php $this->view('project_form/reward/reward_list')?>
             </div>
 

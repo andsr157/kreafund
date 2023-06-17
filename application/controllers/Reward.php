@@ -145,17 +145,20 @@ class Reward extends CI_Controller
 			$qty_item = json_decode($_POST['qty_item'], true);
 			$counter = 0;
 			foreach ($rewarditem as $key => $data) {
-				array_push($row, array(
-					'reward_item_id' => $data->reward_item_id,
-					'qty' => $qty_item[$counter])
+				array_push(
+					$row,
+					array(
+						'reward_item_id' => $data->reward_item_id,
+						'qty' => $qty_item[$counter]
+					)
 				);
 				$counter++;
 			}
 
-			$this->reward_m->update($params, $reward_id);
-			$this->reward_m->update_rewardDetail_qty($row, $reward_id);
+			$rewardUpdated = $this->reward_m->update($params, $reward_id);
+			$rewardDetailUpdated = $this->reward_m->update_rewardDetail_qty($row, $reward_id);
 
-			if ($this->db->affected_rows() > 0) {
+			if ($rewardUpdated || $rewardDetailUpdated) {
 				$response = array(
 					'status' => 'success',
 					'message' => 'Reward updated successfully'
@@ -166,7 +169,7 @@ class Reward extends CI_Controller
 					'status' => 'fail',
 					'message' => 'Failed to update reward'
 				);
-				echo json_encode($response);
+				$this->output->set_content_type('application/json')->set_output(json_encode($response));
 			}
 		}
 	}
@@ -180,7 +183,7 @@ class Reward extends CI_Controller
 		// redirect('reward/add' . '#item_form');
 		// $reward_item_id = $this->item_m->get_id_from_dtl(16, 'baju');
 		// var_dump($reward_item_id).die();
-		$test = $this->reward_m->getRewardDetail(16);
+		$test = $this->reward_m->getRewardDetail(19);
 		var_dump($test->result());
 	}
 
@@ -444,13 +447,14 @@ class Reward extends CI_Controller
 
 
 
-	public function del_reward(){
+	public function del_reward()
+	{
 		$reward_id = $this->input->post('reward_id');
 		$this->db->where('reward_id', $reward_id);
 		$this->db->delete('reward');
 		$this->db->where('reward_id', $reward_id);
 		$this->db->delete('reward_detail');
-		
+
 		if ($this->db->affected_rows() > 0) {
 			$response['status'] = 'success';
 			$response['message'] = 'Reward deleted successfully';
@@ -460,5 +464,61 @@ class Reward extends CI_Controller
 		}
 
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
+	}
+
+	public function duplicate_reward()
+	{
+		$reward_id = $this->input->post('reward_id');
+		$reward = $this->reward_m->get($reward_id)->result_array();
+		if (!empty($reward)) {
+			$copyreward = array();
+			foreach ($reward as $row) {
+				$copyreward[] = array(
+					'title' => $row['title'],
+					'amount' => $row['amount'],
+					'image' => $row['image'],
+					'description' => $row['description'],
+					'est_delivery' => $row['est_delivery'],
+					'qty' => $row['qty'],
+					'time_limit' => $row['time_limit'],
+					'project_id' => $row['project_id'],
+				);
+			}
+			$this->db->insert_batch('reward', $copyreward);
+		}
+		$new_reward_id = $this->db->insert_id();
+		$reward_detail = $this->reward_m->getRewardDetail($reward_id)->result_array();
+
+		if (!empty($reward_detail)) {
+			$copyreward_detail = array();
+			foreach ($reward_detail as $row) {
+				$copyreward_detail[] = array(
+					'reward_id' => $new_reward_id,
+					'reward_item_id' => $row['reward_item_id'],
+					'qty' => $row['qty'],
+
+				);
+			}
+			$this->db->insert_batch('reward_detail', $copyreward_detail);
+		}
+
+		if ($this->db->affected_rows() > 0) {
+			$response['status'] = 'success';
+			$response['message'] = 'Reward duplicate successfully';
+		} else {
+			$response['status'] = 'fail';
+			$response['message'] = 'Reward dupllicate failed';
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($response));
+	}
+
+
+	function show_reward_list()
+	{
+		$data['item'] = $this->item_m->get($this->uri->segment(3));
+		$data['temp'] = $this->item_m->get_temp();
+		$data['rewards']  = $this->reward_m->getRewardWithPid($this->uri->segment(3));
+		$this->load->view('project_form/reward/reward_list', $data);
 	}
 }
