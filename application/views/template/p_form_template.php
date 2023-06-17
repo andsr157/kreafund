@@ -338,18 +338,22 @@
             document.getElementById('radio2').style.display = 'block';
             document.getElementById('radio1').style.display = 'none';
             $("#rbtn1").prop('checked', false);
+            
         }
 
         function rqty11() {
             document.getElementById('rqty_form').style.display = 'none';
             document.getElementById('rqty_form2').style.display = 'block';
             $("#rqty2").prop('checked', false);
+            $('#unlimited').val(99999);
+            $("#limited").val(null);
         }
 
         function rqty22() {
             document.getElementById('rqty_form').style.display = 'block';
             document.getElementById('rqty_form2').style.display = 'none';
             $("#rqty1").prop('checked', false);
+            $('#unlimited').val(null);
         }
     </script>
 
@@ -715,12 +719,16 @@
             document.getElementById('time_form').style.display = 'none';
             document.getElementById('time_form2').style.display = 'block';
             $("#time2").prop('checked', false);
+            $('#time-unlimit').val(99999);
+            $('#time-limit').val(null);
         }
 
         function time22() {
             document.getElementById('time_form').style.display = 'block';
             document.getElementById('time_form2').style.display = 'none';
             $("#time1").prop('checked', false);
+            $('#time-unlimit').val(null);
+
         }
     </script>
 
@@ -854,11 +862,11 @@
                 if (timelimit === 99999) {
                     $('#time1').prop('checked', true);
                     $('#time2').prop('checked', false);
-                    $('#time-unlimit').val(qty);
+                    $('#time-unlimit').val(timelimit);
                 } else {
                     $('#time1').prop('checked', false);
                     $('#time2').prop('checked', true);
-                    $('#time-limit').val(qty);
+                    $('#time-limit').val(timelimit);
                 }
 
                 $('#cancel_form').click(function() {

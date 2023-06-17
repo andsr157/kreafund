@@ -104,17 +104,21 @@ class Reward extends CI_Controller
 			$params['description'] = $post['desc'];
 			$params['est_delivery'] = $post['month'] . "/" . $post['year'];
 			$params['project_id'] = $post['project_id'];
-			if (isset($post['limited']) != "") {
-				$params['qty'] = $post['limited'];
-			} else if (isset($post['unlimited'])) {
+
+			if (isset($post['unlimited']) && !empty($post['unlimited']) ) {
 				$params['qty'] = $post['unlimited'];
+			} else if (isset($post['limited']) && !empty($post['limited'])) {
+				$params['qty'] = $post['limited'];
+			}
+			// $params['qty'] = 99999;
+
+			if (isset($post['time-unlimit']) && !empty($post['time-unlimit'])) {
+				$params['time_limit'] = $post['time-unlimit'];
+			} else if (isset($post['time-limit']) && !empty($post['time-limit'])) {
+				$params['time_limit'] = $post['time-limit'];
 			}
 
-			if (isset($post['time-limit']) != '') {
-				$params['time_limit'] = $post['time-limit'];
-			} else if (isset($post['time-limit'])) {
-				$params['time_limit'] = $post['time-limit'];
-			}
+			// $params['time_limit'] = 99999;
 
 			if (!empty($_FILES['reward-gambar']['name'])) {
 				$config['upload_path'] = './assets/img/reward';

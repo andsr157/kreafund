@@ -30,15 +30,13 @@
                                     <span>Reward Time</span>
                                     <span> : <?=$tanggal_baru?></span>
                                 </div>
-                                <div class="type-9 mb-1">
-                                    <span>Includes some physical goods</span>
-                                </div>
+                                
                                 <div class="type-10 mt-5">
                                     <?php
                                     if($rqty != 99999){
                                         echo'<span>Limited('.$rqty.')</span>';
                                     } 
-                                    else{
+                                    else if($rqty == 99999){
                                         echo'<span>Unlimited</span>';
                                     }
                                     ?>

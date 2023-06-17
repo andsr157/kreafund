@@ -204,7 +204,7 @@
                         <div class="outter mb-4">
                             <div class="radiobox pt-0">
                                 <input class="form-check-input pt-0 mt-0" name="pqty" type="radio" id="rqty2" onclick="rqty22()">
-                                <span class="ms-2">Limit</span>
+                                <span class="ms-2">Limited</span>
                             </div>
                             <div id="rqty_form" class="hide">
                                 <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
@@ -248,14 +248,14 @@
                             <div class="radiobox pt-0">
                                 <input class="form-check-input pt-0 mt-0" name="rtime" type="radio" id="time2" onclick="time22()">
                                 <span class="ms-2">Fixed number of days (1-60)</span>
-                                <input type="hidden" name="time-unlimit" class="form-control rounded-0 mb-5" value="99999">
+                                <!-- <input type="hidden" name="time-unlimit" id="time-unlimit" class="form-control rounded-0 mb-5" value="99999"> -->
                             </div>
                             <div id="time_form" class="hide">
                                 <div class="container-fluid px-0 border-bottom border-1 mb-3"></div>
                                 <div class=" mx-3">
                                     <label for="exampleInputEmail1" class="form-label my-2">Enter Number Of
                                         Days</label>
-                                    <input type="number" name="time-limit" class="form-control rounded-0 mb-5">
+                                    <input type="number" name="time-limit" id="time-limit" class="form-control rounded-0 mb-5">
                                 </div>
                             </div>
 
@@ -270,7 +270,7 @@
                     </div>
                     <div class="row">
                         
-                            <button class="btn w-100 p-2 border-0 rounded-0" style="background-color: var(--kf-bg-grey-color);">
+                            <button class="btn w-100 p-2 border-0 rounded-0" style="background-color: var(--kf-bg-grey-color);" type="button">
                             <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/reward') ?>">
                                 cancel</a>
                             </button>
