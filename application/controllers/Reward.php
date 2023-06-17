@@ -84,80 +84,92 @@ class Reward extends CI_Controller
 	}
 
 	public function update()
-{
-    $reward_id = $this->input->post('reward_id');
-    $old_image = $this->reward_m->get($reward_id)->row()->image;
-    $this->form_validation->set_rules('rtitle', 'Rtitle', 'required');
+	{
+		$reward_id = $this->input->post('reward_id');
+		$old_image = $this->reward_m->get($reward_id)->row()->image;
+		$this->form_validation->set_rules('rtitle', 'Rtitle', 'required');
 
-    if ($this->form_validation->run() == FALSE) {
-        $errors = $this->form_validation->error_array();
-        $response = array(
-            'status' => 'error',
-            'message' => 'Validation Error',
-            'errors' => $errors
-        );
-        echo json_encode($response);
-    } else {
-        $post = $this->input->post(null, true);
-        $params['title'] = $post['rtitle'];
-        $params['amount'] = $post['amount'];
-        $params['description'] = $post['desc'];
-        $params['est_delivery'] = $post['month'] . "/" . $post['year'];
-        $params['project_id'] = $post['project_id'];
-        if (isset($post['limited']) !="") {
-            $params['qty'] = $post['limited'];
-        } else if (isset($post['unlimited'])) {
-            $params['qty'] = $post['unlimited'];
-        }
+		if ($this->form_validation->run() == FALSE) {
+			$errors = $this->form_validation->error_array();
+			$response = array(
+				'status' => 'error',
+				'message' => 'Validation Error',
+				'errors' => $errors
+			);
+			echo json_encode($response);
+		} else {
+			$post = $this->input->post(null, true);
+			$params['title'] = $post['rtitle'];
+			$params['amount'] = $post['amount'];
+			$params['description'] = $post['desc'];
+			$params['est_delivery'] = $post['month'] . "/" . $post['year'];
+			$params['project_id'] = $post['project_id'];
+			if (isset($post['limited']) != "") {
+				$params['qty'] = $post['limited'];
+			} else if (isset($post['unlimited'])) {
+				$params['qty'] = $post['unlimited'];
+			}
 
-        if (isset($post['time-limit']) != '') {
-            $params['time_limit'] = $post['time-limit'];
-        } else if (isset($post['time-limit'])) {
-            $params['time_limit'] = $post['time-limit'];
-        }
+			if (isset($post['time-limit']) != '') {
+				$params['time_limit'] = $post['time-limit'];
+			} else if (isset($post['time-limit'])) {
+				$params['time_limit'] = $post['time-limit'];
+			}
 
-        if (!empty($_FILES['reward-gambar']['name'])) {
-            $config['upload_path'] = './assets/img/reward';
-            $config['allowed_types'] = 'jpg|jpeg';
-            $config['max_size'] = 20480;
-            $config['encrypt_name'] = TRUE;
+			if (!empty($_FILES['reward-gambar']['name'])) {
+				$config['upload_path'] = './assets/img/reward';
+				$config['allowed_types'] = 'jpg|jpeg';
+				$config['max_size'] = 20480;
+				$config['encrypt_name'] = TRUE;
 
-            $this->upload->initialize($config);
+				$this->upload->initialize($config);
 
-            if ($this->upload->do_upload('reward-gambar')) {
-                // Hapus gambar lama
-                unlink('./assets/img/reward/' . $old_image);
+				if ($this->upload->do_upload('reward-gambar')) {
+					// Hapus gambar lama
+					unlink('./assets/img/reward/' . $old_image);
 
-                // Upload gambar baru
-                $uploadData = $this->upload->data();
-                $params['image'] = $uploadData['file_name'];
-            } else {
-                $response = array(
-                    'status' => 'error',
-                    'message' => $this->upload->display_errors()
-                );
-                echo json_encode($response);
-                return;
-            }
-        }
+					// Upload gambar baru
+					$uploadData = $this->upload->data();
+					$params['image'] = $uploadData['file_name'];
+				} else {
+					$response = array(
+						'status' => 'error',
+						'message' => $this->upload->display_errors()
+					);
+					echo json_encode($response);
+					return;
+				}
+			}
+			$row = [];
+			$rewarditem = $this->reward_m->getRewardDetail($reward_id)->result();
+			$qty_item = json_decode($_POST['qty_item'], true);
+			$counter = 0;
+			foreach ($rewarditem as $key => $data) {
+				array_push($row, array(
+					'reward_item_id' => $data->reward_item_id,
+					'qty' => $qty_item[$counter])
+				);
+				$counter++;
+			}
 
-        $this->reward_m->update($params, $reward_id);
+			$this->reward_m->update($params, $reward_id);
+			$this->reward_m->update_rewardDetail_qty($row, $reward_id);
 
-        if ($this->db->affected_rows() > 0) {
-            $response = array(
-                'status' => 'success',
-                'message' => 'Reward updated successfully'
-            );
-            echo json_encode($response);
-        } else {
-            $response = array(
-                'status' => 'fail',
-                'message' => 'Failed to update reward'
-            );
-            echo json_encode($response);
-        }
-    }
-}
+			if ($this->db->affected_rows() > 0) {
+				$response = array(
+					'status' => 'success',
+					'message' => 'Reward updated successfully'
+				);
+				echo json_encode($response);
+			} else {
+				$response = array(
+					'status' => 'fail',
+					'message' => 'Failed to update reward'
+				);
+				echo json_encode($response);
+			}
+		}
+	}
 
 
 
@@ -165,7 +177,11 @@ class Reward extends CI_Controller
 
 	public function test()
 	{
-		redirect('reward/add' . '#item_form');
+		// redirect('reward/add' . '#item_form');
+		// $reward_item_id = $this->item_m->get_id_from_dtl(16, 'baju');
+		// var_dump($reward_item_id).die();
+		$test = $this->reward_m->getRewardDetail(16);
+		var_dump($test->result());
 	}
 
 
@@ -272,7 +288,7 @@ class Reward extends CI_Controller
 	{
 		$response = array();
 
-		if ($this->input->post('item_custom')) { 
+		if ($this->input->post('item_custom')) {
 			$itemname = $this->input->post('item_custom');
 		} else if ($this->input->post('item')) {
 			$itemname = $this->input->post('item');
@@ -286,7 +302,7 @@ class Reward extends CI_Controller
 			if ($check_temp->num_rows() > 0) {
 				$this->item_m->update_temp($itemname);
 			} else {
-				if($reward_item_id == null){
+				if ($reward_item_id == null) {
 					$this->item_m->add(['item_name' => $itemname, 'project_id' => $project_id]);
 				}
 				$reward_item_id = $this->item_m->get_id($itemname);
@@ -312,7 +328,7 @@ class Reward extends CI_Controller
 	{
 		$response = array();
 
-		if ($this->input->post('item_custom')) { 
+		if ($this->input->post('item_custom')) {
 			$itemname = $this->input->post('item_custom');
 		} else if ($this->input->post('item')) {
 			$itemname = $this->input->post('item');
@@ -320,15 +336,20 @@ class Reward extends CI_Controller
 
 		if (!empty($itemname)) {
 			$project_id = $this->input->post('project_id');
-			$reward_item_id = $this->item_m->get_id($itemname);
-			$check_temp = $this->item_m->get_temp(['reward_item_id' => $reward_item_id]);
+			$reward_id = $this->input->post('reward_id');
+			$check_already_item = $this->item_m->get_id($itemname);
+			$reward_item_id = $this->item_m->get_id_from_dtl($reward_id, $itemname);
+			$qty = $this->input->post('qty');
+			// $check_submited_item = $this->item_m->get_submit_item( $reward_id, $reward_item_id);
 
-			if ($check_temp->num_rows() > 0) {
-				$this->item_m->update_temp($itemname);
+			if ($reward_item_id != null) {
+				$this->item_m->update_submit_item($reward_id, $reward_item_id);
 			} else {
-				$this->item_m->add(['item_name' => $itemname, 'project_id' => $project_id]);
+				if ($check_already_item == null) {
+					$this->item_m->add(['item_name' => $itemname, 'project_id' => $project_id]);
+				}
 				$reward_item_id = $this->item_m->get_id($itemname);
-				$this->item_m->add_temp($itemname, $reward_item_id, $project_id);
+				$this->item_m->add_submit_item($reward_id, $reward_item_id, $qty);
 			}
 
 			if ($this->db->affected_rows() > 0) {
@@ -354,11 +375,27 @@ class Reward extends CI_Controller
 		$this->load->view('project_form/reward/itemlist', $data);
 	}
 
-	function submit_item_data()
+	function show_item_data()
 	{
 		$items = $this->input->post('items');
 		$data['items'] = $items;
-		$this->load->view('project_form/reward/itemlistreward' ,$data);
+		$this->load->view('project_form/reward/itemlistreward', $data);
+	}
+
+
+	function edited_item_data()
+	{
+		$id = $this->input->post('reward_id');
+		$data['items'] = $this->reward_m->getItems($id)->result_array();
+		$this->load->view('project_form/reward/itemlistreward', $data);
+	}
+
+	function submit_item_data()
+	{
+		$reward_id = $this->uri->segment(3);
+		$items = $this->reward_m->getItems($reward_id)->result_array();
+		$data['items'] = $items;
+		$this->load->view('project_form/reward/itemlistreward', $data);
 	}
 
 	public function del_temp()
@@ -378,10 +415,28 @@ class Reward extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
-	public function reload_item_list() {
+	public function del_submited_item()
+	{
+		$reward_id = $this->input->post('reward_id');
+		$reward_item_id = $this->input->post('reward_item_id');
+		$this->db->where('reward_id', $reward_id);
+		$this->db->where('reward_item_id', $reward_item_id);
+		$this->db->delete('reward_detail');
+
+		if ($this->db->affected_rows() > 0) {
+			$response['status'] = 'success';
+			$response['message'] = 'Item deleted successfully';
+		} else {
+			$response['status'] = 'fail';
+			$response['message'] = 'Item deleted failed';
+		}
+
+		$this->output->set_content_type('application/json')->set_output(json_encode($response));
+	}
+	public function reload_item_list()
+	{
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$view_content = $this->load->view('project_form/reward/itemlist_select', $data, true);
 		echo $view_content;
 	}
-	
 }

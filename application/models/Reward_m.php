@@ -11,6 +11,15 @@ class Reward_m extends CI_Model
         return $query;
 
     }
+
+    public function getRewardDetail($id){
+        $this->db->select('*');
+        $this->db->from('reward_detail');
+        $this->db->where('reward_id',$id);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function getRewardWithPid($project_id) {
         $this->db->select('*');
         $this->db->from('reward');
@@ -18,6 +27,7 @@ class Reward_m extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
 
     public function getItems($P)
     {
@@ -44,4 +54,18 @@ class Reward_m extends CI_Model
         $this->db->where("reward_id", $id);
         $this->db->update("reward", $data);
     }
+
+    public function update_rewardDetail_qty($row, $reward_id) {
+        $item_id = array_column($row, 'reward_item_id');
+        $qtys = array_column($row, 'qty');
+        foreach ($item_id as $index => $id) {
+            $this->db->set('qty', $qtys[$index], FALSE);
+            $this->db->where('reward_id', $reward_id);
+            $this->db->where('reward_item_id', $id);
+            $this->db->update('reward_detail');
+        }
+    }
+    
+    
+    
 }
