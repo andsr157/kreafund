@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['project/(:any)/(:num)'] = 'projects/project';
 $route['project/(:any)/(:num)/edit/basic'] = 'start/basic';
 $route['project/(:any)/(:num)/edit/reward'] = 'start/reward';
+$route['project/(:any)/(:num)/edit/story'] = 'start/story';

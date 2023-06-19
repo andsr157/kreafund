@@ -42,7 +42,7 @@
           <div class="col-3 ">
             <div class="d-flex justify-content-end me-3">
               <?php
-              if (!empty($this->session->userdata('user_id'))) { ?>
+              if (!empty($this->session->userdata('user_id')))  { ?>
                 <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                   <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
                 </button>
@@ -101,7 +101,6 @@
             <li class="list-group-item"><a href="">Publikasi</a> </li>
           </ul>
         </div>
-
       </div>
     </div>
   </header>

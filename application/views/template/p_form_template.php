@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+
+    <script src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
     <title>Document</title>
 </head>
 
@@ -338,7 +342,7 @@
             document.getElementById('radio2').style.display = 'block';
             document.getElementById('radio1').style.display = 'none';
             $("#rbtn1").prop('checked', false);
-            
+
         }
 
         function rqty11() {
@@ -748,65 +752,6 @@
     </script>
 
     <script>
-        // function deleteItem(isEdit, $rewardId) {
-        //     if (!isEdit) {
-        //         $(document).on('click', '.del_item_temp', function(e) {
-        //             e.preventDefault();
-        //             var id = $(this).data('temp_id');
-        //             console.log('ini delete untuk add');
-        //             $.ajax({
-        //                 url: "<?= base_url('reward/del_temp') ?>",
-        //                 type: "POST",
-        //                 data: {
-        //                     'temp_id': id
-        //                 },
-        //                 dataType: 'json',
-        //                 success: function(response) {
-        //                     console.log(response);
-        //                     if (response.status === "success") {
-        //                         $('#itemlist').removeClass('hide');
-        //                         $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
-        //                             // Code to execute after loading the itemlist
-        //                         });
-        //                     } else {
-        //                         alert(response.message);
-        //                     }
-        //                 }
-        //             });
-        //         });
-        //     } else if (isEdit) {
-        //         $(document).on('click', '.del_item_temp', function(e) {
-        //             e.preventDefault();
-        //             var id = $(this).data('reward_item_id');
-        //             var reward_id = $('#reward_id').val();
-        //             console.log('ini delete untuk edit');
-        //             console.log(id);
-        //             console.log(reward_id);
-        //             $.ajax({
-        //                 url: "<?= base_url('reward/del_submited_item') ?>",
-        //                 type: "POST",
-        //                 data: {
-        //                     'reward_id': reward_id,
-        //                     'reward_item_id': id
-        //                 },
-        //                 dataType: 'json',
-        //                 success: function(response) {
-        //                     console.log(response);
-        //                     if (response.status === "success") {
-        //                         $('#itemlist').removeClass('hide');
-        //                         $('#itemlist').load('<?= base_url('reward/edited_item_data') ?>', {
-        //                             reward_id: reward_id
-        //                         }, function() {});
-        //                     } else {
-        //                         alert(response.message);
-        //                     }
-        //                 }
-        //             });
-        //         });
-        //     }
-        // }
-
-
         $(document).ready(function() {
             var isEdit = false;
 
@@ -1039,7 +984,7 @@
                         itemQty.push(qty);
                     });
                     formData.append('qty_item', JSON.stringify(itemQty));
-                    
+
                     console.log(formData);
 
                     $.ajax({
@@ -1074,111 +1019,111 @@
 
                 }
             });
-            
-                $(document).on('click', '.del_item_temp', function(e) {
-                    e.preventDefault();
-                    var id = $(this).data('temp_id');
-                    $.ajax({
-                        url: "<?= base_url('reward/del_temp') ?>",
-                        type: "POST",
-                        data: {
-                            'temp_id': id
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log(response);
-                            if (response.status === "success") {
-                                $('#itemlist').removeClass('hide');
-                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
-                                    // Code to execute after loading the itemlist
-                                });
-                            } else {
-                                alert(response.message);
-                            }
+
+            $(document).on('click', '.del_item_temp', function(e) {
+                e.preventDefault();
+                var id = $(this).data('temp_id');
+                $.ajax({
+                    url: "<?= base_url('reward/del_temp') ?>",
+                    type: "POST",
+                    data: {
+                        'temp_id': id
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            $('#itemlist').removeClass('hide');
+                            $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
+                                // Code to execute after loading the itemlist
+                            });
+                        } else {
+                            alert(response.message);
                         }
-                    });
+                    }
                 });
-                $(document).on('click', '.del_item_temp_edit', function(e) {
-                     e.preventDefault();
-                     var id = $(this).data('reward_item_id');
-                     var reward_id = $('#reward_id').val();
-                     console.log('ini delete untuk edit');
-                     console.log(id);
-                     console.log(reward_id);
-                     $.ajax({
-                         url: "<?= base_url('reward/del_submited_item') ?>",
-                         type: "POST",
-                         data: {
-                             'reward_id': reward_id,
-                             'reward_item_id': id
-                         },
-                         dataType: 'json',
-                         success: function(response) {
-                             console.log(response);
-                             if (response.status === "success") {
-                                 $('#itemlist').removeClass('hide');
-                                 $('#itemlist').load('<?= base_url('reward/edited_item_data') ?>', {
-                                     reward_id: reward_id
-                                 }, function() {});
-                             } else {
-                                 alert(response.message);
-                             }
-                         }
-                     });
-                 });
+            });
+            $(document).on('click', '.del_item_temp_edit', function(e) {
+                e.preventDefault();
+                var id = $(this).data('reward_item_id');
+                var reward_id = $('#reward_id').val();
+                console.log('ini delete untuk edit');
+                console.log(id);
+                console.log(reward_id);
+                $.ajax({
+                    url: "<?= base_url('reward/del_submited_item') ?>",
+                    type: "POST",
+                    data: {
+                        'reward_id': reward_id,
+                        'reward_item_id': id
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            $('#itemlist').removeClass('hide');
+                            $('#itemlist').load('<?= base_url('reward/edited_item_data') ?>', {
+                                reward_id: reward_id
+                            }, function() {});
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
 
 
-                 $(document).on('click', '.delete_reward', function(e) {
-                     e.preventDefault();
-                     var project_id = '<?=$this->uri->segment(3)?>';
-                     var id = $(this).data('reward_id');
-                     console.log(id);
-                     $.ajax({
-                         url: "<?= base_url('reward/del_reward') ?>",
-                         type: "POST",
-                         data: {
-                             'reward_id': id,
-                         },
-                         dataType: 'json',
-                         success: function(response) {
-                             console.log(response);
-                             if (response.status === "success") {
-                                alert(response.message);
-                                $('#reward-list').load('<?= base_url('reward/show_reward_list/') ?>' + project_id, function() {
-                                    // Code to execute after loading the itemlist
-                                });
-                             } else {
-                                 alert(response.message);
-                             }
-                         }
-                     });
-                 });
+            $(document).on('click', '.delete_reward', function(e) {
+                e.preventDefault();
+                var project_id = '<?= $this->uri->segment(3) ?>';
+                var id = $(this).data('reward_id');
+                console.log(id);
+                $.ajax({
+                    url: "<?= base_url('reward/del_reward') ?>",
+                    type: "POST",
+                    data: {
+                        'reward_id': id,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            alert(response.message);
+                            $('#reward-list').load('<?= base_url('reward/show_reward_list/') ?>' + project_id, function() {
+                                // Code to execute after loading the itemlist
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
 
-                 $(document).on('click', '.duplicate_reward', function(e) {
-                     e.preventDefault();
-                     var id = $(this).data('reward_id');
-                     var project_id = '<?=$this->uri->segment(3)?>';
-                     console.log(id);
-                     $.ajax({
-                         url: "<?= base_url('reward/duplicate_reward') ?>",
-                         type: "POST",
-                         data: {
-                             'reward_id': id,
-                         },
-                         dataType: 'json',
-                         success: function(response) {
-                             console.log(response);
-                             if (response.status === "success") {
-                                alert(response.message);
-                                $('#reward-list').load('<?= base_url('reward/show_reward_list/') ?>' + project_id, function() {
-                                    // Code to execute after loading the itemlist
-                                });
-                             } else {
-                                 alert(response.message);
-                             }
-                         }
-                     });
-                 });
+            $(document).on('click', '.duplicate_reward', function(e) {
+                e.preventDefault();
+                var id = $(this).data('reward_id');
+                var project_id = '<?= $this->uri->segment(3) ?>';
+                console.log(id);
+                $.ajax({
+                    url: "<?= base_url('reward/duplicate_reward') ?>",
+                    type: "POST",
+                    data: {
+                        'reward_id': id,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === "success") {
+                            alert(response.message);
+                            $('#reward-list').load('<?= base_url('reward/show_reward_list/') ?>' + project_id, function() {
+                                // Code to execute after loading the itemlist
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
 
         });
     </script>
@@ -1327,12 +1272,11 @@
                         alert(response.message);
                         $('#item').val('');
                         $('#rewardlink').show();
-                        $('#reward-wrapper2').show(); // Tampilkan dulu elemen #reward-wrapper2
+                        $('#reward-wrapper2').show();
                         $('#start-cat').show();
                         $('#item_form').hide();
                         $('#cancel_item').hide();
 
-                        // Load konten ke dalam #reward-wrapper2 setelah ditampilkan
                         $('#reward-wrapper2').load('<?= base_url('reward/item_data/') . $this->uri->segment(3) ?>');
                     } else if (response.status === 'error') {
                         $('#item_error').text(response.errors.item);
@@ -1348,81 +1292,97 @@
         });
     </script>
 
+    <!-------------------------------------------- end script for reward --------------------------------------------->
 
-    <!-- <script>
-        $(document).ready(function() {
-            $('#save_item').click(function() {
-                var newItem = $('#item_reward').val();
-                var newCustomItem = $('#custom_item').val();
-                var id = '<?= $this->uri->segment(3) ?>';
+    <!-------------------------------------------- script for story --------------------------------------------->
+    <script>
+    CKEDITOR.replace('content_editor', {
+    extraPlugins: 'youtube',
+    toolbar: [
+        ['Bold', 'Italic', 'Underline', 'Strike'],
+        ['NumberedList', 'BulletedList', 'Outdent', 'Indent'],
+        ['Link', 'Unlink', 'Image', 'Embed', 'Youtube', 'Source'],
+        ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+        ['Undo', 'Redo']
+    ],
+    removePlugins: 'elementspath, iframe',
+    height: 550,
+    filebrowserUploadUrl: '<?= base_url('story/uploadImage') ?>',
+    filebrowserUploadMethod: 'form',
+    contentsCss: '<?= base_url('assets/css/customck/custom.css') ?>',
+    autoParagraph: true,
+    maxLength: 80,
+    allowedContent: true,
+    
+    
+});
 
-                if (newItem !== "" && newCustomItem === "") {
-                    saveItem(newItem, id);
-                } else if (newItem === "" && newCustomItem !== "") {
-                    saveItem(newCustomItem, id);
-                } else {
-                    alert("Please select an item from the list or enter a custom item.");
+
+    $(document).ready(function() {
+        // Tangani klik tombol Simpan
+        $('#saveStory').click(function() {
+            var editorData = CKEDITOR.instances.content_editor.getData();
+            var project_id = '<?= $this->uri->segment(3) ?>';
+            var risk = $('textarea#risk').val();
+
+            // Kirim data menggunakan AJAX
+            $.ajax({
+                url: '<?= base_url('story/save_data') ?>', // Ubah dengan URL yang sesuai
+                type: 'POST',
+                data: {
+                    'content': editorData,
+                    'project_id': project_id,
+                    'risk': risk
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Tindakan jika terjadi kesalahan
+                    console.log(error);
                 }
             });
-
-            function saveItem(item, projectID) {
-                $.ajax({
-                    url: "<?= base_url('reward/save_item') ?>",
-                    type: "POST",
-                    data: {
-                        'item': item,
-                        'project_id': projectID
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log(response);
-                        if (response.status === "success") {
-                            // Item saved successfully
-                            document.getElementById('itemlist').style.display = 'block';
-                            document.getElementById('itemform-wrap').style.display = 'none';
-                            $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {});
-                            $('#item_reward, #custom_item').val('');
-                        } else {
-                            // Error occurred while saving item
-                            alert(response.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        alert("An error occurred while saving the item: " + error);
-                    }
-                });
-            }
         });
-    </script> -->
 
-    <!-- <script>
-        $(document).ready(function(){
-            $(document).on('click', '.remove_temp', function(e) {
-                    e.preventDefault();
-                    var id = $(this).data('temp_id');
-                    console.log(id);
-                    $.ajax({
-                        url: "<?= base_url('reward/del_temp') ?>",
-                        type: "POST",
-                        data: {
-                            'temp_id': id
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log(response);
-                            if (response.status === "success") {
-                                $('#itemlist').removeClass('hide');
-                                $('#itemlist').load('<?= base_url('reward/save_item_data') ?>', function() {
-                                    // Code to execute after loading the itemlist
-                                });
-                            } else {
-                                alert(response.message);
-                            }
-                        }
-                    });
-                });\
-        })
-    </script> -->
+        $('#updateStory').click(function() {
+            var editorData = CKEDITOR.instances.content_editor.getData();
+            var project_id = '<?= $this->uri->segment(3) ?>';
+            var story_id = $('#storyId').val();
+            var risk = $('textarea#risk').val();
+
+            // Kirim data menggunakan AJAX
+            $.ajax({
+                url: '<?= base_url('story/update_data') ?>', // Ubah dengan URL yang sesuai
+                type: 'POST',
+                data: {
+                    'content': editorData,
+                    'project_id': project_id,
+                    'story_id': story_id,
+                    'risk': risk
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Tindakan jika terjadi kesalahan
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 
 
 </body>

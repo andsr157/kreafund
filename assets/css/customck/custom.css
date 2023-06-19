@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'maison_neuebook';
+    src: url('fontsfree-net-maison-neue-book-webfont.woff2') format('woff2'),
+         url('fontsfree-net-maison-neue-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'cooper_lt_btlight';
+    src: url('cooperl-webfont.woff2') format('woff2'),
+         url('cooperl-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    font-size: 1.1rem;
+    color: #282828;
+}
+
+.cke_contents{
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 2rem;
+}

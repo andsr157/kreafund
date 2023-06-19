@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat3">
-                    <a href="<?= base_url('start/story') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/story') ?>">
                         <div class="ikon">
                             <span>📖</span>
                             <p class="mt-3">story</p>

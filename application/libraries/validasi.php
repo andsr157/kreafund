@@ -19,13 +19,13 @@ class Validasi
     function check_own_project($user_id, $project_id)
     {
         $query = $this->ci->project_m->get($project_id);
-        if($query->num_rows() > 0) {
+        if ($query->num_rows() > 0) {
             $row = $query->row();
 
-            if ($row->user_id == $user_id){
+            if (($row->user_id == $user_id)) {
                 return true;
             }
+            return false;
         }
-        return false;
     }
 }
