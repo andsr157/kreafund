@@ -15,5 +15,7 @@ class Profile extends CI_Controller {
         $this->template->load('template/template_basic', 'profile/started' ,$data );
     }
 
-	
+	public function profile(){
+		$this->template->load('template/template_basic' ,'profile/profile');
+	}
 }

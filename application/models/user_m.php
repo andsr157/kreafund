@@ -17,7 +17,7 @@ class User_m extends CI_Model
         if ($id != null){
             $this->db->where('id', $id);
         }
-        $query = $this->db-get();
+        $query = $this->db->get();
         return $query;
     }
 
@@ -47,6 +47,22 @@ class User_m extends CI_Model
         $this->db->set('password', sha1($post['password']));
         $this->db->where('email', $email);
         $this->db->update('users');
+
+    }
+
+
+    public function edit($post)
+    {   
+        $params['name'] = $post['nama'];
+        $params['username'] = $post['username'];
+        if(!empty($post['password'])){
+            $params['password'] = sha1($post['password']);
+        }
+        $params['email'] = $post['email'];
+        $params['level'] = $post['level'];
+
+        $this->db->where('id', $post['user_id']);
+        $this->db->update('users', $params);
 
     }
 }

@@ -14,16 +14,16 @@
 <section class="counter py-lg-1">
   <div class="container back border">
     <div class="row py-55">
-      <div class=" col-lg-4 text-center py-4 py-lg-0">
-        <h2 class="mb-3 mb-lg-3">1467</h2>
+      <div class="col-lg-4 text-center py-4 py-lg-0">
+        <h2 class="mb-3 mb-lg-3" id="projectCount">0</h2>
         <p class="mb-2 mb-lg-0">Project</p>
       </div>
-      <div class="col-lg-4 text-center py-4 py-lg-0 ">
-        <h2 class="mb-3 mb-lg-3">Rp.500.000</h2>
-        <p class="mb-2 mb-lg-0">donasi</p>
+      <div class="col-lg-4 text-center py-4 py-lg-0">
+        <h2 style="display: inline;" class="mb-3 mb-lg-3" >Rp. <h2 style="display: inline;" id="donationAmount">0</h2></h2>
+        <p class="mb-2 mb-lg-0 pt-3">donasi</p>
       </div>
       <div class="col-lg-4 text-center py-4 py-lg-0">
-        <h2 class="mb-3 mb-lg-3">567</h2>
+        <h2 class="mb-3 mb-lg-3" id="successfulCount">0</h2>
         <p class="mb-2 mb-lg-0">Project berhasil</p>
       </div>
     </div>

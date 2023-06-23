@@ -13,6 +13,11 @@ class Projects extends CI_Controller
 		
 	}
 
+	public function discovery(){
+		$data['projects'] = $this->project_m->get_join_all(null, 'verified');
+		$this->template->load('template/template', 'projects/projects', $data);
+	}
+
 	public function project()
 	{
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
@@ -221,5 +226,15 @@ class Projects extends CI_Controller
 		}
 
 		echo json_encode($params);
+	}
+
+
+
+	public function verification(){
+		
+		$data['project'] = $this->project_m->get()->result();
+
+		$this->template->load('template/template_admin', 'admin/project/project_data', $data);
+
 	}
 }

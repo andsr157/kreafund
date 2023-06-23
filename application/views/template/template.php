@@ -22,7 +22,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
 
               <li class="nav-item py-2 py-lg-0">
-                <a class="nav-link" href="<?= base_url('projects') ?>">Semua Projek</a>
+                <a class="nav-link" href="<?= base_url('discovery') ?>">Semua Projek</a>
               </li>
               <li class="nav-item pb-2 pb-lg-0">
                 <a class="nav-link" href="<?= base_url('start') ?>">Mulai Projekmu</a>
@@ -42,7 +42,7 @@
           <div class="col-3 ">
             <div class="d-flex justify-content-end me-3">
               <?php
-              if (!empty($this->session->userdata('user_id')))  { ?>
+              if (!empty($this->session->userdata('user_id')) && ($this->session->userdata('level')) == 2)  { ?>
                 <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                   <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
                 </button>
@@ -272,6 +272,43 @@
 };
 
     </script> -->
+
+    <script>
+  $(document).ready(function() {
+  function animateCounter(elementId, targetValue) {
+    $({ Counter: 0 }).animate({ Counter: targetValue }, {
+      duration: 10000,
+      easing: 'swing',
+      step: function() {
+        $(elementId).text(Math.floor(this.Counter));
+      }
+    });
+  }
+
+  function fetchData() {
+    $.ajax({
+      url: '<?=base_url('home/fetchdata')?>', 
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        // Menganimasikan angka counter dengan data yang diterima dari CodeIgniter
+        animateCounter('#projectCount', response.projectCount);
+        animateCounter('#donationAmount', response.donationAmount);
+        animateCounter('#successfulCount', response.successfulCount);
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
+    });
+  }
+
+  // Memanggil fungsi fetchData untuk pertama kali
+  fetchData();
+
+  // Memanggil fungsi fetchData setiap 5 detik (bisa disesuaikan dengan kebutuhan)
+  setInterval(fetchData, 30000);
+});
+</script>
 </body>
 
 </html>

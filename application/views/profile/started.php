@@ -6,7 +6,7 @@
                         <li class="list-group-item bg-transparent border-0"><a href="">Backed Projects</a> </li>
                         <li class="list-group-item bg-transparent border-0"><a href="" style="color: var(--kf-blue);">Created Project</a></li>
                         <li class="list-group-item bg-transparent border-0"> <a href="">Setting</a></li>
-                        <li class="list-group-item bg-transparent border-0"><a href="">Profile</a> </li>
+                        <li class="list-group-item bg-transparent border-0"><a href="<?=base_url('profile/'.$this->session->userdata('username'))?>">Profile</a> </li>
                     </ul>
                 </div>
                 <div class="row mt-3">

@@ -244,7 +244,7 @@ class Auth_user extends CI_Controller
 
     public function logout()
     {
-        $params = array('user_id', 'level');
+        $params = array('user_id', 'level','username');
         $this->session->unset_userdata($params);
         redirect('home');
     }

@@ -25,8 +25,10 @@ class Reward extends CI_Controller
 			$params['project_id'] = $post['project_id'];
 			if (isset($post['unlimited'])) {
 				$params['qty'] = $post['unlimited'];
+				$params['temp_qty'] = $post['unlimited'];
 			} else if (isset($post['limited'])) {
 				$params['qty'] = $post['limited'];
+				$params['temp_qty'] = $post['limited'];
 			}
 
 			if (isset($post['time-unlimit'])) {
@@ -107,8 +109,10 @@ class Reward extends CI_Controller
 
 			if (isset($post['unlimited']) && !empty($post['unlimited']) ) {
 				$params['qty'] = $post['unlimited'];
+				$params['temp_qty'] = $post['unlimited'];
 			} else if (isset($post['limited']) && !empty($post['limited'])) {
 				$params['qty'] = $post['limited'];
+				$params['temp_qty'] = $post['limited'];
 			}
 			// $params['qty'] = 99999;
 

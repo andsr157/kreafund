@@ -12,12 +12,24 @@ class Project_m extends CI_Model
         return $query;
     }
 
-    public function get_join_all($id){
+    public function get_all($id= null){
+         $this->db->select('*');
+         if($id != null){
+            $this->db->where('project_id', $id);
+         }
+         $query =  $this->db->get('project');
+         return $query ;
+    }
+
+    public function get_join_all($id = null, $status = null){
         $this->db->from('project');
         $this->db->join('users', 'users.id = project.user_id');
         $this->db->join('category', 'category.category_id = project.category_id');
         $this->db->join('subcategory', 'subcategory.subcat_id = project.subcat_id');
         $this->db->join('location', 'location.location_id = project.location_id');
+        if($status != null){
+            $this->db->where('status',$status);
+        }
         if($id!=null){
             $this->db->where('project_id', $id);
         }

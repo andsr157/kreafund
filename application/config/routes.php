@@ -53,7 +53,12 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['admin'] = 'auth_admin/login';
+$route['projects/review/(:num)'] = 'review/preview';
 $route['project/(:any)/(:num)'] = 'projects/project';
+$route['discovery'] = 'projects/discovery';
 $route['project/(:any)/(:num)/edit/basic'] = 'start/basic';
 $route['project/(:any)/(:num)/edit/reward'] = 'start/reward';
 $route['project/(:any)/(:num)/edit/story'] = 'start/story';
+$route['profile/projects'] = 'profile/projects';
+$route['profile/(:any)'] = 'profile/profile';

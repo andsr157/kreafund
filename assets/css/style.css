@@ -49,6 +49,7 @@
     --kf-blue:#0c6efd;
     --kf-bg-grey-color:#FBFBFA;
     --kf-border:#d5d8da;
+    --kf-rborder: #D1D1D1;
     --kf-color-rgb: 126, 126, 126;
     --kf-base: #ffb846;
     --kf-base-rgb: 252, 173, 48;
@@ -57,6 +58,8 @@
     --kf-primary-rgb: 78, 205, 153;
     --kf-soft-black:#282828;
     --kf-secondary: #ed4b4b;
+    --kf-ikon-pink:#FFF2EC;
+    --kf-ikon-green:#E6FAF1;
     --kf-secondary-rgb: 237, 75, 75;
     --kf-special: #5555FF;
     --kf-special-rgb: 83, 102, 194;
@@ -938,12 +941,12 @@ footer .psc-8 ul{
 
 /* --------------------------prooject page------------------------------------- */
 
-
 /* projects */
 
 .project_page .projects{
-  padding-top: 5rem;
+  padding-top: 1rem;
   padding-bottom: 5rem;
+  font-family: 'maison_neuebook';
   
 }
 
@@ -1018,8 +1021,31 @@ footer .psc-8 ul{
 .project_page .page-number{
   padding-top: 0rem;
   padding-bottom: 5rem;
+  font-family: 'maison_neuebook';
 }
 
+
+.pagination {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.page-link {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: none;
+}
+
+.page-item {
+  display: inline-block;
+  margin: 4px;
+}
+
+.page-item:hover .page-link {
+  background-color: #ddd;
+}
 .page-item{
   border: none;
 }
@@ -1123,7 +1149,7 @@ footer .psc-8 ul{
   z-index: 1020;
 }
 
-.project_detail .main-content .main-text{
+.project_detail .main-content .main-text p{
   text-align: justify;
   line-height: 1.8rem;
   font-size: 1rem;
@@ -1160,9 +1186,9 @@ footer .psc-8 ul{
 
 .project_detail .main-content .list-group-item{
   border: solid;
-  border-color: var(--kf-text-dark);
-  border-width: 1px;
-  border-radius: 0;
+  border-color: var(--kf-rborder);
+  border-width: 0.02px;
+  border-radius: 50;
   padding: 0;
 }
 
