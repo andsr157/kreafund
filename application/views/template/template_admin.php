@@ -88,7 +88,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('transaction') ?>">
+            <a class="nav-link" href="<?= base_url('transaksi') ?>">
               <span class="menu-title">Transaksi</span>
             </a>
           </li>

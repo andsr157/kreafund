@@ -1149,7 +1149,7 @@ footer .psc-8 ul{
   z-index: 1020;
 }
 
-.project_detail .main-content .main-text p{
+.project_detail .main-content .main-text{
   text-align: justify;
   line-height: 1.8rem;
   font-size: 1rem;
@@ -1186,9 +1186,9 @@ footer .psc-8 ul{
 
 .project_detail .main-content .list-group-item{
   border: solid;
-  border-color: var(--kf-rborder);
-  border-width: 0.02px;
-  border-radius: 50;
+  border-color: var(--kf-text-dark);
+  border-width: 1px;
+  border-radius: 0;
   padding: 0;
 }
 
@@ -1352,3 +1352,69 @@ footer .psc-8 ul{
   -ms-user-select: none;
   user-select: none;
 }
+
+.donate_detail{
+  padding: 10rem;
+  padding-top: 3rem;
+  margin: 5rem;
+}
+
+.donate_detail h2{
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.donate_detail h3{
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.donate_detail p{
+  color: var(--kf-black-grey);
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+}
+
+.donate_detail .type-14{
+  font-size: 1rem;
+  color: var(--kf-black2);
+  text-decoration: underline;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.donate_detail .type-span{
+  color: var(--kf-dark-grey);
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+.donate_detail .payment{
+  font-size: 0.8rem;
+}
+
+
+.donate li.list-group-item:hover {
+  border: solid;
+  color: #1d1c1c;
+  border-width: 1px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.donate .list-group-item{
+  border: solid;
+  border-width: 1px;
+  border-color: var(--kf-border);
+}
+
+.donate .list-group-item .rstat .backed{
+  background-color:var(--kf-ikon-pink);
+}
+
+.donate .list-group-item .rstat .quantity{
+  background-color:var(--kf-ikon-green);
+}
+
+
+

@@ -3,7 +3,7 @@
     <div class="row mb-5">
     <?php foreach ($projects->result() as $project) { ?>
   <div class="col-4 px-3 mt-5">
-    <a href="project_detail.html">
+    <a href="<?=base_url('projects/'.$project->title)?>">
       <div class="procard">
         <div class="img-box mx-auto">
           <img style="object-fit:cover;" class="p-0 rounded-0" width="406" height="220" src="<?= base_url('assets/img/' . $project->image) ?>" alt="">

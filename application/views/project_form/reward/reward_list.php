@@ -24,7 +24,7 @@
                                 <h3 class="mb-4">Digital Poster Exclusive</h3>
                                 <div class="type-9 mb-1">
                                     <span>Estimated delivery:</span>
-                                    <span><?=$month .'-'. $year?>'</span>
+                                    <span><?=$month .'-'. $year?></span>
                                 </div>
                                 <div class="type-9 mb-1">
                                     <span>Reward Time</span>

@@ -55,6 +55,14 @@ class Project_m extends CI_Model
         
     }
 
+    public function getIdByTitle($name){
+        $this->db->select('project_id');
+        $this->db->from('project');
+        $this->db->where('title', urldecode($name));
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     public function add($post){
         $params['category_id'] =$post['category'];
         $params['subcat_id'] =$post['subcat'];

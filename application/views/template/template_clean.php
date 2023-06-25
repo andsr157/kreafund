@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/stylesheet.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-NSpLCXV1gR8C-jLq"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <title>Document</title>
 </head>
 
@@ -19,7 +23,7 @@
       <div class="container d-none d-lg-block">
         <div class="row">
 
-          <div class="col-10">
+          <div class="col-12">
             <a class="d-flex justify-content-center align-items-center h-100" href="<?= base_url() ?>" style="color: var(--kf-primary); font-weight: 700;">
               <img src="./img/logos/logo.png" alt="">
               <span style="font-size: larger;">
@@ -28,11 +32,6 @@
             </a>
           </div>
 
-          <div class="col-2">
-            <a href="<?=base_url('projects/verification')?>">
-              <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Kembali </button>
-            </a>
-          </div>
         </div>
       </div>
       <!-- ------ -->
@@ -60,7 +59,7 @@
                 <a href="<?= base_url('auth_user/login') ?>">
                   <button class="btn btn-dark-info text-nowrap border-0  " style="color: #242323" type="button">Log In</button>
                 </a>
-                
+
               <?php } ?>
             </div>
 
@@ -68,12 +67,15 @@
         </div>
       </div>
     </nav>
-    
+
   </header>
 
   <!-- end of navigation bar -->
   <!-- hero section -->
-  <?php echo $contents ?>
+  <div class="content">
+    <?php echo $contents ?>
+
+  </div>
 
   <!-- end of info section -->
   <!-- fresh section -->
@@ -85,18 +87,18 @@
 
   <footer>
     <div class="container-fluid">
-      
+
       <div class="d-flex text-center justify-content-center">
         <div class="text-center-sm">
           <h4 class="mb-3 mb-lg-0">
             A Kreafund @2023
-         
-          <ul class="list-group list-group-horizontal pt-3">
-            <li class="list-group-item"><i class="fa-brands fa-facebook"></i></li>
-            <li class="list-group-item"><i class="fa-brands fa-twitter"></i></li>
-            <li class="list-group-item"><i class="fa-brands fa-instagram"></i></li>
-            <li class="list-group-item"><i class="fa-brands fa-youtube"></i></li>
-          </ul>
+
+            <ul class="list-group list-group-horizontal pt-3">
+              <li class="list-group-item"><i class="fa-brands fa-facebook"></i></li>
+              <li class="list-group-item"><i class="fa-brands fa-twitter"></i></li>
+              <li class="list-group-item"><i class="fa-brands fa-instagram"></i></li>
+              <li class="list-group-item"><i class="fa-brands fa-youtube"></i></li>
+            </ul>
         </div>
       </div>
     </div>
@@ -196,55 +198,132 @@
   <!-- end modal login -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
-  <!-- <script>
-      const modal = document.querySelector('.modal');
-      // const overlay = document.querySelector('.overlay');     
-      const openModalBtn = document.querySelector("header nav .btn-open");
-      const closeModalBtn = document.querySelector(".btn-close");
+  
 
-      const openModal = function () {
-      modal.classList.remove("hidden");
-      openModalBtn.addEventListener('click', openModal);
-};
-
-    </script> -->
-
-    <script>
-  $(document).ready(function() {
-  function animateCounter(elementId, targetValue) {
-    $({ Counter: 0 }).animate({ Counter: targetValue }, {
-      duration: 10000,
-      easing: 'swing',
-      step: function() {
-        $(elementId).text(Math.floor(this.Counter));
+  <script>
+    $(document).ready(function() {
+      function animateCounter(elementId, targetValue) {
+        $({
+          Counter: 0
+        }).animate({
+          Counter: targetValue
+        }, {
+          duration: 10000,
+          easing: 'swing',
+          step: function() {
+            $(elementId).text(Math.floor(this.Counter));
+          }
+        });
       }
-    });
-  }
 
-  function fetchData() {
-    $.ajax({
-      url: '<?=base_url('home/fetchdata')?>', 
-      method: 'GET',
-      dataType: 'json',
-      success: function(response) {
-        // Menganimasikan angka counter dengan data yang diterima dari CodeIgniter
-        animateCounter('#projectCount', response.projectCount);
-        animateCounter('#donationAmount', response.donationAmount);
-        animateCounter('#successfulCount', response.successfulCount);
-      },
-      error: function(xhr, status, error) {
-        console.log(error);
+      function fetchData() {
+        $.ajax({
+          url: '<?= base_url('home/fetchdata') ?>',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response) {
+            // Menganimasikan angka counter dengan data yang diterima dari CodeIgniter
+            animateCounter('#projectCount', response.projectCount);
+            animateCounter('#donationAmount', response.donationAmount);
+            animateCounter('#successfulCount', response.successfulCount);
+          },
+          error: function(xhr, status, error) {
+            console.log(error);
+          }
+        });
       }
+
+      // Memanggil fungsi fetchData untuk pertama kali
+      fetchData();
+
+      // Memanggil fungsi fetchData setiap 5 detik (bisa disesuaikan dengan kebutuhan)
+      setInterval(fetchData, 30000);
     });
-  }
+  </script>
 
-  // Memanggil fungsi fetchData untuk pertama kali
-  fetchData();
+  <script>
+    // Mengambil semua elemen li.list-group-item
+    const listItems = document.querySelectorAll("li.list-group-item");
 
-  // Memanggil fungsi fetchData setiap 5 detik (bisa disesuaikan dengan kebutuhan)
-  setInterval(fetchData, 30000);
-});
-</script>
+    // Menyimpan border awal sebelum diklik pada setiap elemen li.list-group-item
+    listItems.forEach((item) => {
+      item.dataset.originalBorder = item.style.border;
+      item.dataset.originalBoxShadow = item.style.boxShadow;
+
+      // Menambahkan event listener pada setiap elemen li.list-group-item
+      item.addEventListener("click", () => {
+        // Mengatur ulang border dan box-shadow pada semua elemen li.list-group-item
+        listItems.forEach((item) => {
+          item.style.border = item.dataset.originalBorder;
+          item.style.boxShadow = item.dataset.originalBoxShadow;
+
+          // Mengubah display menjadi flex pada elemen <div class="justify-content-end">
+          const divElement = item.querySelector(".tombol");
+          if (divElement) {
+            divElement.style.display = "none";
+          }
+        });
+
+        // Mengubah warna border menjadi #037362, menambahkan lebar border, dan memperlebar area shadow
+        item.style.border = "2px solid #037362";
+        item.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+
+        // Mengubah display menjadi flex pada elemen <div class="tombol">
+        const divElement = item.querySelector(".tombol");
+        if (divElement) {
+          divElement.style.display = "flex";
+        }
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('.donateReward').click(function() {
+        var rewardId = $(this).data('reward_id');
+        var projectId = $(this).data('project_id');
+        var rewardTitle = $(this).data('reward_title');
+        var rewardAmount = $(this).data('reward_amount');
+        var rewardImage = $(this).data('reward_image');
+        
+        // Membuat form dinamis
+        var form = $('<form>', {
+          'action': '<?php echo site_url("snap/donate"); ?>',
+          'method': 'post'
+        });
+
+        // Menambahkan input hidden ke dalam form
+        form.append($('<input>', {
+          'type': 'hidden',
+          'name': 'rewardId',
+          'value': rewardId
+        }));
+        form.append($('<input>', {
+          'type': 'hidden',
+          'name': 'projectId',
+          'value': projectId
+        }));
+        form.append($('<input>', {
+          'type': 'hidden',
+          'name': 'rewardTitle',
+          'value': rewardTitle
+        }));
+        form.append($('<input>', {
+          'type': 'hidden',
+          'name': 'rewardAmount',
+          'value': rewardAmount
+        }));
+        form.append($('<input>', {
+          'type': 'hidden',
+          'name': 'rewardImage',
+          'value': rewardImage
+        }));
+
+        $('body').append(form);
+        form.submit();
+      });
+    });
+  </script>
 </body>
 
 </html>

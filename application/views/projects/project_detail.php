@@ -83,7 +83,8 @@
           </div>
 
           <div class="row">
-            <button class="btn btn-lg mt-4 rounded-0 text-light" style="background-color: var(--kf-primary);">Donate</button>
+            <button class="btn btn-lg mt-4 rounded-0 text-light" style="background-color: var(--kf-primary);" onclick="window.location.href = '<?= base_url('projects/'.$project->row()->title.'/pledge') ?>';">Donate</button>
+
           </div>
           <div class="dtl mt-2 p-0">
             <p style="display:inline" id="countdown-info">All or nothing. This project will only be funded if it reaches its goal by
@@ -165,13 +166,13 @@
           </h2>
           <div class="main-text">
             <p>
-            <?php
-            if ($story->row() && property_exists($story->row(), 'risk')) {
-              echo $story->row()->risk;
-            } else {
-              echo 'Risk Kosong !!';
-            }
-            ?>
+              <?php
+              if ($story->row() && property_exists($story->row(), 'risk')) {
+                echo $story->row()->risk;
+              } else {
+                echo 'Risk Kosong !!';
+              }
+              ?>
             </p>
           </div>
 
@@ -256,10 +257,13 @@
                           </div>
                         </div>
                         <div class="d-flex pt-3 justify-content-center">
+                          <a href="<?=base_url('snap')?>">
                             <button class="btn text-light rounded-0 w-100" style="background-color: #028858; ">
                               donasi <?= formatCurrency($reward->amount) ?>
                             </button>
-                          </div>
+                          </a>
+
+                        </div>
                       </div>
                     </div>
                   </li>
