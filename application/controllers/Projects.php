@@ -37,15 +37,15 @@ class Projects extends CI_Controller
 		$this->template->load('template/template_clean','donate/donate', $data);
 	}
 
-	// public function detail(){
-	// 	$result = $this->project_m->getIdByTitle($this->uri->segment(2));
-	// 	$project_id = intval($result->project_id);
-	// 	$data['story'] = $this->story_m->getDataById($project_id);
-    //     $data['project'] = $this->project_m->get_all($project_id);
-    //     $data['rewards']  = $this->reward_m->getRewardWithPid($project_id);
+	public function detail(){
+		$result = $this->project_m->getIdByTitle($this->uri->segment(2));
+		$project_id = intval($result->project_id);
+		$data['story'] = $this->story_m->getDataById($project_id);
+        $data['project'] = $this->project_m->get_all($project_id);
+        $data['rewards']  = $this->reward_m->getRewardWithPid($project_id);
 		
-    //     $this->template->load('template/template','projects/project_detail', $data);
-	// }
+        $this->template->load('template/template','projects/project_detail', $data);
+	}
 
 	// public function project()
 	// {

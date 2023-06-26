@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/kreafund/';
-// $config['base_url'] = 'https://8f6c-114-142-168-8.ngrok-free.app/kreafund/';  
+// $config['base_url'] = 'http://localhost/kreafund/';
+$config['base_url'] = 'https://8f6c-114-142-168-8.ngrok-free.app/kreafund/';  
 
 /*
 |--------------------------------------------------------------------------
