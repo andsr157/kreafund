@@ -420,6 +420,83 @@
     </script>
 
     <script>
+        function imageHandlers(){
+            $('#upload_p_image').click(function() {
+                var myFormData = new FormData();
+                var gambar = $('#gambar_basic')[0].files[0];
+                myFormData.append('image', gambar)
+                myFormData.append('project_id', <?= $row->project_id ?>)
+                var filename = $('#gambar_basic')[0].files[0]
+                console.log(filename)
+                var project_id = <?= $row->project_id ?>
+
+                if (filename != '') {
+                    $.ajax({
+                        url: '<?= base_url(); ?>projects/upload_image',
+                        processData: false, // important
+                        contentType: false,
+                        method: 'POST',
+                        data: myFormData,
+                        type: JSON,
+                        success: function(result) {
+                            console.log(result)
+                            if (result.success === true) {
+                                alert('Gagal tambah')
+                            } else {
+                                $('#image_side_form').load(' #preview', function() {
+                                    $(document).ready(function() {
+                                        $('#del-prev').click(function() {
+
+                                            var image_name = $('#image_project').val();
+                                            var project_id = <?= $row->project_id ?>
+
+                                            if (image_name != '') {
+                                                $.ajax({
+                                                    url: "<?= base_url(); ?>projects/delBasicImage/",
+                                                    method: 'POST',
+                                                    data: {
+                                                        'image': image_name,
+                                                        'project_id': project_id
+                                                    },
+                                                    type: JSON,
+                                                    success: function(result) {
+                                                        console.log(result)
+                                                        if (result.success === true) {
+                                                            alert('Gagal Hapus item gambar')
+                                                        } else {
+                                                            $('#image_side_form').load(' #image_basic_form', function() {
+                                                                document.getElementById('gambar_basic').onchange = function() {
+                                                                    document.getElementById('uploaded_image').src = URL.createObjectURL(gambar_basic.files[0]);
+                                                                    console.log(URL.createObjectURL(gambar_basic.files[0]))
+
+                                                                    document.getElementById('upload_box').style.display = "none";
+                                                                    document.getElementById('uploaded_box').style.display = 'block';
+                                                                    
+                                                                }
+
+                                                                document.getElementById('delcurrent_image').onclick = function() {
+                                                                    document.getElementById('upload_box').style.display = "flex";
+                                                                    document.getElementById('uploaded_box').style.display = 'none';
+                                                                }
+
+                                                                imageHandlers();
+                                                            })
+
+                                                        }
+                                                    }
+                                                })
+                                            }
+
+                                        })
+                                    })
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        }
+        
         $(document).ready(function() {
             $('#del-prev').click(function() {
                 var image_name = $('#image_project').val();
@@ -427,7 +504,7 @@
 
                 if (image_name != '') {
                     $.ajax({
-                        url: "<?= base_url(); ?>projects/del_basic_image/",
+                        url: "<?= base_url(); ?>projects/delBasicImage/",
                         method: 'POST',
                         data: {
                             'image': image_name,
@@ -446,6 +523,7 @@
 
                                         document.getElementById('upload_box').style.display = "none";
                                         document.getElementById('uploaded_box').style.display = 'block';
+                                       
                                     }
 
 
@@ -453,7 +531,11 @@
                                         document.getElementById('upload_box').style.display = "flex";
                                         document.getElementById('uploaded_box').style.display = 'none';
                                     }
+
+                                    imageHandlers();
+                                    
                                 })
+                                
 
                             }
                         }
@@ -525,7 +607,7 @@
 
                                             if (image_name != '') {
                                                 $.ajax({
-                                                    url: "<?= base_url(); ?>projects/del_basic_image/",
+                                                    url: "<?= base_url(); ?>projects/delBasicImage/",
                                                     method: 'POST',
                                                     data: {
                                                         'image': image_name,
@@ -551,6 +633,8 @@
                                                                     document.getElementById('upload_box').style.display = "flex";
                                                                     document.getElementById('uploaded_box').style.display = 'none';
                                                                 }
+
+                                                                imageHandlers();
                                                             })
 
                                                         }
