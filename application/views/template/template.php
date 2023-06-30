@@ -44,7 +44,7 @@
               <?php
               if (!empty($this->session->userdata('user_id')) && ($this->session->userdata('level')) == 2)  { ?>
                 <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
+                  <img style="object-fit:cover;" src="<?= base_url('assets/img/ikon/'.$this->session->userdata('avatar')) ?>" alt="" class="w-100 h-100 rounded-circle">
                 </button>
               <?php } else { ?>
                 <a href="<?= base_url('auth_user/login') ?>">
@@ -245,8 +245,8 @@
         </div>
         <div class="modal-body">
           <ul class="mb-5">
-            <li class="my-3"><a href="#">Profile</a></li>
-            <li class="my-3"><a href="#">Settings</a></li>
+            <li class="my-3"><a href="<?= base_url('profile/detail/'.$this->session->userdata('username')) ?>">Profile</a></li>
+            <li class="my-3"><a href="<?= base_url('profile/account/') ?>">Settings Account</a></li>
             <li class="my-3"><a href="<?= base_url('profile/projects') ?>">My Projects</a></li>
           </ul>
           <a href="<?= base_url('auth_user/logout') ?>">Logout</a>

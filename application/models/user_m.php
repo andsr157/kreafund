@@ -12,6 +12,18 @@ class User_m extends CI_Model
         return $query;
     }
 
+    
+    public function saveSetting($id ,$pass){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id', $id);
+        $this->db->where('password', sha1($pass));
+        $query= $this->db->get();
+        return $query;
+    }
+
+    
+
     public function get($id=null){
         $this->db->from('users');
         if ($id != null){
@@ -32,6 +44,12 @@ class User_m extends CI_Model
 
     public function getuserbyEmail($params){
         $this->db->where('email', $params);
+        $query  = $this->db->get('users');
+        return $query;
+    }
+
+    public function getuserbyUsername($name){
+        $this->db->where('username', $name);
         $query  = $this->db->get('users');
         return $query;
 
@@ -61,6 +79,23 @@ class User_m extends CI_Model
         $params['email'] = $post['email'];
         $params['level'] = $post['level'];
 
+        $this->db->where('id', $post['user_id']);
+        $this->db->update('users', $params);
+
+    }
+
+
+    public function update($post)
+    {   
+        $params['name'] = $post['name'];
+        $params['username'] = $post['username'];
+        $params['email'] = $post['email'];
+        $params['address'] = $post['address'];
+        $params['biography'] = $post['biography'];
+        $params['facebook'] = $post['fb'];
+        $params['twitter'] = $post['twitter'];
+        $params['instagram'] = $post['insta'];
+        $params['website'] = $post['web'];
         $this->db->where('id', $post['user_id']);
         $this->db->update('users', $params);
 

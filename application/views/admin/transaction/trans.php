@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-12 table-responsive">
 
-                        <table class="table table-custom" id="table1">
+                        <table class="table table-custom"  id="table1">
                             <thead>
                                 <tr>
                                     <th></th>

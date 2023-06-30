@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat3">
-                    <a href="<?= base_url('start/story') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/story') ?>">
                         <div class="ikon">
                             <span>📖</span>
                             <p class="mt-3">story</p>
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat4">
-                    <a href="<?= base_url('start/people') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/people') ?>">
                         <div class="ikon">
                             <span>👥</span>
                             <p class="mt-3">People</p>
@@ -96,6 +96,31 @@
             </div>
         </div>
 
+        <div class="container-fluid px-0 border-bottom border-2 my-5"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h4 class="mb-3">Project Description</h4>
+                    <p class="type-d">Write a clear, brief description  to help people quickly understand your
+                        project.Both will appear on your project and pre-launch pages.
+                    </p>
+                    <p class="type-d">
+                        Potential backers will also see them if your project appears on category pages,
+                        search results, or in emails we send to our community.
+                    </p>
+                </div>
+                <div class="col-8 side-form ">
+                    <div class="mb-4">
+                        <label for="exampleInputEmail1" class="form-label mb-3">Brief Description</label>
+                        <textarea name="desc" id="desc" cols="30" class="form-control mb-3 rounded-0" rows="5"><?=$row->description?></textarea>
+                    </div>
+                    <span class="">
+                        <a href="">Help Backer to understand your project (15-20 word) </a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
 
         <div class="container-fluid px-0 border-bottom border-2 my-5"></div>
 

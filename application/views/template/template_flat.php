@@ -24,20 +24,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="d-lg-none d-block mx-auto" href="#">
-                    <img src="./img/logos/logo.png" alt="" />LOGO
+                    <img src="./img/logos/logo.png" alt="" />Kreafund
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-                    <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
-                        <img src="./img/logos/logo.png" alt="" />LOGO
+                    <a  class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700; font-size:large;">
+                        <img src="./img/logos/logo.png" alt="" />Kreafund
                     </a>
                     <p class="unselectable text-white">AA</p>
 
                     <?php
                 if(!empty($this->session->userdata('user_id'))) { ?>
-                <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img src="<?=base_url('assets/img/user.avif')?>" alt="" class="img-fluid rounded-circle" >
+                <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                  <img style="object-fit:cover;" src="<?= base_url('assets/img/ikon/'.$this->session->userdata('avatar')) ?>" alt="" class="w-100 h-100 rounded-circle">
                 </button>
                 <?php } else { ?>
                 <a href="<?=base_url('auth_user/login')?>">

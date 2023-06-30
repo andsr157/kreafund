@@ -113,6 +113,7 @@ class Auth_user extends CI_Controller
                 $this->user_m->add($post);
                 if ($this->db->affected_rows() > 0) {
                 }
+                echo"alert('akun berhasil dibuat')";
                 echo "<script>window.location='" . base_url('auth_user/login') . "'</script>";
             }
         }
@@ -125,7 +126,8 @@ class Auth_user extends CI_Controller
                 $params = array(
                     'user_id' => $row->id,
                     'level' => $row->level,
-                    'username' => $row->username
+                    'username' => $row->username,
+                    'avatar' => $row->avatar
                 );
                 $this->session->set_userdata($params);
                 $this->session->set_flashdata(
@@ -234,6 +236,8 @@ class Auth_user extends CI_Controller
                             </div>
                         </div>'
                     );
+                    $params = array('user_id', 'level','username','avatar');
+                    $this->session->unset_userdata($params);
                     redirect('auth_user/login');
                 
                 $this->session->unset_userdata('reset_email');
@@ -244,7 +248,7 @@ class Auth_user extends CI_Controller
 
     public function logout()
     {
-        $params = array('user_id', 'level','username');
+        $params = array('user_id', 'level','username','avatar');
         $this->session->unset_userdata($params);
         redirect('home');
     }

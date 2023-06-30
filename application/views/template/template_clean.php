@@ -324,6 +324,17 @@
       });
     });
   </script>
+
+
+<script>
+  function submitCustomForm(event) {
+    event.preventDefault(); 
+    var form = event.target.closest('form');
+    if (form) {
+      form.submit();
+    }
+  }
+</script>
 </body>
 
 </html>

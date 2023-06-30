@@ -75,7 +75,8 @@ class Start extends CI_Controller
 
 	public function people()
 	{
-		$this->template->load('template/p_form_template', 'project_form/people');
+		$data['user'] = $this->project_m->get($this->uri->segment(3))->row();
+		$this->template->load('template/p_form_template', 'project_form/people',$data);
 	}
 	public function launch()
 	{

@@ -40,7 +40,7 @@
             <li class="list-group-item">
               <div class="col-2">
               </div>
-              <a href="<?=base_url('start/story')?>">
+              <a href="<?=base_url('project/'.$this->session->userdata('username').'/'.$row->project_id.'/edit/story')?>">
                 <div class="col-10">
                   <h4>Story</h4>
                   <p>Add a detailed project description and convey your risks and challenges.</p>
@@ -50,7 +50,7 @@
             <li class="list-group-item">
               <div class="col-2">
               </div>
-              <a href="<?=base_url('start/people')?>">
+              <a href="<?=base_url('project/'.$this->session->userdata('username').'/'.$row->project_id.'/edit/people')?>">
                 <div class="col-10">
                   <h4>People / Team</h4>
                   <p>Edit your Kickstarter profile and add collaborators.</p>

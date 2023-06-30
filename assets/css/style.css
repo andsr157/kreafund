@@ -54,6 +54,7 @@
     --kf-base: #ffb846;
     --kf-base-rgb: 252, 173, 48;
     --kf-primary: #05CE78;
+    --kf-primary-blue:#2752ff;
     --kf-primary-dark:#037362;
     --kf-primary-rgb: 78, 205, 153;
     --kf-soft-black:#282828;
@@ -1217,7 +1218,6 @@ footer .psc-8 ul{
   height: 72px;
   width: 72px;
   border-radius: 50%;
-  background-color: #1d1c1c;
 }
 
 .project_detail .rcard .rdesc p{
@@ -1318,7 +1318,7 @@ footer .psc-8 ul{
   background-color: var(--kf-bg-grey-color);
 }
 
-.myproject .nav-profile ul li a{
+.nav-profile ul li a{
   font-size: 1rem;
   color: var(--kf-black);
   font-weight: 600;
@@ -1416,5 +1416,84 @@ footer .psc-8 ul{
   background-color:var(--kf-ikon-green);
 }
 
+
+.profile{
+  font-family: 'maison_neuebook';
+}
+
+.profile h3{
+  font-size: 2rem;
+}
+
+.profile .plabel{
+  font-size: 1rem;
+  color: var(--kf-black2);
+  font-weight: 700;
+}
+
+/* .profile .list-group-item{
+  padding-bottom: 2rem;
+  cursor: pointer;
+}
+
+.profile .list-group-item.pbactive{
+  border: none;
+  border-bottom: solid;
+  border-width: 0.3rem;
+  border-color: #2752ff;
+} */
+
+.creator{
+  font-family: 'maison_neuebook';
+}
+.creator .board{
+  padding: 5rem;
+  background-color:#F7F7F9;
+}
+
+.creator .creatorAvatar img{
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.creator .creatorBio h2{
+  font-size: 2rem;
+  color: var(--kf-soft-black);
+  font-weight: 600;
+}
+
+
+.creator .creatorBio span{
+  font-size: 0.9rem;
+  color: #80809E;
+}
+
+.creator .mainProfile a{
+  color: var(--kf-black);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.creator .mainProfile a:hover{
+  color: var(--kf-primary-blue);
+}
+
+.creator .mainProfile h2 {
+  font-size: 1.6rem;
+  color: var(--kf-soft-black);
+  font-weight:600 ;
+}
+
+.creator .mainProfile span{
+  font-size: 1rem;
+  color: var(--kf-black);
+  font-weight:500 ;
+}
+.creator .type-16{
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
 
 

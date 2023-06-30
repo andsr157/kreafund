@@ -8,7 +8,7 @@ class Projects extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();	
-		check_not_login();
+		
 	}
 
 	public function discovery(){
@@ -30,6 +30,7 @@ class Projects extends CI_Controller
 	}
 
 	public function pledge(){
+		check_not_login();
 		$result = $this->project_m->getIdByTitle($this->uri->segment(2));
 		$project_id = intval($result->project_id);
 		$data['project_id'] = $project_id;
@@ -54,6 +55,7 @@ class Projects extends CI_Controller
 
 	public function process()
 	{
+		check_not_login();
 		$post = $this->input->post(null, TRUE);
 		if (isset($post['add'])) {
 			// $this->form_validation->set_rules('category', 'Category', 'required');
@@ -87,9 +89,9 @@ class Projects extends CI_Controller
 			} else {
 
 				if ($this->input->post('radio') == '30') {
-					$basic = $this->input->post(array('project_id', 'title', 'subtitle', 'category', 'subcat', 'location', 'goal', 'standar'));
+					$basic = $this->input->post(array('project_id', 'title', 'subtitle','desc', 'category', 'subcat', 'location', 'goal', 'standar'));
 				} else {
-					$basic = $this->input->post(array('project_id', 'title', 'subtitle', 'category', 'subcat', 'location', 'goal', 'custom'));
+					$basic = $this->input->post(array('project_id', 'title', 'subtitle', 'desc','category', 'subcat', 'location', 'goal', 'custom'));
 				}
 
 				$this->project_m->edit($basic);
@@ -103,6 +105,7 @@ class Projects extends CI_Controller
 
 	public function delBasicImage()
 	{
+		check_not_login();
 		$post = $this->input->post(null, true);
 		$this->project_m->delete_image($post['project_id']);
 
@@ -117,6 +120,7 @@ class Projects extends CI_Controller
 
 	public function del_basic_video()
 	{
+		check_not_login();
 		$post = $this->input->post(null, true);
 		$this->project_m->delete_video($post['project_id']);
 
@@ -167,22 +171,20 @@ class Projects extends CI_Controller
 
 	public function upload_image()
 	{
-		// Load library upload
+		check_not_login();
 		$this->load->library('upload');
 		$p_id = $this->input->post('project_id');
-		// Konfigurasi upload
 		$config['upload_path'] = './assets/img';
 		$config['allowed_types'] = 'jpg|jpeg|png|gif';
-		$config['max_size'] = 2048; // maksimum 2MB
+		$config['max_size'] = 2048; 
 		$config['encrypt_name'] = TRUE;
 
 		$this->upload->initialize($config);
 		$p_id = $this->input->post('project_id');
 
 		$pdata['project'] = $this->project_m->get_by_projectid($p_id)->row_array();
-		// Lakukan proses upload
+		
 		if ($this->upload->do_upload('image')) {
-			// File berhasil diunggah
 			$data = $this->upload->data();
 			$gambar_lama = $pdata['project']['image'];
 			if ($gambar_lama != 'default.jpg') {
@@ -207,6 +209,7 @@ class Projects extends CI_Controller
 
 	public function upload_video()
 	{
+		check_not_login();
 		// Load library upload
 		$this->load->library('upload');
 		$p_id = $this->input->post('project_id');

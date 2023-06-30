@@ -6,7 +6,9 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->template->load('template/template','home');
+        $data['featured'] = $this->project_m->getFeatured()->result_array();
+        $data['fresh'] = $this->project_m->getFresh()->result();
+		$this->template->load('template/template','home',$data);
 	}
 
 	public function fetchdata(){

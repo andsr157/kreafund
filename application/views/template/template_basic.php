@@ -19,8 +19,8 @@
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
               <span class="navbar-toggler-icon" ></span>
             </button>
-            <a class="d-lg-none d-block mx-auto" href="#">
-              <img src="./img/logos/logo.png" alt="">LOGO
+            <a class="d-lg-none d-block mx-auto" href="#" style="color: var(--kf-primary); font-weight: 700; font-size: larger;">
+              <img src="./img/logos/logo.png" alt="">Kreaund
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mb-2 mb-lg-0">
@@ -32,16 +32,16 @@
                   <a class="nav-link" href="<?=base_url('start')?>">Mulai Projekmu</a>
                 </li>
               </ul>
-              <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700;">
-                <img src="./img/logos/logo.png" alt="">LOGO
+              <a class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700; font-size: larger;" >
+                <img src="./img/logos/logo.png" alt="">Kreafund
               </a>
               <p class="unselectable text-white">AAAAAAAAAAAAAA</p>
               <form class="d-flex ms-lg-5 mb-lg-0 mb-3 " role="search">
                 
                 <?php
                 if(!empty($this->session->userdata('user_id'))) { ?>
-                <button class="btn border-0 d-none d-lg-block p-0 pt-1" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img src="<?=base_url('assets/img/user.avif')?>" alt="" class="img-fluid rounded-circle" >
+                <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                  <img style="object-fit:cover;" src="<?= base_url('assets/img/ikon/'.$this->session->userdata('avatar')) ?>" alt="" class="w-100 h-100 rounded-circle">
                 </button>
                 <?php } else { ?>
                 <a href="<?=base_url('auth_user/login')?>">
@@ -212,6 +212,8 @@
     <script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   
     <!-- <script>
       const modal = document.querySelector('.modal');
       // const overlay = document.querySelector('.overlay');     

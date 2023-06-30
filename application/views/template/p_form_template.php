@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,27 +44,28 @@
                             <img src="./img/logos/logo.png" alt="">
                             <span style="font-size: larger;">
                                 Kreafund
-                            </span>
+                            </span> 
                         </a>
                     </div>
 
                     <div class="col-3 ">
 
                         <div class="d-flex justify-content-end me-3">
-                            <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
+                            <a href="<?=base_url('projects/review/'.$this->uri->segment(3))?>">
+                                <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
+                            </a>
                             <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_form">Cancel</button>
                             <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_item">Cancel</button>
-                            <!-- <?php
-                                    if (!empty($this->session->userdata('user_id'))) { ?>
-                <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
-                </button>
-              <?php } else { ?>
-                <a href="<?= base_url('auth_user/login') ?>">
-                  <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
-                </a>
-                  
-              <?php } ?> -->
+                            <?php
+                            if (!empty($this->session->userdata('user_id'))) { ?>
+                                <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                                    <img src="<?= base_url('assets/img/ikon'.$this->session->userdata('avatar')) ?>" alt="" class="img-fluid rounded-circle">
+                                </button>
+                            <?php } else { ?>
+                                <a href="<?= base_url('auth_user/login') ?>">
+                                    <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -87,7 +86,7 @@
                     </div>
                     <div class="col-4">
                         <div class="d-flex justify-content-center">
-                            <?php
+                            <!-- <?php
                             if (!empty($this->session->userdata('user_id'))) { ?>
                                 <button class="btn border-0  p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                                     <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
@@ -97,7 +96,7 @@
                                     <button class="btn btn-dark-info text-nowrap border-0  " style="color: #242323" type="button">Log In</button>
                                 </a>
 
-                            <?php } ?>
+                            <?php } ?> -->
                         </div>
 
                     </div>
@@ -420,7 +419,7 @@
     </script>
 
     <script>
-        function imageHandlers(){
+        function imageHandlers() {
             $('#upload_p_image').click(function() {
                 var myFormData = new FormData();
                 var gambar = $('#gambar_basic')[0].files[0];
@@ -471,7 +470,7 @@
 
                                                                     document.getElementById('upload_box').style.display = "none";
                                                                     document.getElementById('uploaded_box').style.display = 'block';
-                                                                    
+
                                                                 }
 
                                                                 document.getElementById('delcurrent_image').onclick = function() {
@@ -496,7 +495,7 @@
                 }
             })
         }
-        
+
         $(document).ready(function() {
             $('#del-prev').click(function() {
                 var image_name = $('#image_project').val();
@@ -523,7 +522,7 @@
 
                                         document.getElementById('upload_box').style.display = "none";
                                         document.getElementById('uploaded_box').style.display = 'block';
-                                       
+
                                     }
 
 
@@ -533,9 +532,9 @@
                                     }
 
                                     imageHandlers();
-                                    
+
                                 })
-                                
+
 
                             }
                         }
@@ -1380,93 +1379,93 @@
 
     <!-------------------------------------------- script for story --------------------------------------------->
     <script>
-    CKEDITOR.replace('content_editor', {
-    extraPlugins: 'youtube',
-    toolbar: [
-        ['Bold', 'Italic', 'Underline', 'Strike'],
-        ['NumberedList', 'BulletedList', 'Outdent', 'Indent'],
-        ['Link', 'Unlink', 'Image', 'Embed', 'Youtube', 'Source'],
-        ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-        ['Undo', 'Redo']
-    ],
-    removePlugins: 'elementspath, iframe',
-    height: 550,
-    filebrowserUploadUrl: '<?= base_url('story/uploadImage') ?>',
-    filebrowserUploadMethod: 'form',
-    contentsCss: '<?= base_url('assets/css/customck/custom.css') ?>',
-    autoParagraph: true,
-    maxLength: 80,
-    allowedContent: true,
-    
-    
-});
+        CKEDITOR.replace('content_editor', {
+            extraPlugins: 'youtube',
+            toolbar: [
+                ['Bold', 'Italic', 'Underline', 'Strike'],
+                ['NumberedList', 'BulletedList', 'Outdent', 'Indent'],
+                ['Link', 'Unlink', 'Image', 'Embed', 'Youtube', 'Source'],
+                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                ['Undo', 'Redo']
+            ],
+            removePlugins: 'elementspath, iframe',
+            height: 550,
+            filebrowserUploadUrl: '<?= base_url('story/uploadImage') ?>',
+            filebrowserUploadMethod: 'form',
+            contentsCss: '<?= base_url('assets/css/customck/custom.css') ?>',
+            autoParagraph: true,
+            maxLength: 80,
+            allowedContent: true,
 
 
-    $(document).ready(function() {
-        // Tangani klik tombol Simpan
-        $('#saveStory').click(function() {
-            var editorData = CKEDITOR.instances.content_editor.getData();
-            var project_id = '<?= $this->uri->segment(3) ?>';
-            var risk = $('textarea#risk').val();
-
-            // Kirim data menggunakan AJAX
-            $.ajax({
-                url: '<?= base_url('story/save_data') ?>', // Ubah dengan URL yang sesuai
-                type: 'POST',
-                data: {
-                    'content': editorData,
-                    'project_id': project_id,
-                    'risk': risk
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.status === 'success') {
-                        alert(response.message);
-                        location.reload();
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Tindakan jika terjadi kesalahan
-                    console.log(error);
-                }
-            });
         });
 
-        $('#updateStory').click(function() {
-            var editorData = CKEDITOR.instances.content_editor.getData();
-            var project_id = '<?= $this->uri->segment(3) ?>';
-            var story_id = $('#storyId').val();
-            var risk = $('textarea#risk').val();
 
-            // Kirim data menggunakan AJAX
-            $.ajax({
-                url: '<?= base_url('story/update_data') ?>', // Ubah dengan URL yang sesuai
-                type: 'POST',
-                data: {
-                    'content': editorData,
-                    'project_id': project_id,
-                    'story_id': story_id,
-                    'risk': risk
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.status === 'success') {
-                        alert(response.message);
-                        location.reload();
-                    } else {
-                        alert(response.message);
+        $(document).ready(function() {
+            // Tangani klik tombol Simpan
+            $('#saveStory').click(function() {
+                var editorData = CKEDITOR.instances.content_editor.getData();
+                var project_id = '<?= $this->uri->segment(3) ?>';
+                var risk = $('textarea#risk').val();
+
+                // Kirim data menggunakan AJAX
+                $.ajax({
+                    url: '<?= base_url('story/save_data') ?>', // Ubah dengan URL yang sesuai
+                    type: 'POST',
+                    data: {
+                        'content': editorData,
+                        'project_id': project_id,
+                        'risk': risk
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            location.reload();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Tindakan jika terjadi kesalahan
+                        console.log(error);
                     }
-                },
-                error: function(xhr, status, error) {
-                    // Tindakan jika terjadi kesalahan
-                    console.log(error);
-                }
+                });
+            });
+
+            $('#updateStory').click(function() {
+                var editorData = CKEDITOR.instances.content_editor.getData();
+                var project_id = '<?= $this->uri->segment(3) ?>';
+                var story_id = $('#storyId').val();
+                var risk = $('textarea#risk').val();
+
+                // Kirim data menggunakan AJAX
+                $.ajax({
+                    url: '<?= base_url('story/update_data') ?>', // Ubah dengan URL yang sesuai
+                    type: 'POST',
+                    data: {
+                        'content': editorData,
+                        'project_id': project_id,
+                        'story_id': story_id,
+                        'risk': risk
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            location.reload();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Tindakan jika terjadi kesalahan
+                        console.log(error);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 
 </body>

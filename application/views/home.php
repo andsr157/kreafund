@@ -19,7 +19,8 @@
         <p class="mb-2 mb-lg-0">Project</p>
       </div>
       <div class="col-lg-4 text-center py-4 py-lg-0">
-        <h2 style="display: inline;" class="mb-3 mb-lg-3" >Rp. <h2 style="display: inline;" id="donationAmount">0</h2></h2>
+        <h2 style="display: inline;" class="mb-3 mb-lg-3">Rp. <h2 style="display: inline;" id="donationAmount">0</h2>
+        </h2>
         <p class="mb-2 mb-lg-0 pt-3">donasi</p>
       </div>
       <div class="col-lg-4 text-center py-4 py-lg-0">
@@ -41,43 +42,35 @@
         <div class="col-12 col-lg-8 wrapper p-0" style="overflow: hidden;">
           <div class=" bg-child pt-5 px-lg-5 bg-fit border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/4.png);">
             <a href="">
-              <h4 class="fp ps-3">Short Movie <br>About William <br> McChaster</h4>
+              <h4 class="fp ps-3"><?= $featured[0]['title'] ?></h4>
             </a><br>
             <a href="">
-              <p class="ps-3">Project mengangkat kisah tentang william seseorang yang <br>nyata yang memiliki kisah inspiratif yang sangat menyentuh </p>
+              <p class="ps-3"><?= $featured[0]['subtitle'] ?> </p>
             </a>
           </div>
         </div>
         <div class="col-12 col-lg-4 wrapper p-0" style="overflow: hidden;">
           <div class=" bg-child px-3 bg-fit pt-5 px-lg-5 border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/2.png);">
             <a href="">
-              <h4>Sharles <br>Squel Book</h4>
+              <h4><?= $featured[1]['title'] ?></h4>
             </a>
           </div>
         </div>
       </div>
       <div class="row pt-lg-1 pt-sm-0 pbox justify-content-beetween">
-        <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
-          <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/3.png);">
-            <a href="">
-              <h4>Gal Gallery Project</h4>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
-          <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/5.png);">
-            <a href="">
-              <h4>Samurai War <br> Stop Motion</h4>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
-          <div class=" bg-child px-3 bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/6.jpg);">
-            <a href="">
-              <h4>Forgoten World <br> Discovery</h4>
-            </a>
-          </div>
-        </div>
+        <?php foreach ($featured as $index => $featured) { ?>
+          <?php if ($index > 2) { ?>
+            <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
+              <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/3.png);">
+                <a href="">
+                  <h4><?=$featured['title']?></h4>
+                </a>
+              </div>
+            </div>
+          <?php
+          } ?>
+        <?php }
+        ?>
       </div>
 
       <!-- <div class="row py-5 px-5">
@@ -162,105 +155,30 @@
       </div>
       <div class="row">
         <ul class="list-group list-group-horizontal position-relative overflow-auto ">
-          <li class="list-group-item p-1 p-lg-2 ">
+          <?php foreach($fresh as $fresh){?>
+            <li class="list-group-item p-1 p-lg-2 ">
             <div class="col-lg-3">
               <div class="wrapperimg">
                 <div class="boxImage bg-child">
-                  <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/f1.avif" alt="">
+                  <img style="object-fit: cover;" class="w-100 h-100 p-0 rounded-0" src="<?= base_url('assets/img/'.$fresh->image) ?>" alt="">
                 </div>
               </div>
 
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 "><?=$fresh->title?></h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3"><?=$fresh->description?></p>
                 </a>
-                <p class="author"><a href="">by alex zorei</a></p>
+                <p class="author"><a href="">by <?=$fresh->username?></a></p>
               </div>
             </div>
           </li>
-          <li class="list-group-item p-1 p-lg-2">
-            <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/f2.avif" alt="">
-              </div>
-              <div class="caption">
-                <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
-                </a>
-                <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
-                </a>
-                <p class="author"><a href="">by alex zorei</a></p>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item p-1 p-lg-2">
-            <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/f3.avif" alt="">
-              </div>
-              <div class="caption">
-                <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
-                </a>
-                <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
-                </a>
-                <p class="author"><a href="">by alex zorei</a></p>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item p-1 p-lg-2">
-            <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/f4.avif" alt="">
-              </div>
-              <div class="caption">
-                <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
-                </a>
-                <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
-                </a>
-                <p class="author"><a href="">by alex zorei</a></p>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item p-1 p-lg-2">
-            <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/f5.avif" alt="">
-              </div>
-              <div class="caption">
-                <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
-                </a>
-                <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
-                </a>
-                <p class="author"><a href="">by alex zorei</a></p>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item p-1 p-lg-2">
-            <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/f6.avif" alt="">
-              </div>
-              <div class="caption">
-                <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
-                </a>
-                <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
-                </a>
-                <p class="author"><a href="">by alex zorei</a></p>
-              </div>
-            </div>
-          </li>
+         <?php
+          }?>
+          
+          
         </ul>
       </div>
     </div>
