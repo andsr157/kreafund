@@ -8,17 +8,20 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('project_m');
+
 	}
 
 	public function projects()
 	{
+		check_not_login();
 		$userid = $this->session->userdata('user_id');
-		$data['project'] = $this->project_m->get_title_image($userid);
+		$data['project'] = $this->project_m->getByUserId($userid)->result();
 		$this->template->load('template/template_basic', 'profile/started', $data);
 	}
 
 	public function profile()
 	{
+		check_not_login();
 		$data['user'] = $this->user_m->get($this->session->userdata('user_id'))->row();
 		$this->template->load('template/template_basic', 'profile/profile', $data);
 	}
@@ -33,6 +36,7 @@ class Profile extends CI_Controller
 
 	public function details()
 	{
+
 		$userId = $this->user_m->getuserbyUsername($this->uri->segment(3))->row();
 		$data['user'] = $this->user_m->get($userId->id)->row();
 		$this->template->load('template/template_clean', 'profile/profile_page', $data);

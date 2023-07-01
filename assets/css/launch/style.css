@@ -139,6 +139,8 @@ table {
     --kf-base: #ffb846;
     --kf-base-rgb: 252, 173, 48;
     --kf-primary: #05CE78;
+    --kf-primary-dark:#037362;
+    --kf-primary-blue:#2752ff;
     --kf-primary-rgb: 78, 205, 153;
     --kf-secondary: #ed4b4b;
     --kf-secondary-rgb: 237, 75, 75;
@@ -270,7 +272,7 @@ header a {
 /*end of Form category section */
 
 
-/* story section */
+/* launch section */
 
 .launch,
 .launch-title {
@@ -285,9 +287,22 @@ header a {
     line-height: 4rem;
 }
 
-.launch .pending{
+.launch .pending {
+    font-size: 1.5rem;
+    color: #5a5a7b;
+    font-weight: 800;
+}
+
+.launch .rejected {
     font-size: 1.5rem;
     color: var(--kf-secondary);
+    font-weight: 800;
+}
+
+.launch .revisi {
+    font-size: 1.5rem;
+    color: var(--kf-primary-blue);
+    font-weight: 800;
 }
 
 .launch .acc {
@@ -298,7 +313,7 @@ header a {
 .launch-title h3 {
     font-size: 1rem;
     font-weight: 100;
-    color: var(--kf-grey); 
+    color: var(--kf-grey);
 }
 
 
@@ -317,15 +332,108 @@ header a {
     padding-bottom: 1rem;
 }
 
-.launch .save button{
+.launch .save button {
     background-color: var(--kf-primary);
     color: white;
     font-weight: 300;
     font-size: 1.1rem;
     font-weight: bolder;
+}
+
+.launch .launch-button-disabled {
+    background-color: var(--kf-primary);
+    color: white;
+    font-weight: 300;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    cursor: not-allowed !important;
+}
+
+
+.launch .launch-button-disabled:hover {
+    background-color: #f2f2f2;
+    color: #999999;
+    cursor: not-allowed !important;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
     }
 
-/* end of story section */
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        color: red;
+    }
+
+    14% {
+        color: orange;
+    }
+
+    28% {
+        color: yellow;
+    }
+
+    42% {
+        color: green;
+    }
+
+    57% {
+        color: blue;
+    }
+
+    71% {
+        color: indigo;
+    }
+
+    85% {
+        color: violet;
+    }
+
+    100% {
+        color: red;
+    }
+}
+
+h4#typed-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid;
+}
+
+h4#typed-text.typing {
+    animation: typing 5s steps(60, end) forwards;
+}
+
+h4#typed-text.blinking {
+    animation: blink 1s infinite;
+}
+
+h4#typed-text.rainbow {
+    animation: rainbow 5s infinite;
+}
+
+.logModal .modal-body .box{
+    border: solid;
+    border-width: 2px;
+    border-color:var(--kf-primary-blue) ;
+}
+
+.logModal .modal-body .box span{
+    font-weight: 600;
+    border-bottom: solid;
+}
+.logModal h3{
+    font-size: 1rem;
+    line-height: 1.6rem;
+}
+
+/* end of launch section */
 
 
 

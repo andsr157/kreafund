@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap/bootstrap.css"/>
-    <link rel="stylesheet" href="<?=base_url()?>assets/fonts/stylesheet.css"/>
-    <link rel="stylesheet" href="<?=base_url()?>assets/css/start/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/stylesheet.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/start/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <title>Document</title>
 </head>
 
@@ -18,9 +18,7 @@
     <header>
         <nav class="navbar navbar-expand-lg pt-lg-4 pb-lg-3 border border-left-0 border-right-0 border-top-0">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation" style="border: none">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="d-lg-none d-block mx-auto" href="#">
@@ -29,22 +27,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-                    <a  class="d-lg-block d-none mx-auto" href="<?=base_url()?>" style="color: var(--kf-primary); font-weight: 700; font-size:large;">
+                    <a class="d-lg-block d-none mx-auto" href="<?= base_url() ?>" style="color: var(--kf-primary); font-weight: 700; font-size:large;">
                         <img src="./img/logos/logo.png" alt="" />Kreafund
                     </a>
                     <p class="unselectable text-white">AA</p>
 
                     <?php
-                if(!empty($this->session->userdata('user_id'))) { ?>
-                <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                  <img style="object-fit:cover;" src="<?= base_url('assets/img/ikon/'.$this->session->userdata('avatar')) ?>" alt="" class="w-100 h-100 rounded-circle">
-                </button>
-                <?php } else { ?>
-                <a href="<?=base_url('auth_user/login')?>">
-                  <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
-                </a>
-                <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
-                <?php } ?>
+                    if (!empty($this->session->userdata('user_id'))) { ?>
+                        <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
+                            <img style="object-fit:cover;" src="<?= base_url('assets/img/ikon/' . $this->session->userdata('avatar')) ?>" alt="" class="w-100 h-100 rounded-circle">
+                        </button>
+                    <?php } else { ?>
+                        <a href="<?= base_url('auth_user/login') ?>">
+                            <button class="btn btn-dark-info text-nowrap border-0 d-none d-lg-block " style="color: #242323" type="button">Log In</button>
+                        </a>
+                        <button class="btn btn-dark-info text-nowrap border-0 d-block d-lg-none" style="color: #242323" data-bs-toggle="modal" data-bs-target="#Login" type="button">Log In</button>
+                    <?php } ?>
                     </form>
                 </div>
 
@@ -56,7 +54,7 @@
     </header>
     <!-- end of header section -->
 
-    
+
 
     <?php echo $contents ?>
 
@@ -172,14 +170,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Your Account</h4>
-                    <button type="button" class="btn btn-sm btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn btn-sm btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <ul class="mb-5">
-                        <li class="my-3"><a href="#">Profile</a></li>
-                        <li class="my-3"><a href="#">Settings</a></li>
-                        <li class="my-3"><a href="#">My Projects</a></li>
+                        <li class="my-3"><a href="<?= base_url('profile/detail/' . $this->session->userdata('username')) ?>">Profile</a></li>
+                        <li class="my-3"><a href="<?= base_url('profile/account/') ?>">Settings Account</a></li>
+                        <li class="my-3"><a href="<?= base_url('profile/projects') ?>">My Projects</a></li>
                     </ul>
                     <a href="">Logout</a>
                 </div>
@@ -187,41 +184,41 @@
         </div>
     </div>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->  
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<?=base_url()?>assets/js/bootstrap.js"></script>
+    <script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
 
-    
+
+
     <script>
-        $(document).ready(function(){
-            $('#back').click(function(){
+        $(document).ready(function() {
+            $('#back').click(function() {
                 var current = $('.active');
                 var prev = $('.active').prev('section');
-                if(prev.length > 0){
+                if (prev.length > 0) {
                     $('#' + current.attr('id')).hide();
                     $('#' + prev.attr('id')).show();
                     $('#next').show();
                     $('#submit').hide();
-                    $('.active') .removeClass('active');
+                    $('.active').removeClass('active');
                     prev.addClass('active');
-                    if($('.active').attr('id') == $('section').first().attr('id')){
+                    if ($('.active').attr('id') == $('section').first().attr('id')) {
                         $('#back').hide();
                     }
                 }
             })
 
-            $('#next').click(function(){
+            $('#next').click(function() {
                 var current = $('.active');
                 var next = $('.active').next('section');
-                if(next.length > 0){
+                if (next.length > 0) {
                     $('#' + current.attr('id')).hide();
                     $('#' + next.attr('id')).show();
                     $('#back').show();
-                    $('.active') .removeClass('active');
+                    $('.active').removeClass('active');
                     next.addClass('active');
-                    if($('.active').attr('id') == $('section').last().attr('id')){
+                    if ($('.active').attr('id') == $('section').last().attr('id')) {
                         $('#next').hide();
                         $('#submit').show();
                     }
@@ -232,17 +229,19 @@
     </script>
 
     <script>
-        $(document).ready(function(){
-            $('#category').change(function(){
+        $(document).ready(function() {
+            $('#category').change(function() {
                 var category_id = $('#category').val();
 
-                if(category_id != ''){
+                if (category_id != '') {
                     $.ajax({
-                        url:"<?= base_url();?>start/fetch_subcat/",
-                        method:'POST',
-                        data:{'category_id':category_id},
-                        type:JSON,
-                        success:function(data){
+                        url: "<?= base_url(); ?>start/fetch_subcat/",
+                        method: 'POST',
+                        data: {
+                            'category_id': category_id
+                        },
+                        type: JSON,
+                        success: function(data) {
                             $('#subcat').html(data);
                         }
                     })
@@ -254,9 +253,9 @@
 
 
 
-    
-    
-    
+
+
+
     <script>
         AOS.init();
     </script>

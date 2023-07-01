@@ -6,6 +6,7 @@ class Reward extends CI_Controller
 
 	public function add()
 	{
+		check_not_login();
 		$this->form_validation->set_rules('rtitle', 'Rtitle', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -87,6 +88,7 @@ class Reward extends CI_Controller
 
 	public function update()
 	{
+		check_not_login();
 		$reward_id = $this->input->post('reward_id');
 		$old_image = $this->reward_m->get($reward_id)->row()->image;
 		$this->form_validation->set_rules('rtitle', 'Rtitle', 'required');
@@ -198,6 +200,7 @@ class Reward extends CI_Controller
 
 	public function add_item()
 	{
+		check_not_login();
 		$this->form_validation->set_rules('item', 'Item', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -231,6 +234,7 @@ class Reward extends CI_Controller
 
 	public function update_item()
 	{
+		check_not_login();
 		$this->form_validation->set_rules('item', 'Item', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -265,6 +269,7 @@ class Reward extends CI_Controller
 
 	public function delete_item()
 	{
+		check_not_login();
 		$this->db->where('reward_item_id', $this->input->post('item_id'));
 		$this->db->delete('reward_item');
 
@@ -286,17 +291,20 @@ class Reward extends CI_Controller
 
 	public function item_data()
 	{
+		check_not_login();
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$this->load->view('project_form/reward/reward_item', $data);
 	}
 
 	public function itemlist_data()
 	{
+		check_not_login();
 		$this->load->view('project_form/reward/reward_item');
 	}
 
 	public function save_item()
 	{
+		check_not_login();
 		$response = array();
 
 		if ($this->input->post('item_custom')) {
@@ -337,6 +345,7 @@ class Reward extends CI_Controller
 
 	public function save_plus_item()
 	{
+		check_not_login();
 		$response = array();
 
 		if ($this->input->post('item_custom')) {
@@ -381,6 +390,7 @@ class Reward extends CI_Controller
 
 	function save_item_data()
 	{
+		check_not_login();
 		$temp = $this->item_m->get_temp();
 		$data['temp'] = $temp;
 		$this->load->view('project_form/reward/itemlist', $data);
@@ -388,6 +398,7 @@ class Reward extends CI_Controller
 
 	function show_item_data()
 	{
+		check_not_login();
 		$items = $this->input->post('items');
 		$data['items'] = $items;
 		$this->load->view('project_form/reward/itemlistreward', $data);
@@ -396,6 +407,7 @@ class Reward extends CI_Controller
 
 	function edited_item_data()
 	{
+		check_not_login();
 		$id = $this->input->post('reward_id');
 		$data['items'] = $this->reward_m->getItems($id)->result_array();
 		$this->load->view('project_form/reward/itemlistreward', $data);
@@ -403,6 +415,7 @@ class Reward extends CI_Controller
 
 	function submit_item_data()
 	{
+		check_not_login();
 		$reward_id = $this->uri->segment(3);
 		$items = $this->reward_m->getItems($reward_id)->result_array();
 		$data['items'] = $items;
@@ -411,6 +424,7 @@ class Reward extends CI_Controller
 
 	public function del_temp()
 	{
+		check_not_login();
 		$id = $this->input->post('temp_id');
 		$this->db->where('item_temp_id', $id);
 		$this->db->delete('item_temp');
@@ -428,6 +442,7 @@ class Reward extends CI_Controller
 
 	public function del_submited_item()
 	{
+		check_not_login();
 		$reward_id = $this->input->post('reward_id');
 		$reward_item_id = $this->input->post('reward_item_id');
 		$this->db->where('reward_id', $reward_id);
@@ -446,6 +461,7 @@ class Reward extends CI_Controller
 	}
 	public function reload_item_list()
 	{
+		check_not_login();
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$view_content = $this->load->view('project_form/reward/itemlist_select', $data, true);
 		echo $view_content;
@@ -457,6 +473,7 @@ class Reward extends CI_Controller
 
 	public function del_reward()
 	{
+		check_not_login();
 		$reward_id = $this->input->post('reward_id');
 		$this->db->where('reward_id', $reward_id);
 		$this->db->delete('reward');
@@ -476,6 +493,7 @@ class Reward extends CI_Controller
 
 	public function duplicate_reward()
 	{
+		check_not_login();
 		$reward_id = $this->input->post('reward_id');
 		$reward = $this->reward_m->get($reward_id)->result_array();
 		if (!empty($reward)) {
@@ -524,6 +542,7 @@ class Reward extends CI_Controller
 
 	function show_reward_list()
 	{
+		check_not_login();
 		$data['item'] = $this->item_m->get($this->uri->segment(3));
 		$data['temp'] = $this->item_m->get_temp();
 		$data['rewards']  = $this->reward_m->getRewardWithPid($this->uri->segment(3));

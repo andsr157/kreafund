@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat4">
-                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/people') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' .$this->uri->segment(3). '/edit/people') ?>">
                         <div class="ikon">
                             <span>👥</span>
                             <p class="mt-3">People</p>

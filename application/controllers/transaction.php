@@ -80,7 +80,13 @@ class Transaction extends CI_Controller {
 	}
 
 	public function transaksi(){
+		check_admin();
 		$data['trans']= $this->db->get('transaction')->result();
 		$this->template->load('template/template_admin', 'admin/transaction/trans',$data);
+	}
+
+	public function item($reward_id=null){
+		$items = $this->reward_m->getItems($reward_id)->result();
+		echo json_encode($items);
 	}
 }

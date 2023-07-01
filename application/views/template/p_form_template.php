@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/story/style.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/people/style.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/launch/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -44,22 +46,26 @@
                             <img src="./img/logos/logo.png" alt="">
                             <span style="font-size: larger;">
                                 Kreafund
-                            </span> 
+                            </span>
                         </a>
                     </div>
 
                     <div class="col-3 ">
 
                         <div class="d-flex justify-content-end me-3">
-                            <a href="<?=base_url('projects/review/'.$this->uri->segment(3))?>">
-                                <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
-                            </a>
+                            <?php if ($this->uri->segment(4) != "backer") { ?>
+                                <a href="<?= base_url('projects/review/' . $this->uri->segment(3)) ?>">
+                                    <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
+                                </a>
+                            <?php
+                            } ?>
+
                             <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_form">Cancel</button>
                             <button class="btn btn-outline-dark text-dark rounded-0 bg-transparent px-5" style="display:none;" id="cancel_item">Cancel</button>
                             <?php
                             if (!empty($this->session->userdata('user_id'))) { ?>
                                 <button class="btn border-0 d-none d-lg-block p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
-                                    <img src="<?= base_url('assets/img/ikon'.$this->session->userdata('avatar')) ?>" alt="" class="img-fluid rounded-circle">
+                                    <img src="<?= base_url('assets/img/ikon' . $this->session->userdata('avatar')) ?>" alt="" class="img-fluid rounded-circle">
                                 </button>
                             <?php } else { ?>
                                 <a href="<?= base_url('auth_user/login') ?>">
@@ -87,7 +93,7 @@
                     <div class="col-4">
                         <div class="d-flex justify-content-center">
                             <!-- <?php
-                            if (!empty($this->session->userdata('user_id'))) { ?>
+                                    if (!empty($this->session->userdata('user_id'))) { ?>
                                 <button class="btn border-0  p-0" style="color: #242323; width:36px; height:36px;" data-bs-toggle="modal" data-bs-target="#accountModal" data-bs-backdrop="false" type="button">
                                     <img src="<?= base_url('assets/img/user.avif') ?>" alt="" class="img-fluid rounded-circle">
                                 </button>
@@ -195,28 +201,96 @@
         </div>
     </div>
 
-    <!-- <div class="modal no-backdrop fade accountmodal" id="accountModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Login</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- modal log launch -->
+
+    <div style="font-family:'maison_neuebook';" class="modal fade text-left logModal" id="logModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17">
+                        <center><b>Detail Revisi</b></center>
+                    </h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="container p-5">
+                            <div class="box mb-5 rounded-2 shadow p-2">
+                                <span class="">17 Desember 2022 19:52:00</span>
+                                <h3 class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur architecto dolorem
+                                    voluptatibus veniam, eos illo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
+                                    architecto dolorem voluptatibus veniam, eos illo
+                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
+                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
+                                </h3>
+                            </div>
+
+                            <div class="box mb-5 rounded-2 shadow p-2">
+                                <span class="">17 Desember 2022 19:52:00</span>
+                                <h3 class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur architecto dolorem
+                                    voluptatibus veniam, eos illo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
+                                    architecto dolorem voluptatibus veniam, eos illo
+                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
+                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
+                                </h3>
+                            </div>
+                            <div class="box mb-5 rounded-2 shadow p-2">
+                                <span class="">17 Desember 2022 19:52:00</span>
+                                <h3 class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur architecto dolorem
+                                    voluptatibus veniam, eos illo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
+                                    architecto dolorem voluptatibus veniam, eos illo
+                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
+                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
+                                </h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
-            <div class="modal-body">
-              <div class="col">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <h4 class="modal-title">Your Account</h4>
-                <ul>
-                  <li class="mt-4">Profile</li>
-                  <li class="mt-4">Setting</li>
-                  <li class="my-4">My project</li>
-                </ul>
-                <button type="button" class="btn btn-dark btn-sm">Login</button>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>   -->
+    </div>
+
+    <!-- end modal log launch -->
+
+
+
+    <!-- modal detail backer -->
+    <div style="font-family:'maison_neuebook';" class="modal fade text-left" id="detailBacker" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17">
+                        <center><b>Detail Reward</b></center>
+                    </h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="container ">
+                            <div class="box mb-5 rounded-2 shadow p-2">
+                                <span class="" style="font-weight: 700;">Airrack-kickstarter</span>
+                                <div class="border border-bottom mt-2 mb-3"></div>
+                                <div id="detailBackerItem">
+                                    <ul style="font-style: italic;">
+                                        <li class="my-1">Sticker 2x</li>
+                                        <li class="my-1">Shirt 4x</li>
+                                        <li class="my-1">Cap 1x</li>
+                                    </ul>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of modal detail backer -->
+
 
     <div class="modal accountmodal" id="accountModal" aria-hidden="true" data-bs-backdrop="false">
         <div class="modal-dialog modal-dialog-centered">
@@ -227,9 +301,9 @@
                 </div>
                 <div class="modal-body">
                     <ul class="mb-5">
-                        <li class="my-3"><a href="#">Profile</a></li>
-                        <li class="my-3"><a href="#">Settings</a></li>
-                        <li class="my-3"><a href="#">My Projects</a></li>
+                        <li class="my-3"><a href="<?= base_url('profile/detail/' . $this->session->userdata('username')) ?>">Profile</a></li>
+                        <li class="my-3"><a href="<?= base_url('profile/account/') ?>">Settings Account</a></li>
+                        <li class="my-3"><a href="<?= base_url('profile/projects') ?>">My Projects</a></li>
                     </ul>
                     <a href="">Logout</a>
                 </div>
@@ -241,6 +315,13 @@
     <script src="<?= base_url() ?>assets/js/bootstrap.js"></script>
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 
     <!-------------------------------------------- script for basic --------------------------------------------->
 
@@ -1466,8 +1547,59 @@
             });
         });
     </script>
+    <!-- end of script for story -->
 
 
+    <!---------------------------- script for launch ---------------------------------------->
+
+    <script>
+        var typedText = document.getElementById('typed-text');
+        var text = typedText.innerHTML;
+        typedText.innerHTML = '';
+
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                typedText.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(function() {
+                    typeWriter(text, i);
+                }, 50);
+            } else {
+                typedText.classList.remove('typing');
+                typedText.classList.add('blinking');
+                setTimeout(function() {
+                    typedText.classList.remove('blinking');
+                    typedText.classList.add('rainbow');
+                }, 2000);
+            }
+        }
+
+        typeWriter(text, 0);
+    </script>
+    <!---------------------------- end  script for launch ---------------------------------------->
+
+
+    <script>
+        $(document).ready(function() {
+            $('#table_backer').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.detailBacker', function() {
+
+            var item = '<table class="table no-margin">'
+            item += '<ul>'
+            $.getJSON('<?= base_url('transaction/item/') ?>' + $(this).data('reward_id'), function(data) {
+                $.each(data, function(key, val) {
+                    item += '<li>' + val.item_name + ' '+ val.qty+'x'+'</li>'
+                })
+                item += '</ul>'
+                $('#detailBackerItem').html(item)
+            })
+
+        })
+    </script>
 </body>
 
 </html>

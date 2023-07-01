@@ -133,6 +133,7 @@ class Snap extends CI_Controller {
     	$result = json_decode($this->input->post('result_data'),true);
 		$project_id = $this->input->post('project_id');
 		$user_id = $this->input->post('backer_id');
+		$rewardId = $this->input->post('reward_id');
     	$data = [
 			'order_id' => $result['order_id'],
 			'amount' => $result['gross_amount'],
@@ -143,7 +144,8 @@ class Snap extends CI_Controller {
 			'pdf_url'=> $result['pdf_url'],
 			'status_code'=> $result['status_code'],
 			'project_id' => $project_id,
-			'user_id' => $user_id
+			'user_id' => $user_id,
+			'reward_id' => $rewardId
 		];
 
 		$save = $this->db->insert('transaction', $data);

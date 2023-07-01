@@ -61,7 +61,7 @@
                                                                 <i class="mdi mdi-eye "></i> Review
                                                             </button>
                                                         </a>
-                                                        <a href="<?= base_url('projects/review/' . $row->project_id) ?>">
+                                                        <a href="<?= base_url('projects/verification/process/' . $row->project_id) ?>">
                                                             <button type="button" id="detail-report" class="btn btn-edit py-3 btn-danger" data-project_id="<?= $row->project_id ?>" data-toggle="modal">
                                                                 <i class="mdi mdi-eye "></i> Reject
                                                             </button>

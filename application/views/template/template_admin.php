@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/css/dashboard/style.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/css/transaction/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
+  <script src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
       
       
   </head>
@@ -174,6 +174,95 @@
       $('#v_table').DataTable();
     });
   </script>
+
+
+<script>
+        CKEDITOR.replace('verification_editor', {
+            toolbar: [
+                ['Bold', 'Italic', 'Underline', 'Strike'],
+                ['NumberedList', 'BulletedList', 'Outdent', 'Indent'],
+                ['Link', 'Unlink', 'Image', 'Embed', 'Youtube', 'Source'],
+                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                ['Undo', 'Redo']
+            ],
+            removePlugins: 'elementspath, iframe',
+            height: 200,
+            filebrowserUploadUrl: '<?= base_url('story/uploadImage') ?>',
+            filebrowserUploadMethod: 'form',
+            contentsCss: '<?= base_url('assets/css/customck/custom.css') ?>',
+            autoParagraph: true,
+            maxLength: 80,
+            allowedContent: true,
+
+
+        });
+
+
+        $(document).ready(function() {
+            // Tangani klik tombol Simpan
+            $('#saveStory').click(function() {
+                var editorData = CKEDITOR.instances.content_editor.getData();
+                var project_id = '<?= $this->uri->segment(3) ?>';
+                var risk = $('textarea#risk').val();
+
+                // Kirim data menggunakan AJAX
+                $.ajax({
+                    url: '<?= base_url('story/save_data') ?>', // Ubah dengan URL yang sesuai
+                    type: 'POST',
+                    data: {
+                        'content': editorData,
+                        'project_id': project_id,
+                        'risk': risk
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            location.reload();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Tindakan jika terjadi kesalahan
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('#updateStory').click(function() {
+                var editorData = CKEDITOR.instances.content_editor.getData();
+                var project_id = '<?= $this->uri->segment(3) ?>';
+                var story_id = $('#storyId').val();
+                var risk = $('textarea#risk').val();
+
+                // Kirim data menggunakan AJAX
+                $.ajax({
+                    url: '<?= base_url('story/update_data') ?>', // Ubah dengan URL yang sesuai
+                    type: 'POST',
+                    data: {
+                        'content': editorData,
+                        'project_id': project_id,
+                        'story_id': story_id,
+                        'risk': risk
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            location.reload();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Tindakan jika terjadi kesalahan
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
 
 
   <!-- script untuk stock in/out -->

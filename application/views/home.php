@@ -40,32 +40,31 @@
       </div>
       <div class="row pt-3 pt-lg-1 pbox justify-content-beetween">
         <div class="col-12 col-lg-8 wrapper p-0" style="overflow: hidden;">
-          <div class=" bg-child pt-5 px-lg-5 bg-fit border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/4.png);">
-            <a href="">
+          <a href="<?= base_url('projects/' . $featured[0]['title'] . '/detail') ?>">
+            <div class=" bg-child pt-5 px-lg-5 bg-fit border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/img/' . $featured[0]['image']) ?>);">
               <h4 class="fp ps-3"><?= $featured[0]['title'] ?></h4>
-            </a><br>
-            <a href="">
+              <br>
               <p class="ps-3"><?= $featured[0]['subtitle'] ?> </p>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
         <div class="col-12 col-lg-4 wrapper p-0" style="overflow: hidden;">
-          <div class=" bg-child px-3 bg-fit pt-5 px-lg-5 border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/2.png);">
-            <a href="">
+          <a href="<?= base_url('projects/' . $featured[1]['title'] . '/detail') ?>">
+            <div class=" bg-child px-3 bg-fit pt-5 px-lg-5 border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/img/' . $featured[1]['image']) ?>);">
               <h4><?= $featured[1]['title'] ?></h4>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
       </div>
       <div class="row pt-lg-1 pt-sm-0 pbox justify-content-beetween">
         <?php foreach ($featured as $index => $featured) { ?>
           <?php if ($index > 2) { ?>
             <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
-              <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/') ?>img/3.png);">
-                <a href="">
-                  <h4><?=$featured['title']?></h4>
-                </a>
-              </div>
+              <a href="<?= base_url('projects/' . $featured['title'] . '/detail') ?>">
+                <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/img/' . $featured['image']) ?>);">
+                    <h4><?= $featured['title'] ?></h4>
+                </div>
+              </a>
             </div>
           <?php
           } ?>
@@ -155,30 +154,32 @@
       </div>
       <div class="row">
         <ul class="list-group list-group-horizontal position-relative overflow-auto ">
-          <?php foreach($fresh as $fresh){?>
+          <?php foreach ($fresh as $fresh) { ?>
+            <a href="<?=base_url('projects/' . $fresh->title . '/detail')?>">
             <li class="list-group-item p-1 p-lg-2 ">
-            <div class="col-lg-3">
-              <div class="wrapperimg">
-                <div class="boxImage bg-child">
-                  <img style="object-fit: cover;" class="w-100 h-100 p-0 rounded-0" src="<?= base_url('assets/img/'.$fresh->image) ?>" alt="">
+              <div class="col-lg-3">
+                <div class="wrapperimg">
+                  <div class="boxImage bg-child">
+                    <img style="object-fit: cover;" class="w-100 h-100 p-0 rounded-0" src="<?= base_url('assets/img/' . $fresh->image) ?>" alt="">
+                  </div>
+                </div>
+
+                <div class="caption">
+                  <a href="">
+                    <h4 class="mt-3 mb-lg-4 mb-3 "><?= $fresh->title ?></h4>
+                  </a>
+                  <a href="">
+                    <p class="mb-lg-5 mb-3"><?= $fresh->description ?></p>
+                  </a>
+                  <p class="author"><a href="">by <?= $fresh->username ?></a></p>
                 </div>
               </div>
+            </li>
+            </a>
+          <?php
+          } ?>
 
-              <div class="caption">
-                <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 "><?=$fresh->title?></h4>
-                </a>
-                <a href="">
-                  <p class="mb-lg-5 mb-3"><?=$fresh->description?></p>
-                </a>
-                <p class="author"><a href="">by <?=$fresh->username?></a></p>
-              </div>
-            </div>
-          </li>
-         <?php
-          }?>
-          
-          
+
         </ul>
       </div>
     </div>

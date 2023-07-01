@@ -3,11 +3,11 @@
       <input type="hidden" name="result_type" id="result-type" value=""></div>
       <input type="hidden" name="result_data" id="result-data" value=""></div>
 
-      <input type="hidden" id="project_id" name="project_id" value="<?=$projectId?>">;
-      <input type="hidden" id="reward_id"  name="reward_id" value="<?=$rewardId?>">;
-      <input type="hidden" id="backer_id" name="backer_id" value="<?=$data->user_id?>">;
-      <input type="hidden" id="backer" name="backer" value="<?=$this->session->userdata('username')?>">;
-      <input type="hidden" id="amount" name="amount" value="<?=$rewardAmount?>">;
+      <input type="hidden" id="project_id" name="project_id" value="<?=$projectId?>">
+      <input type="hidden" id="reward_id"  name="reward_id" value="<?=$rewardId?>">
+      <input type="hidden" id="backer_id" name="backer_id" value="<?=$data->user_id?>">
+      <input type="hidden" id="backer" name="backer" value="<?=$this->session->userdata('username')?>">
+      <input type="hidden" id="amount" name="amount" value="<?=$rewardAmount?>">
     </form>
     
 <div class="project_detail">

@@ -75,12 +75,25 @@ class Start extends CI_Controller
 
 	public function people()
 	{
-		$data['user'] = $this->project_m->get($this->uri->segment(3))->row();
-		$this->template->load('template/p_form_template', 'project_form/people',$data);
+		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+		if ($check == true) {
+			$data['user'] = $this->project_m->get($this->uri->segment(3))->row();
+			$this->template->load('template/p_form_template', 'project_form/people',$data);
+		}else{
+			redirect('home');
+		}
+
+		
 	}
 	public function launch()
 	{
-		$this->template->load('template/p_form_template', 'project_form/launch');
+		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+		if ($check == true) {
+			$data['status'] = $this->project_m->get($this->uri->segment(3))->row()->status;
+			$this->template->load('template/p_form_template', 'project_form/launch',$data);
+		}else{
+			redirect('home');
+		}
 	}
 
 	public function test()
@@ -90,5 +103,15 @@ class Start extends CI_Controller
 
 		$data = $this->reward_m->getItems(91);
 		var_dump($data) . die();
+	}
+
+	public function backer(){
+		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+		if ($check == true) {
+			$data['project'] = $this->trans_m->get($this->session->userdata('user_id'),$this->uri->segment(3))->result();
+			$this->template->load('template/p_form_template', 'project_form/backer',$data);
+		}else{
+			redirect('home');
+		}
 	}
 }

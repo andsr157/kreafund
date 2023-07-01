@@ -11,8 +11,10 @@ class Review extends CI_Controller {
         $this->template->load('template/template_clean','projects/project_admin_review', $data);
     }
 	
-
-
-
+    public function process(){
+        $projectId = $this->uri->segment(4);
+        $data['project'] = $this->project_m->get($projectId)->row();
+        $this->template->load('template/template_admin','admin/project/verification',$data);
+    }
 	
 }

@@ -56,6 +56,7 @@ class Auth_user extends CI_Controller
 
     public function signup()
     {
+        check_already_login();
         $this->template->load('template/template_basic', 'auth/signup');
     }
 

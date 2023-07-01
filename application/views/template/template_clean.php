@@ -183,8 +183,8 @@
         </div>
         <div class="modal-body">
           <ul class="mb-5">
-            <li class="my-3"><a href="#">Profile</a></li>
-            <li class="my-3"><a href="#">Settings</a></li>
+            <li class="my-3"><a href="<?= base_url('profile/detail/'.$this->session->userdata('username')) ?>">Profile</a></li>
+            <li class="my-3"><a href="<?= base_url('profile/account/') ?>">Settings Account</a></li>
             <li class="my-3"><a href="<?= base_url('profile/projects') ?>">My Projects</a></li>
           </ul>
           <a href="<?= base_url('auth_user/logout') ?>">Logout</a>

@@ -18,6 +18,7 @@ class Projects extends CI_Controller
 
 	public function project()
 	{
+		check_not_login();
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
 		if($check == true){
 			$id = $this->uri->segment(3);
@@ -56,7 +57,9 @@ class Projects extends CI_Controller
 	public function process()
 	{
 		check_not_login();
+		
 		$post = $this->input->post(null, TRUE);
+		checkStatusProject($post['project_id']);
 		if (isset($post['add'])) {
 			// $this->form_validation->set_rules('category', 'Category', 'required');
 			// $this->form_validation->set_rules('subcat', 'Subcategory', 'required');
@@ -250,8 +253,9 @@ class Projects extends CI_Controller
 
 
 	public function verification(){
-		
-		$data['project'] = $this->project_m->get()->result();
+
+		check_admin();
+		$data['project'] = $this->project_m->getVerification()->result();
 
 		$this->template->load('template/template_admin', 'admin/project/project_data', $data);
 

@@ -13,6 +13,21 @@ class Project_m extends CI_Model
         return $query;
     }
 
+    public function getByUserId($id )
+    {
+        $this->db->from('project');
+        $this->db->where('user_id', $id);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function getVerification(){
+        $this->db->from('project');
+        $this->db->where('status', 'pending');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function getFeatured()
     {
         $this->db->select('*');
