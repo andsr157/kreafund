@@ -4,10 +4,10 @@
       <input type="hidden" name="result_data" id="result-data" value=""></div>
 
       <input type="hidden" id="project_id" name="project_id" value="<?=$projectId?>">
-      <input type="hidden" id="reward_id"  name="reward_id" value="<?=$rewardId?>">
+      <input type="hidden" id="reward_id"  name="reward_id" value="0">
       <input type="hidden" id="backer_id" name="backer_id" value="<?=$data->user_id?>">
       <input type="hidden" id="backer" name="backer" value="<?=$this->session->userdata('username')?>">
-      <input type="hidden" id="amount" name="amount" value="<?=$rewardAmount?>">
+      <input type="hidden" id="amount" name="amount" value="<?=$DonateAmount?>">
     </form>
     
 <div class="project_detail">
@@ -42,35 +42,16 @@
         </div>
         <div class="col-6 ps-5 pt-3">
           <div class="row text-center">
-            <h3>DETAIL</h3>
+            <h3>AMOUNT</h3>
           </div>
-          <div class="row payment mt-2">
-            <div class="col-4">Reward</div>
-            <div class="col-4"><?=$rewardTitle?></div>
-            <div class="col-4">Rp.<?=$rewardAmount?></div>
-          </div>
-          <div class="row payment mt-2">
-            <div class="col-4">Shipping</div>
-            <div class="col-4">Bandung</div>
-            <div class="col-4">Rp.1000</div>
-          </div>
-          
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9">
-          <hr class="pt-3" style="height: 1px; ; border-color: #333; ">
-          <div class="row">
-            <div class="col-9">
-              <p class="type-14" style="text-decoration: none;">total amount</p>
-            </div>
-            <div class="col-3 ps-5" style="color: var(--kf-primary); font-weight: 600;">
-              Rp.<?=$rewardAmount?>
-            </div>
+          <div class="row payment mt-2 text-center">
+            
+           <p style="font-size: 1rem;"> Rp.<?=$DonateAmount?></p>
+            
           </div>
         </div>
       </div>
+      
       
       <div class="row mt-5">
         <button class="btn btn-lg w-100 text-light rounded-0" id="pay-button" style="background-color: #037362;">

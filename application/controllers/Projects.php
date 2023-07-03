@@ -40,10 +40,16 @@ class Projects extends CI_Controller
 	{
 		check_not_login();
 		$result = $this->project_m->getIdByTitle($this->uri->segment(2));
-		$project_id = intval($result->project_id);
-		$data['project_id'] = $project_id;
-		$data['rewards']  = $this->reward_m->getRewardWithPid($project_id);
-		$this->template->load('template/template_clean', 'donate/donate', $data);
+		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), intval($result->project_id));
+		if ($check == false) {
+			$project_id = intval($result->project_id);
+			$data['project_id'] = $project_id;
+			$data['rewards']  = $this->reward_m->getRewardWithPid($project_id);
+			$this->template->load('template/template_clean', 'donate/donate', $data);
+		}else{
+			echo "<script>alert('Tidak bisa donate pada project sendiri')</script>";
+			echo "<script>window.location='" . base_url('discovery') . "'</script>";
+		}
 	}
 
 	public function detail()

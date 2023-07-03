@@ -96,3 +96,4 @@ function calculate_datetime($startDateTime, $duration) {
 
     return $endDateTime;
 }
+

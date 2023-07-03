@@ -32,7 +32,6 @@
 
           <div class="col-6 ">
             <a class="d-flex justify-content-center align-items-center h-100" href="<?= base_url() ?>" style="color: var(--kf-primary); font-weight: 700;">
-              <img src="./img/logos/logo.png" alt="">
               <span style="font-size: larger;">
                 Kreafund
               </span>
@@ -303,6 +302,7 @@
       setInterval(fetchData, 30000);
     });
   </script>
+
 </body>
 
 </html>

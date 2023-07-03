@@ -25,53 +25,53 @@
           </div>
 
           <div>
-  <span id="donation_countdown"></span>
-  <script>
-    function getCurrentDate() {
-      const today = new Date();
-      const year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let day = today.getDate();
+            <span id="donation_countdown"></span>
+            <script>
+              function getCurrentDate() {
+                const today = new Date();
+                const year = today.getFullYear();
+                let month = today.getMonth() + 1;
+                let day = today.getDate();
 
-      // Format month and day with leading zeros
-      if (month < 10) month = '0' + month;
-      if (day < 10) day = '0' + day;
+                // Format month and day with leading zeros
+                if (month < 10) month = '0' + month;
+                if (day < 10) day = '0' + day;
 
-      return `${year}-${month}-${day}`;
-    }
+                return `${year}-${month}-${day}`;
+              }
 
-    // Calculate the countdown in reverse
-    function calculateCountdown(inputDate, inputDays) {
-      const currentDate = getCurrentDate();
-      const targetDate = new Date(inputDate);
-      targetDate.setDate(targetDate.getDate() + inputDays);
-      
-      const diffTime = targetDate.getTime() - new Date(currentDate).getTime();
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+              // Calculate the countdown in reverse
+              function calculateCountdown(inputDate, inputDays) {
+                const currentDate = getCurrentDate();
+                const targetDate = new Date(inputDate);
+                targetDate.setDate(targetDate.getDate() + inputDays);
 
-      return diffDays;
-    }
+                const diffTime = targetDate.getTime() - new Date(currentDate).getTime();
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    // Update countdown element
-    function updateCountdown() {
-      const inputDate = '<?=$project->row()->updated?>';
-      const inputDays = <?=$project->row()->duration?> - 1;
-      const countdownElement = document.getElementById('donation_countdown');
-      
-      const diffDays = calculateCountdown(inputDate, inputDays);
+                return diffDays;
+              }
 
-      if (diffDays > 0) {
-        countdownElement.innerText = `${diffDays}`;
-      } else {
-        countdownElement.innerText = 'Funding Selesai!';
-      }
-    }
+              // Update countdown element
+              function updateCountdown() {
+                const inputDate = '<?= $project->row()->updated ?>';
+                const inputDays = <?= $project->row()->duration ?> - 1;
+                const countdownElement = document.getElementById('donation_countdown');
 
-    // Start the countdown
-    updateCountdown();
-  </script>
-  <p>days left</p>
-</div>
+                const diffDays = calculateCountdown(inputDate, inputDays);
+
+                if (diffDays > 0) {
+                  countdownElement.innerText = `${diffDays}`;
+                } else {
+                  countdownElement.innerText = 'Funding Selesai!';
+                }
+              }
+
+              // Start the countdown
+              updateCountdown();
+            </script>
+            <p>days left</p>
+          </div>
 
 
           <div class="row">
@@ -129,7 +129,7 @@
         </div>
       </div>
     </nav>
-    <div class="container" style="">
+    <div class="container">
       <div class="row">
         <div class="col-2 risk">
           <div class="sticky-top p-2 pt-5" style="top: 4rem;">
@@ -187,78 +187,86 @@
 
                   </div>
                 </li>
-                <li class="list-group-item mb-4 px-4 pb-4">
-                  <div class="row rcard">
-                    <h2 class="my-4">Donasi Tanpa Reward</h2>
-                    <form action="">
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Jumlah :</label>
-                        <input type="input" class="form-control rounded-0" placeholder="00,00">
+                <form action="<?=base_url('snap/donate/withoutReward')?>" method="POST">
+                  <li class="list-group-item mb-4 px-4 pb-4">
+                    <div class="row rcard">
+                      <h2 class="my-4">Donasi Tanpa Reward</h2>
+                      <form action="">
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Jumlah :</label>
+                          <input type="input" name="noReward" class="form-control rounded-0" placeholder="00,00">
+                          <input type="hidden" name="projectId" value="<?=$project->row()->project_id?>">
+                        </div>
+                      </form>
+                      <div class="row rdesc mb-3">
+                        <p>Support the project for no reward, just because it speaks to you</p>
+
                       </div>
-                    </form>
-                    <div class="row rdesc mb-3">
-                      <p>Support the project for no reward, just because it speaks to you</p>
-
-                    </div>
-                    <button type="submit" class="btn rounded-0 text-light" style="background-color: var(--kf-primary);">Donate</button>
-                  </div>
-                </li>
-
-
-                <?php
-                foreach ($rewards as $reward) { ?>
-
-                  <li class="list-group-item mb-3 ">
-                    <div class="rimage">
-                      <img src="<?= base_url('assets/img/reward/') . $reward->image ?>" class="img-fluid img-thumbnail rounded-0 w-100" alt="">
-                    </div>
-                    <div class="px-4 pb-4">
-                      <div class="row rcard">
-                        <h2 class="my-4">Donasi <?= formatCurrency($reward->amount) ?> atau Lebih</h2>
-                        <h3 class="mb-3"><?= $reward->title ?> </h3>
-                        <div class="row rdesc">
-                          <p><?= $reward->description ?></p>
-                          <span class="mb-2">Termasuk :</span>
-                          <ul class="mb-2">
-                            <?php
-                            $itemlist = [];
-                            $itemQty = [];
-                            $items = $this->reward_m->getItems($reward->reward_id);
-                            foreach ($items->result() as $item) {
-                              $itemlist[] = $item->item_name;
-                              $itemQty[] = $item->qty;
-                              echo '<li>' . $item->item_name . ' ' . $item->qty . '<i>x</i>' . '</li>';
-                            }
-                            $itemdata = implode(', ', $itemlist);
-                            $itemQtydata = implode(', ', $itemQty);
-                            ?>
-                          </ul>
-                        </div>
-                        <div class="row rstat">
-                          <div class="row-1 my-1">
-                            <button class="btn btn-xs btn-secondary">2 donatur</button>
-                          </div>
-                          <div class="row-1">
-                            <button class="btn btn-xs btn-secondary"><?php
-                                                                      if ($reward->qty != 99999) {
-                                                                        echo '<span>Limited(' . $reward->qty . ')</span>';
-                                                                      } else if ($reward->qty == 99999) {
-                                                                        echo '<span>Unlimited</span>';
-                                                                      }
-                                                                      ?></button>
-                          </div>
-                        </div>
-                        <div class="d-flex pt-3 justify-content-center">
-                          <a href="<?= base_url('snap') ?>">
-                            <button class="btn text-light rounded-0 w-100" style="background-color: #028858; ">
-                              donasi <?= formatCurrency($reward->amount) ?>
-                            </button>
-                          </a>
-
-                        </div>
-                      </div>
+                      <button type="submit" class="btn rounded-0 text-light" style="background-color: var(--kf-primary);">Donate</button>
                     </div>
                   </li>
+                </form>
+                <?php
+                foreach ($rewards as $reward) { ?>
+                  <form action="<?= base_url('snap/donate/' . formatCurrency($reward->amount)) ?>" method="POST">
+                    <li class="list-group-item mb-3 ">
+                      <div class="rimage">
+                        <img src="<?= base_url('assets/img/reward/') . $reward->image ?>" class="img-fluid img-thumbnail rounded-0 w-100" alt="">
+                      </div>
+                      <div class="px-4 pb-4">
+                        <div class="row rcard">
+                          <h2 class="my-4">Donasi <?= formatCurrency($reward->amount) ?> atau Lebih</h2>
+                          <h3 class="mb-3"><?= $reward->title ?> </h3>
+                          <div class="row rdesc">
+                            <p><?= $reward->description ?></p>
+                            <span class="mb-2">Termasuk :</span>
+                            <ul class="mb-2">
+                              <?php
+                              $itemlist = [];
+                              $itemQty = [];
+                              $items = $this->reward_m->getItems($reward->reward_id);
+                              foreach ($items->result() as $item) {
+                                $itemlist[] = $item->item_name;
+                                $itemQty[] = $item->qty;
+                                echo '<li>' . $item->item_name . ' ' . $item->qty . '<i>x</i>' . '</li>';
+                              }
+                              $itemdata = implode(', ', $itemlist);
+                              $itemQtydata = implode(', ', $itemQty);
+                              ?>
+                            </ul>
+                          </div>
+                          <div class="row rstat">
+                            <div class="row-1 my-1">
+                              <button class="btn btn-xs btn-secondary">2 donatur</button>
+                            </div>
+                            <div class="row-1">
+                              <button class="btn btn-xs btn-secondary"><?php
+                                                                        if ($reward->qty != 99999) {
+                                                                          echo '<span>Limited(' . $reward->qty . ')</span>';
+                                                                        } else if ($reward->qty == 99999) {
+                                                                          echo '<span>Unlimited</span>';
+                                                                        }
+                                                                        ?></button>
+                            </div>
+                          </div>
+                          <input type="hidden" name="rewardId" value="<?= $reward->reward_id ?>">
+                          <input type="hidden" name="projectId" value="<?= $project->row()->project_id ?>">
+                          <input type="hidden" name="rewardAmount" value="<?= $reward->amount ?>">
+                          <input type="hidden" name="rewadImage" value="<?= $reward->image ?>">
+                          <input type="hidden" name="rewardTitle" value="<?= $reward->title ?>">
+
+                          <div class="d-flex pt-3 justify-content-center">
+
+                            <button class="btn text-light rounded-0 w-50" style="background-color: #028858;">
+                              donasi <?= formatCurrency($reward->amount) ?>
+                            </button>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </form>
                 <?php
                 } ?>
 

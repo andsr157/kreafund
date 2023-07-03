@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['404_override'] = '';
+$route['404_override'] = 'Custom404';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'auth_admin/login';
@@ -84,3 +84,7 @@ $route['profile/detail/(:any)'] = 'profile/details';
 $route['profile/(:any)'] = 'profile/profile';
 $route['transaksi'] = 'transaction/transaksi';
 $route['review/submit/(:num)'] = 'review/submit';
+$route['snap/donate/withoutReward'] = 'snap/pureDonate';
+$route['snap/donate/(:any)'] = 'snap/specDonate';
+
+
