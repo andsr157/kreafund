@@ -218,18 +218,21 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-  <!-- <script>
-      const modal = document.querySelector('.modal');
-      // const overlay = document.querySelector('.overlay');     
-      const openModalBtn = document.querySelector("header nav .btn-open");
-      const closeModalBtn = document.querySelector(".btn-close");
+    <script>
+        $(document).on('click', '.detailBacker', function() {
 
-      const openModal = function () {
-      modal.classList.remove("hidden");
-      openModalBtn.addEventListener('click', openModal);
-};
+            var item = '<table class="table no-margin">'
+            item += '<ul>'
+            $.getJSON('<?= base_url('transaction/item/') ?>' + $(this).data('reward_id'), function(data) {
+                $.each(data, function(key, val) {
+                    item += '<li>' + val.item_name + ' '+ val.qty+'x'+'</li>'
+                })
+                item += '</ul>'
+                $('#detailBackerItem').html(item)
+            })
 
-    </script> -->
+        })
+    </script>
 </body>
 
 </html>

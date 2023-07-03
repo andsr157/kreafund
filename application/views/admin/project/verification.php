@@ -12,13 +12,9 @@
                     <textarea name="verification_editor" id="verification_editor" class="px-0 w-100 " cols="1" rows="1"><?= isset($row->content) ? $row->content:'';?></textarea>
                 </div>
 
-                <div class="buttonProcess d-flex justify-content-center px-5">
-                    <a href="" class="px-3">
-                        <button class="btn text-light p-3 px-4" style="background-color: #2752ff;">Revisi  </button>
-                    </a>
-                    <a href=""  class="px-3 pb-4">
-                        <button class="btn text-light p-3 px-4" style="background-color: #ed4b4b;">Rejected</button>
-                    </a>
+                <div class="buttonProcess d-flex justify-content-center px-5 pb-4">
+                        <button class="btn text-light p-3 px-4 mx-2 saveVerification"  style="background-color: #2752ff;" data-typestatus ="revisi">Revisi</button>
+                        <button class="btn text-light p-3 px-4 mx-2 saveVerification"  style="background-color: #ed4b4b;" data-typestatus ="rejected">Rejected</button>
                 </div>
             </div>
         </div>

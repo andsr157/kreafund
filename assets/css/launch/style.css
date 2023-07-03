@@ -417,18 +417,16 @@ h4#typed-text.blinking {
 h4#typed-text.rainbow {
     animation: rainbow 5s infinite;
 }
-
-.logModal .modal-body .box{
+.launch .logModal .modal-body .box{
     border: solid;
     border-width: 2px;
     border-color:var(--kf-primary-blue) ;
 }
-
-.logModal .modal-body .box span{
+.launch .logModal .modal-body .box span{
     font-weight: 600;
     border-bottom: solid;
 }
-.logModal h3{
+.launch .logModal h3{
     font-size: 1rem;
     line-height: 1.6rem;
 }

@@ -76,6 +76,23 @@ class Project_m extends CI_Model
         return $query;
     }
 
+    public function getAllByCategory($category = null, $status = null)
+    {
+        $this->db->from('project');
+        $this->db->join('users', 'users.id = project.user_id');
+        $this->db->join('category', 'category.category_id = project.category_id');
+        $this->db->join('subcategory', 'subcategory.subcat_id = project.subcat_id');
+        $this->db->join('location', 'location.location_id = project.location_id');
+        if ($status != null) {
+            $this->db->where('status', $status);
+        }
+        if ($category != null) {
+            $this->db->where('category_name', $category);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_title_image($id)
     {
 
@@ -157,5 +174,29 @@ class Project_m extends CI_Model
         $this->db->set('video', 'default.mp4');
         $this->db->where('project_id', $where);
         $this->db->update('project');
+    }
+
+
+    public function getRevition($id){
+        $this->db->from('verification');
+        $this->db->where('project_id',$id);
+        $this->db->order_by('created', 'desc'); 
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function getRejected($id){
+        $this->db->from('verification');
+        $this->db->where('project_id',$id);
+        $this->db->where('type','rejected');
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
+    public function getDuration($id){
+        $this->db->select('duration');
+        $this->db->where('project_id',$id);
+        $query = $this->db->get('project');
+        return $query->row();
     }
 }

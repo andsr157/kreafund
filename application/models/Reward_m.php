@@ -28,6 +28,14 @@ class Reward_m extends CI_Model
         return $query->result();
     }
 
+    public function getRewardIdWithPid($project_id) {
+        $this->db->select('reward_id');
+        $this->db->from('reward');
+        $this->db->where('project_id', intval($project_id));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 
     public function getItems($P)
     {

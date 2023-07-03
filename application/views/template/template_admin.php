@@ -152,6 +152,7 @@
 
   
 
+
   <script>
     $(document).ready(function() {
       $('#table1').DataTable({
@@ -200,25 +201,26 @@
 
         $(document).ready(function() {
             // Tangani klik tombol Simpan
-            $('#saveStory').click(function() {
-                var editorData = CKEDITOR.instances.content_editor.getData();
-                var project_id = '<?= $this->uri->segment(3) ?>';
-                var risk = $('textarea#risk').val();
+            $('.saveVerification').click(function() {
+                var editorData = CKEDITOR.instances.verification_editor.getData();
+                var project_id = '<?= $this->uri->segment(4) ?>';
+                var type = $(this).data('typestatus');
+                console.log(type);
 
                 // Kirim data menggunakan AJAX
                 $.ajax({
-                    url: '<?= base_url('story/save_data') ?>', // Ubah dengan URL yang sesuai
+                    url: '<?= base_url('review/saveReviewDetail') ?>', // Ubah dengan URL yang sesuai
                     type: 'POST',
                     data: {
                         'content': editorData,
                         'project_id': project_id,
-                        'risk': risk
+                        'type': type
                     },
                     dataType: 'json',
                     success: function(response) {
                         if (response.status === 'success') {
                             alert(response.message);
-                            location.reload();
+                            window.location.href='<?=base_url('projects/verification')?>';
                         } else {
                             alert(response.message);
                         }
@@ -230,44 +232,12 @@
                 });
             });
 
-            $('#updateStory').click(function() {
-                var editorData = CKEDITOR.instances.content_editor.getData();
-                var project_id = '<?= $this->uri->segment(3) ?>';
-                var story_id = $('#storyId').val();
-                var risk = $('textarea#risk').val();
-
-                // Kirim data menggunakan AJAX
-                $.ajax({
-                    url: '<?= base_url('story/update_data') ?>', // Ubah dengan URL yang sesuai
-                    type: 'POST',
-                    data: {
-                        'content': editorData,
-                        'project_id': project_id,
-                        'story_id': story_id,
-                        'risk': risk
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            alert(response.message);
-                            location.reload();
-                        } else {
-                            alert(response.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Tindakan jika terjadi kesalahan
-                        console.log(error);
-                    }
-                });
-            });
+           
         });
     </script>
 
 
-  <!-- script untuk stock in/out -->
 
   
-    
   </body>
 </html>

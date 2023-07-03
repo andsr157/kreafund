@@ -25,65 +25,57 @@
           </div>
 
           <div>
-            <span id="donation_countdown"></span>
-            <script>
-              function getCurrentDate() {
-                const today = new Date();
-                const year = today.getFullYear();
-                let month = today.getMonth() + 1;
-                let day = today.getDate();
+  <span id="donation_countdown"></span>
+  <script>
+    function getCurrentDate() {
+      const today = new Date();
+      const year = today.getFullYear();
+      let month = today.getMonth() + 1;
+      let day = today.getDate();
 
-                // Format bulan dan hari dengan 2 digit
-                if (month < 10) month = '0' + month;
-                if (day < 10) day = '0' + day;
+      // Format month and day with leading zeros
+      if (month < 10) month = '0' + month;
+      if (day < 10) day = '0' + day;
 
-                return `${year}-${month}-${day}`;
-              }
+      return `${year}-${month}-${day}`;
+    }
 
-              // Menghitung selisih hari antara dua tanggal
-              function getDaysDiff(startDate, endDate) {
-                const oneDay = 24 * 60 * 60 * 1000; // Satu hari dalam milidetik
-                const start = new Date(startDate).setHours(0, 0, 0, 0); // Menghapus informasi waktu
-                const end = new Date(endDate).setHours(0, 0, 0, 0); // Menghapus informasi waktu
-                const diffDays = Math.round(Math.abs((start - end) / oneDay));
-                return diffDays;
-              }
+    // Calculate the countdown in reverse
+    function calculateCountdown(inputDate, inputDays) {
+      const currentDate = getCurrentDate();
+      const targetDate = new Date(inputDate);
+      targetDate.setDate(targetDate.getDate() + inputDays);
+      
+      const diffTime = targetDate.getTime() - new Date(currentDate).getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-              // Update countdown setiap detik
-              function updateCountdown(targetDate, days) {
-                const countdownElement = document.getElementById('donation_countdown');
+      return diffDays;
+    }
 
-                const intervalId = setInterval(() => {
-                  const currentDate = getCurrentDate();
-                  const diffDays = getDaysDiff(currentDate, targetDate);
+    // Update countdown element
+    function updateCountdown() {
+      const inputDate = '<?=$project->row()->updated?>';
+      const inputDays = <?=$project->row()->duration?> - 1;
+      const countdownElement = document.getElementById('donation_countdown');
+      
+      const diffDays = calculateCountdown(inputDate, inputDays);
 
-                  countdownElement.innerText = `${diffDays}`;
+      if (diffDays > 0) {
+        countdownElement.innerText = `${diffDays}`;
+      } else {
+        countdownElement.innerText = 'Funding Selesai!';
+      }
+    }
 
-                  if (diffDays > 0) {
-                    countdownElement.innerText = ` ${diffDays} `;
-                  } else {
-                    clearInterval(intervalId);
-                    countdownElement.innerText = 'Funding selesai!';
-                  }
-                }, 1000);
-              }
+    // Start the countdown
+    updateCountdown();
+  </script>
+  <p>days left</p>
+</div>
 
-              const inputDate = '2023-06-18';
-              const inputDays = 12;
-              console.log(inputDays);
-              console.log(inputDate);
-
-              const targetDate = new Date(inputDate);
-              targetDate.setDate(targetDate.getDate() + inputDays);
-
-              // Memulai countdown
-              updateCountdown(targetDate, inputDays);
-            </script>
-            <p>Hari Lagi</p>
-          </div>
 
           <div class="row">
-            <button class="btn btn-lg mt-4 rounded-0 text-light" style="background-color: var(--kf-primary);" onclick="window.location.href = '<?= base_url('projects/'.$project->row()->title.'/pledge') ?>';">Donate</button>
+            <button class="btn btn-lg mt-4 rounded-0 text-light" style="background-color: var(--kf-primary);" onclick="window.location.href = '<?= base_url('projects/' . $project->row()->title . '/pledge') ?>';">Donate</button>
 
           </div>
           <div class="dtl mt-2 p-0">
@@ -257,7 +249,7 @@
                           </div>
                         </div>
                         <div class="d-flex pt-3 justify-content-center">
-                          <a href="<?=base_url('snap')?>">
+                          <a href="<?= base_url('snap') ?>">
                             <button class="btn text-light rounded-0 w-100" style="background-color: #028858; ">
                               donasi <?= formatCurrency($reward->amount) ?>
                             </button>

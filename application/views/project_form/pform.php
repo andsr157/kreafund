@@ -91,7 +91,7 @@
             </a>
           </li>
         <?php
-        } else if ($row->status == 'creating') { ?>
+        } else  { ?>
           <li class="list-group-item">
             <div class="col-2">
             </div>
@@ -111,16 +111,33 @@
         Prepare to launch
       </h3>
       <ul class="list-group">
-        <li class="list-group-item">
-          <div class="col-2">
-          </div>
-          <a href="<?= base_url('start/launch') ?>">
-            <div class="col-10">
-              <h4>Ready To launch</h4>
-              <p>Final setup before launch your project</p>
+        <?php
+        if ($row->status == 'accepted') { ?>
+          <li class="list-group-item" style="border:solid; border-width:2px; border-color:var(--kf-primary-dark);">
+            <div class="col-2">
             </div>
-          </a>
-        </li>
+            <a href="<?= base_url('start/launch') ?>">
+              <div class="col-10">
+                <h4>Your Project Already Launch</h4>
+                <p>Now Your Project visible to The Backer</p>
+              </div>
+            </a>
+          </li>
+        <?php
+        } else { ?>
+          <li class="list-group-item">
+            <div class="col-2">
+            </div>
+            <a href="<?= base_url('start/launch') ?>">
+              <div class="col-10">
+                <h4>Your Project Already Launch</h4>
+                <p>Now Your Project visible to The Backer</p>
+              </div>
+            </a>
+          </li>
+        <?php
+        } ?>
+
         <div class="row">
           <div class="col-1">
             <div class="connect">
@@ -130,7 +147,7 @@
             </div>
           </div>
           <div class="mmin-30 col-9 ">
-            <P class="m-con">Launch!!</P>
+            <P class="m-con">Now Launch!!</P>
           </div>
         </div>
       </ul>
@@ -165,10 +182,13 @@
   <div class="continer-fluid px-0 border-bottom border-2"></div>
   <div class="container mt-5 mb-5 px-5">
     <div class="del-button">
+      <a href="<?=base_url('project/delete/'.$row->project_id)?>" onclick="return confirm('Apakah Anda yakin ingin menghapus projek ini?')">
       <button class="btn rounded-0">
         <span><i class="fa-solid fa-trash"></i></span>
         <span class="px-2">Delete project</span>
       </button>
+      </a>
+      
     </div>
   </div>
 </section>

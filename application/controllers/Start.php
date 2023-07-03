@@ -90,6 +90,8 @@ class Start extends CI_Controller
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
 		if ($check == true) {
 			$data['status'] = $this->project_m->get($this->uri->segment(3))->row()->status;
+			$data['revisi'] = $this->project_m->getRevition($this->uri->segment(3));
+			$data['rejected'] = $this->project_m->getRejected($this->uri->segment(3));
 			$this->template->load('template/p_form_template', 'project_form/launch',$data);
 		}else{
 			redirect('home');

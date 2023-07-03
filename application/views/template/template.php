@@ -93,9 +93,15 @@
       <div class="col justify-content-center pb-0 pb-lg-3 ">
         <div class="row">
           <ul class="list-group list-group-horizontal overflow-auto">
-            <li class="list-group-item"><a href=""> Musik</a> </li>
-            <li class="list-group-item"><a href="">Seni</a> </li>
-            <li class="list-group-item"><a href="">Film</a> </li>
+            <li class="list-group-item">
+              <a href="<?= base_url('discovery/music') ?>" style="<?php if ($this->uri->segment(2) == 'music') echo 'border-bottom: 2px solid #2752ff; padding-bottom: 5px;'; ?>">Musik</a>
+            </li>
+            <li class="list-group-item">
+              <a href="<?= base_url('discovery/art') ?>" style="<?php if ($this->uri->segment(2) == 'art') echo 'border-bottom: 2px solid #2752ff; padding-bottom: 5px;'; ?>">Seni</a>
+            </li>
+            <li class="list-group-item">
+              <a href="<?= base_url('discovery/film') ?>" style="<?php if ($this->uri->segment(2) == 'film') echo 'border-bottom: 2px solid #2752ff; padding-bottom: 5px;'; ?>">Film</a>
+            </li>
             <li class="list-group-item"><a href="">F&B</a> </li>
             <li class="list-group-item"><a href="">Teknologi</a> </li>
             <li class="list-group-item"><a href="">Publikasi</a> </li>

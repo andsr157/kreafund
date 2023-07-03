@@ -3,7 +3,7 @@
         <div class="col-7 py-5">
             <div class="row nav-profile">
                 <ul class="list-group list-group-horizontal d-flex justify-content-end">
-                    <li class="list-group-item bg-transparent border-0"><a href="">Backed Projects</a> </li>
+                    <li class="list-group-item bg-transparent border-0"><a href="<?= base_url('profile/backed') ?>">Backed Projects</a> </li>
                     <li class="list-group-item bg-transparent border-0"><a href="" style="color: var(--kf-blue);">Created Project</a></li>
                     <li class="list-group-item bg-transparent border-0"> <a href="">Setting</a></li>
                     <li class="list-group-item bg-transparent border-0"><a href="<?= base_url('profile/' . $this->session->userdata('username')) ?>">Profile</a> </li>
@@ -58,15 +58,29 @@
                                         <?php
                                         if ($row->status == 'accepted') { ?>
                                             <div>
-                                                <a href="">
+                                                <a href="<?= base_url('project/') . $this->session->userdata('username') . '/' . $row->project_id ?>">
                                                     <p>Ongoing</p>
                                                 </a>
                                             </div>
                                         <?php
                                         } else if ($row->status == 'rejected') { ?>
                                             <a href="<?= base_url('project/') . $this->session->userdata('username') . '/' . $row->project_id ?>">
-                                                <p>Rejected(DeleteProject)</p>
+                                                <p>Rejected</p>
                                             </a>
+                                        <?php
+                                        } else if ($row->status == "pending") { ?>
+                                            <div>
+                                                <a href="<?= base_url('project/') . $this->session->userdata('username') . '/' . $row->project_id ?>">
+                                                    <p>On Review</p>
+                                                </a>
+                                            </div>
+                                        <?php
+                                        } else if ($row->status == 'revisi') { ?>
+                                            <div>
+                                                <a href="<?= base_url('project/') . $this->session->userdata('username') . '/' . $row->project_id ?>">
+                                                    <p>Revisi</p>
+                                                </a>
+                                            </div>
                                         <?php
                                         } else { ?>
                                             <div>
@@ -75,7 +89,8 @@
                                                 </a>
                                             </div>
                                         <?php
-                                        } ?>
+                                        }
+                                        ?>
 
                                     </div>
                                 </div>

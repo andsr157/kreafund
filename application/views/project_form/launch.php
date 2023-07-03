@@ -92,33 +92,71 @@
                     } ?>
                 <?php
                 } ?>
-
             </div>
+
         </div>
+        <?php 
+        if ($status == 'rejected') { ?>
+            <div class="container text-center p-5  mt-4 " style="border: solid; border-color:red; border-width:2px; ">
+                <h4><?= $rejected->verification_desc ?></h4>
+            </div>
+        <?php
+        } ?>
     </div>
 
     <div class="save d-flex justify-content-center">
-        <?php if ($status == 'creating') { ?>
-            <a href="" style="display: none;">
+        <?php if ($status === 'creating') { ?>
+            <a href="<?= base_url('review/submit/' . $this->uri->segment(3)) ?>" onclick="return confirm('Apakah anda yakin mensubmit project?')">
                 <button class="btn rounded-0">Submit Project!!</button>
             </a>
         <?php
         } ?>
-        <?php if ($status == 'pending') { ?>
-            <a href="">
-            <button class="p-3 rounded-0 launch-button-disabled" style="display: none;" disabled>Launch Now!!</button>
-        </a>
-        <?php
-        } ?>
         <?php if ($status == 'revisi') { ?>
-            
-        <a href="">
-            <button class="btn rounded-0 revisi-btn" style="background-color: var(--kf-primary-blue);">Submit Again!!</button>
-        </a>
+            <a href="<?= base_url('review/submit/' . $this->uri->segment(3)) ?>"  onclick="return confirm('Apakah anda yakin mensubmit project?')">
+                <button class="btn rounded-0 revisi-btn" style="background-color: var(--kf-primary-blue);">Submit Again!!</button>
+            </a>
         <?php
         } ?>
-        
-       
     </div>
+
+
+
+    <!-- modal log launch -->
+
+    <div style="font-family:'maison_neuebook';" class="modal fade text-left logModal" id="logModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17">
+                        <center><b>Detail Revisi</b></center>
+                    </h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="container p-5">
+
+                            <?php foreach ($revisi->result() as $revisi) { ?>
+                                <div class="box mb-5 rounded-2 shadow p-2">
+                                    <span class=""><?= format_datetime($revisi->created) ?></span>
+                                    <h3 class="mt-3">
+                                        <?= $revisi->verification_desc ?>
+                                    </h3>
+                                </div>
+                            <?php
+                            } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end modal log launch -->
+
+
+
 
 </section>

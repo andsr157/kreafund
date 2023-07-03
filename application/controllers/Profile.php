@@ -8,7 +8,6 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('project_m');
-
 	}
 
 	public function projects()
@@ -17,6 +16,12 @@ class Profile extends CI_Controller
 		$userid = $this->session->userdata('user_id');
 		$data['project'] = $this->project_m->getByUserId($userid)->result();
 		$this->template->load('template/template_basic', 'profile/started', $data);
+	}
+
+	public function backed()
+	{
+		$data['backed'] = $this->trans_m->get($this->session->userdata('user_id'))->result();
+		$this->template->load('template/template_basic', 'profile/backed', $data);
 	}
 
 	public function profile()
@@ -89,33 +94,33 @@ class Profile extends CI_Controller
 		}
 	}
 
-	public function saveSetting(){
+	public function saveSetting()
+	{
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_error_delimiters('<span class="text-danger" style="font-size:12px;">', '</span>');
 
 
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			$error = $this->form_validation->error();
 			$this->template->load('template/template_basic', 'profile/account', $error);
-		}else{
+		} else {
 			$userId = $this->input->post('user_id');
 			$email = $this->input->post('email');
 			$password = $this->input->post('currentPassword');
 			$query = $this->user_m->saveSetting($userId, $password);
 
-			if($query->num_rows() > 0 ){
+			if ($query->num_rows() > 0) {
 				$this->db->set('email', $email);
 				$this->db->where('id', $userId);
 				$this->db->update('users');
-				if($this->db->affected_rows() > 0){
+				if ($this->db->affected_rows() > 0) {
 					echo "<script>alert('Email berhasil diganti')</script>";
 					echo "<script>window.location='" . base_url('profile/account') . "'</script>";
 				}
-			}else{
+			} else {
 				echo "<script>alert('Password tidak benar atau kosong')</script>";
 				echo "<script>window.location='" . base_url('profile/account') . "'</script>";
 			}
-
 		}
 	}
 }

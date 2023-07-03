@@ -54,7 +54,7 @@
 
                         <div class="d-flex justify-content-end me-3">
                             <?php if ($this->uri->segment(4) != "backer") { ?>
-                                <a href="<?= base_url('projects/review/' . $this->uri->segment(3)) ?>">
+                                <a href="<?= base_url('project/'.$this->session->userdata('username').'/' . $this->uri->segment(3)) .'/review'?>">
                                     <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
                                 </a>
                             <?php
@@ -201,59 +201,7 @@
         </div>
     </div>
 
-    <!-- modal log launch -->
-
-    <div style="font-family:'maison_neuebook';" class="modal fade text-left logModal" id="logModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel17">
-                        <center><b>Detail Revisi</b></center>
-                    </h4>
-
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="container p-5">
-                            <div class="box mb-5 rounded-2 shadow p-2">
-                                <span class="">17 Desember 2022 19:52:00</span>
-                                <h3 class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur architecto dolorem
-                                    voluptatibus veniam, eos illo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
-                                    architecto dolorem voluptatibus veniam, eos illo
-                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
-                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
-                                </h3>
-                            </div>
-
-                            <div class="box mb-5 rounded-2 shadow p-2">
-                                <span class="">17 Desember 2022 19:52:00</span>
-                                <h3 class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur architecto dolorem
-                                    voluptatibus veniam, eos illo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
-                                    architecto dolorem voluptatibus veniam, eos illo
-                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
-                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
-                                </h3>
-                            </div>
-                            <div class="box mb-5 rounded-2 shadow p-2">
-                                <span class="">17 Desember 2022 19:52:00</span>
-                                <h3 class="mt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur architecto dolorem
-                                    voluptatibus veniam, eos illo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
-                                    architecto dolorem voluptatibus veniam, eos illo
-                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
-                                    reiciendis doloremque voluptate, error quos culpa magnam. Unde iusto accusamus est quidem doloremque impedit fuga.
-                                </h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- end modal log launch -->
+    
 
 
 
