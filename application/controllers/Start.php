@@ -82,9 +82,24 @@ class Start extends CI_Controller
 		}else{
 			redirect('home');
 		}
+	}
+
+	public function payment()
+	{
+		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+		if ($check == true) {
+			$data['banks'] = $this->trans_m->getBank()->result();
+			$data['payment'] = $this->trans_m->getPayment($this->uri->segment(3))->row();
+			// var_dump($data['payment']).die();
+			$this->template->load('template/p_form_template', 'project_form/payment',$data);
+		}else{
+			redirect('home');
+		}
 
 		
 	}
+
+
 	public function launch()
 	{
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));

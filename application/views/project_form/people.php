@@ -36,10 +36,10 @@
                         </a>
                     </li>
                     <li class="list-group-item mx-5 cat5">
-                        <a href="<?=base_url('start/payment')?>">
+                        <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/payment') ?>">
                             <div class="ikon ">
                                 <span>💰</span>
-                                <p class="mt-3">Basic</p>
+                                <p class="mt-3">Payment</p>
                             </div>
                         </a>
                     </li>

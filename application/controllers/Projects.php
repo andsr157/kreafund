@@ -46,7 +46,7 @@ class Projects extends CI_Controller
 			$data['project_id'] = $project_id;
 			$data['rewards']  = $this->reward_m->getRewardWithPid($project_id);
 			$this->template->load('template/template_clean', 'donate/donate', $data);
-		}else{
+		} else {
 			echo "<script>alert('Tidak bisa donate pada project sendiri')</script>";
 			echo "<script>window.location='" . base_url('discovery') . "'</script>";
 		}
@@ -79,7 +79,7 @@ class Projects extends CI_Controller
 			// $this->form_validation->set_rules('subcat', 'Subcategory', 'required');
 			// $this->form_validation->set_rules('location', 'Location', 'required');
 			$this->form_validation->set_rules('title', 'Title', 'required');
-			
+
 			if ($this->form_validation->run() == false) {
 				redirect('start');
 				echo "alert('salah woi')";
@@ -271,34 +271,33 @@ class Projects extends CI_Controller
 		// var_dump($pId).die();
 		$reward_id = $this->reward_m->getRewardIdWithPid($pId);
 		$reward_ids = array_column($reward_id, 'reward_id');
-		
-		// var_dump($reward_id).die();
-		$this->db->trans_start(); 
 
-	
+		// var_dump($reward_id).die();
+		$this->db->trans_start();
+
+
 		$this->db->where('project_id', $pId);
 		$this->db->delete('project');
 
 		$this->db->where('project_id', $pId);
 		$this->db->delete('reward');
-		
+
 		$this->db->where('project_id', $pId);
 		$this->db->delete('story');
-		
+
 		$this->db->where('project_id', $pId);
 		$this->db->delete('reward_item');
 
-		if(!empty($reward_id)){
+		if (!empty($reward_id)) {
 			$this->db->where_in('reward_id', $reward_ids);
 			$this->db->delete('reward_detail');
 		}
 
-		$this->db->trans_complete(); 
+		$this->db->trans_complete();
 
 		if ($this->db->trans_status() === true) {
 			echo "<script>alert('project berhasil dihapus')</script>";
 			echo "<script>window.location='" . base_url('profile/projects') . "'</script>";
-
 		} else {
 			echo "<script>alert('project berhasil dihapus')</script>";
 			echo "<script>window.location='" . base_url('project/' . $this->session->userdata('username') . '/' . $data['project_id']) . "'</script>";
@@ -313,5 +312,60 @@ class Projects extends CI_Controller
 		$data['project'] = $this->project_m->getVerification()->result();
 
 		$this->template->load('template/template_admin', 'admin/project/project_data', $data);
+	}
+
+	public function method()
+	{
+		$data = $this->input->post(null, TRUE);
+		if (isset($data['add'])) {
+
+			$this->form_validation->set_rules('bank', 'Bank', 'required');
+			$this->form_validation->set_rules('rek', 'Rekening', 'required');
+			$data['project'] = $this->project_m->get_by_projectid($this->uri->segment(3))->row_array();
+			if ($this->form_validation->run() == false) {
+				redirect('project/' . $this->session->userdata('username') . '/' . $data['project_id'] . '/edit/basic');
+			} else {
+				$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+				if ($check == true) {
+					$params['bank_id'] = $data['bank'];
+					$params['rekening'] = $data['rek'];
+					$params['project_id'] = $this->uri->segment(3);
+					$this->db->insert('p_payment', $params);
+					if ($this->db->affected_rows() > 0) {
+						echo "<script>alert('data berhasil disimpan')</script>";
+						echo "<script>window.location='" . base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/payment') . "'</script>";
+					} else {
+						echo "<script>alert('data gagal disimpan')</script>";
+						echo "<script>window.location='" . base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/payment') . "'</script>";
+					}
+				} else {
+					redirect('home');
+				}
+			}
+		} else if (isset($data['edit'])) {
+			$this->form_validation->set_rules('bank', 'Bank', 'required');
+			$this->form_validation->set_rules('rek', 'Rekening', 'required');
+			$data['project'] = $this->project_m->get_by_projectid($this->uri->segment(3))->row_array();
+			if ($this->form_validation->run() == false) {
+				redirect('project/' . $this->session->userdata('username') . '/' . $data['project_id'] . '/edit/basic');
+			} else {
+				$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+				if ($check == true) {
+					$params['bank_id'] = $data['bank'];
+					$params['rekening'] = $data['rek'];
+					$params['project_id'] = $this->uri->segment(3);
+					$this->db->update('p_payment', $params);
+					if ($this->db->affected_rows() > 0) {
+						echo "<script>alert('data berhasil diupdate')</script>";
+						echo "<script>window.location='" . base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/payment') . "'</script>";
+					} else {
+						echo "<script>alert('data gagal updaye')</script>";
+						echo "<script>window.location='" . base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/payment') . "'</script>";
+					}
+				} else {
+					redirect('home');
+				}
+			}
+		}
 	}
 }

@@ -76,6 +76,8 @@ class Project_m extends CI_Model
         return $query;
     }
 
+    
+
     public function getAllByCategory($category = null, $status = null)
     {
         $this->db->from('project');

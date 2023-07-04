@@ -9,7 +9,20 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/stylesheet.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
   <title>Document</title>
+  <style>
+    /* Custom CSS to adjust icon size */
+    .video-js .vjs-button .vjs-icon-placeholder:before {
+      font-size: 0.5em;
+      color: #fff;
+    }
+    .project_detail span.vjs-remaining-time-display{
+      font-size: 1.2rem;
+      color: #fff;
+      padding-bottom: 0.8rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -265,6 +278,11 @@
   <!-- end modal login -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
+  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+  
+  <script>
+    videojs('project_video');
+  </script>
 
   <script>
     $(document).ready(function() {

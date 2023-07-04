@@ -97,3 +97,16 @@ function calculate_datetime($startDateTime, $duration) {
     return $endDateTime;
 }
 
+function calculatePercentage($amount, $goal) {
+    if ($goal == 0) {
+        return 0; // Mengembalikan 0 jika tujuan (goal) adalah 0
+    }
+    
+    $percentage = ($amount / $goal) * 100;
+    
+    if ($percentage >= 100) {
+        return 100; // Mengembalikan nilai 100 jika persentase melebihi atau sama dengan 100
+    }
+    
+    return $percentage;
+}

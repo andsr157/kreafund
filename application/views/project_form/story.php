@@ -3,7 +3,7 @@
         <div class="row px-5 mb-5">
             <ul class="list-group list-group-horizontal justify-content-center">
                 <li class="list-group-item mx-5 cat1">
-                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/basic') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3 ) . '/edit/basic') ?>">
                         <div class="ikon">
                             <span>✍️</span>
                             <p class="mt-3">Basic</p>
@@ -12,7 +12,7 @@
 
                 </li>
                 <li class="list-group-item mx-5 cat2">
-                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/reward') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3 ) . '/edit/reward') ?>">
                         <div class="ikon">
                             <span>🎁</span>
                             <p class="mt-3">Reward</p>
@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat3">
-                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/story') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3 ) . '/edit/story') ?>">
                         <div class="ikon border-active">
                             <span>📖</span>
                             <p class="mt-3">story</p>
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat4">
-                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/edit/people') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3 ) . '/edit/people') ?>">
                         <div class="ikon">
                             <span>👥</span>
                             <p class="mt-3">People</p>
@@ -36,15 +36,15 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat5">
-                    <a href="<?= base_url('start/payment') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3 ) . '/edit/payment') ?>">
                         <div class="ikon ">
                             <span>💰</span>
-                            <p class="mt-3">Basic</p>
+                            <p class="mt-3">Payment</p>
                         </div>
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat6">
-                    <a href="<?= base_url('start/launch') ?>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3 ) . '/launch') ?>">
                         <div class="ikon">
                             <span>📢</span>
                             <p class="mt-3">Basic</p>

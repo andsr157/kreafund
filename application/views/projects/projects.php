@@ -1,92 +1,89 @@
 <section class="project_page">
   <div class="container projects">
     <div class="row mb-5">
-    <?php foreach ($projects->result() as $project) { ?>
-  <div class="col-4 px-3 mt-5">
-    <a href="<?=base_url('projects/'.$project->title.'/detail')?>">
-      <div class="procard">
-        <div class="img-box mx-auto">
-          <img style="object-fit:cover;" class="p-0 rounded-0" width="406" height="220" src="<?= base_url('assets/img/' . $project->image) ?>" alt="">
+      <?php foreach ($projects->result() as $index => $project) { ?>
+        <div class="col-4 px-3 mt-5">
+          <a href="<?= base_url('projects/' . $project->title . '/detail') ?>">
+            <div class="procard">
+              <div class="img-box mx-auto">
+                <img style="object-fit:cover;" class="p-0 rounded-0" width="406" height="220" src="<?= base_url('assets/img/' . $project->image) ?>" alt="">
+              </div>
+              <div class="caption p-3 pb-">
+                <h3><?= $project->title ?></h3>
+                <p><?= $project->subtitle ?></p>
+                <a href=""><?= $project->username ?></a>
+              </div>
+              <?php
+                  $amount = $this->trans_m->getById($project->project_id);
+                  $percentage = calculatePercentage($amount, $project->goal);
+                  ?> 
+              <div class="fund p-3">
+                <div class="bargrey mb-3">
+                  
+                  <div class="bargreen" style="width:<?=$percentage?>%"></div>
+                </div>
+                <div class="typef green mb-1">
+                  
+                  <span>Rp.<?=number_format($amount, 0, ',', '.')?></span>
+                  <span>diperoleh</span>
+                </div>
+                <div class="typef mb-1">
+                  <span><?=$percentage?>%</span> 
+                  <span>target</span>
+                </div>
+                <?php
+                $targetDate = new DateTime($project->updated);
+                $endDate = clone $targetDate;
+                $endDate->add(new DateInterval('P' . ($project->duration) . 'D'));
+                $currentDate = new DateTime();
+
+                $diff = $endDate->diff($currentDate);
+                $diffDays = $diff->format('%a') + 1;
+                ?>
+                <div class="typef mb-1">
+                  <span class="donation_countdown" data-target-date="<?= $endDate->format('Y-m-d H:i:s') ?>"></span>
+                  <span>hari lagi</span>
+                </div>
+              </div>
+              <div class="bcaption d-flex p-3">
+                <a href="" class="pe-3"><?= $project->category_name ?></a>
+                <a href=""><?= $project->location_name ?></a>
+              </div>
+            </div>
+          </a>
         </div>
-        <div class="caption p-3 pb-">
-          <h3><?= $project->title ?></h3>
-          <p><?= $project->subtitle ?></p>
-          <a href=""><?= $project->username ?></a>
-        </div>
-        <div class="fund p-3">
-          <div class="bargrey mb-3">
-            <div class="bargreen" style="width:100%"></div>
-          </div>
-          <div class="typef green mb-1">
-            <span>Rp.1,000,000</span>
-            <span>diperoleh</span>
-          </div>
-          <div class="typef mb-1">
-            <span>100%</span>
-            <span>target</span>
-          </div>
-          <div class="typef mb-1">
-            <span class="donation-countdown"></span>
-            <span>hari lagi</span>
-          </div>
-        </div>
-        <div class="bcaption d-flex p-3">
-          <a href="" class="pe-3"><?= $project->category_name ?></a>
-          <a href=""><?= $project->location_name ?></a>
-        </div>
-      </div>
-    </a>
-  </div>
-  <script>
-    function getCurrentDate() {
-      const today = new Date();
-      const year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let day = today.getDate();
+      <?php } ?>
 
-      // Format bulan dan hari dengan 2 digit
-      if (month < 10) month = '0' + month;
-      if (day < 10) day = '0' + day;
+      <script>
+        function updateCountdown() {
+          const countdownElements = document.querySelectorAll('.donation_countdown');
 
-      return `${year}-${month}-${day}`;
-    }
+          countdownElements.forEach(element => {
+            const targetDate = new Date(element.dataset.targetDate);
+            const currentDate = new Date();
 
-    // Menghitung selisih hari antara dua tanggal
-    function getDaysDiff(startDate, endDate) {
-      const oneDay = 24 * 60 * 60 * 1000; // Satu hari dalam milidetik
-      const start = new Date(startDate).setHours(0, 0, 0, 0); // Menghapus informasi waktu
-      const end = new Date(endDate).setHours(0, 0, 0, 0); // Menghapus informasi waktu
-      const diffDays = Math.round(Math.abs((start - end) / oneDay));
-      return diffDays;
-    }
+            function calculateCountdown(target, current) {
+              const diffTime = target.getTime() - current.getTime();
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+              return diffDays;
+            }
 
-    // Update countdown setiap detik
-    function updateCountdown(targetDate, days, countdownElement) {
-      const intervalId = setInterval(() => {
-        const currentDate = getCurrentDate();
-        const diffDays = getDaysDiff(currentDate, targetDate);
+            const diffDays = calculateCountdown(targetDate, currentDate);
 
-        countdownElement.innerText = `${diffDays}`;
-
-        if (diffDays > 0) {
-          countdownElement.innerText = ` ${diffDays} `;
-        } else {
-          clearInterval(intervalId);
-          countdownElement.innerText = 'Funding selesai!';
+            if (diffDays > 0) {
+              element.innerText = `${diffDays}`;
+            } else {
+              element.innerText = 'Funding Selesai!';
+            }
+          });
         }
-      }, 1000);
-    }
 
-    const inputDate = '2023-07-01';
-    const inputDays = 22;
-    const targetDate = new Date(inputDate);
-    targetDate.setDate(targetDate.getDate() + inputDays);
+        updateCountdown();
+      </script>
 
-    // Memulai countdown untuk setiap proyek
-    const countdownElement = document.querySelector('.donation-countdown:last-child');
-    updateCountdown(targetDate, inputDays, countdownElement);
-  </script>
-<?php } ?>
+
+
+
 
     </div>
   </div>

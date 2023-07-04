@@ -1,3 +1,5 @@
+
+
 <section class="project_detail">
   <section class="hero">
     <div class="container">
@@ -7,19 +9,34 @@
       </div>
       <div class="row content">
         <div class="col-lg-8 content-box shadow ">
-          <img style="object-fit:cover" src="<?= base_url('assets/img/' . $project->row()->image) ?>" class="img-fluid p-0 w-100 h-100" alt="">
+          <?php
+          if ($project->row()->video != 'default.mp4') { ?>
+              <video id="project_video" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450" poster="<?= base_url('assets/img/' . $project->row()->image) ?>" data-setup="{}">
+                <source src="<?= base_url('assets/vid/' . $project->row()->video) ?>" type="video/mp4">
+              </video>
+          <?php
+          } else { ?>
+               <img style="object-fit:cover" src="<?= base_url('assets/img/' . $project->row()->image) ?>" class="img-fluid p-0 w-100 h-100" alt="">
+          <?php
+          } ?>
+         
         </div>
 
+        <?php
+        $amount = $this->trans_m->getById($project->row()->project_id);
+        $percentage = calculatePercentage($amount, $project->row()->goal);
+        $donatur = $this->trans_m->getDonatur($project->row()->project_id);
+        ?>
 
         <div class="col-lg-4 px-sm-4 ps-lg-5">
           <div class="bargrey mb-4">
-            <div class="bargreen" style="width:86.35%"></div>
+            <div class="bargreen" style="width:<?= $percentage ?>%"></div>
           </div>
-          <h2>Rp.<?= $project->row()->goal ?></h2>
+          <h2>Rp.<?= number_format($amount, 0, ',', '.') ?></h2>
           <p>donasi dari target Rp.<?= $project->row()->goal ?></p>
 
           <div>
-            <span>27</span>
+            <span><?= $donatur ?></span>
 
             <p>Donatur</p>
           </div>
@@ -187,7 +204,7 @@
 
                   </div>
                 </li>
-                <form action="<?=base_url('snap/donate/withoutReward')?>" method="POST">
+                <form action="<?= base_url('snap/donate/withoutReward') ?>" method="POST">
                   <li class="list-group-item mb-4 px-4 pb-4">
                     <div class="row rcard">
                       <h2 class="my-4">Donasi Tanpa Reward</h2>
@@ -195,7 +212,7 @@
                         <div class="mb-3">
                           <label for="exampleInputEmail1" class="form-label">Jumlah :</label>
                           <input type="input" name="noReward" class="form-control rounded-0" placeholder="00,00">
-                          <input type="hidden" name="projectId" value="<?=$project->row()->project_id?>">
+                          <input type="hidden" name="projectId" value="<?= $project->row()->project_id ?>">
                         </div>
                       </form>
                       <div class="row rdesc mb-3">
