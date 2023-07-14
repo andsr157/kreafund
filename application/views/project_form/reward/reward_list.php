@@ -27,7 +27,7 @@
                                     <span><?=$month .'-'. $year?></span>
                                 </div>
                                 <div class="type-9 mb-1">
-                                    <span>Reward Time</span>
+                                    <span>Reward Time Until</span>
                                     <span> : <?=$tanggal_baru?></span>
                                 </div>
                                 

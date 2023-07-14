@@ -19,7 +19,7 @@
 
   </head>
   <body>
-    <div class="container-scroller">
+    <div class="container-scroller login-page">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex justify-content-center align-items-center auth login-page theme-one">
           <div class="row w-100">
@@ -45,7 +45,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <button class="btn btn-primary submit-btn btn-block" name="login">Masuk</button>
+                    <button class="btn btn-dark submit-btn btn-block" name="login" >Masuk</button>
                   </div>
                 </form>
               </div>

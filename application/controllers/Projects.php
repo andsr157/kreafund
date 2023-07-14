@@ -25,7 +25,6 @@ class Projects extends CI_Controller
 
 	public function project()
 	{
-		check_not_login();
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
 		if ($check == true) {
 			$id = $this->uri->segment(3);
@@ -56,9 +55,12 @@ class Projects extends CI_Controller
 	{
 		$result = $this->project_m->getIdByTitle($this->uri->segment(2));
 		$project_id = intval($result->project_id);
+		$user_id = intval($result->user_id);
 		$data['story'] = $this->story_m->getDataById($project_id);
 		$data['project'] = $this->project_m->get_all($project_id);
 		$data['rewards']  = $this->reward_m->getRewardWithPid($project_id);
+		$data['user'] = $this->user_m->get($user_id)->row();
+
 
 		$this->template->load('template/template', 'projects/project_detail', $data);
 	}
@@ -73,7 +75,7 @@ class Projects extends CI_Controller
 		check_not_login();
 
 		$post = $this->input->post(null, TRUE);
-		// checkStatusProject($post['project_id']);
+		
 		if (isset($post['add'])) {
 			// $this->form_validation->set_rules('category', 'Category', 'required');
 			// $this->form_validation->set_rules('subcat', 'Subcategory', 'required');
@@ -97,7 +99,7 @@ class Projects extends CI_Controller
 
 		if (isset($post['edit'])) {
 
-
+			checkStatusProject($post['project_id']);
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$data = $this->input->post(null, TRUE);
 			$data['project'] = $this->project_m->get_by_projectid($data['project_id'])->row_array();
@@ -193,7 +195,7 @@ class Projects extends CI_Controller
 		$p_id = $this->input->post('project_id');
 		$config['upload_path'] = './assets/img';
 		$config['allowed_types'] = 'jpg|jpeg|png|gif';
-		$config['max_size'] = 2048;
+		$config['max_size'] = 20480;
 		$config['encrypt_name'] = TRUE;
 
 		$this->upload->initialize($config);
@@ -312,6 +314,27 @@ class Projects extends CI_Controller
 		$data['project'] = $this->project_m->getVerification()->result();
 
 		$this->template->load('template/template_admin', 'admin/project/project_data', $data);
+	}
+
+	public function done()
+	{
+
+		check_admin();
+		$data['project'] = $this->project_m->getDone()->result();
+	
+
+		$this->template->load('template/template_admin', 'admin/project/project_done', $data);
+	}
+
+	public function result()
+	{
+
+		check_admin();
+		$data['trans'] = $this->trans_m->getResult($this->uri->segment(3))->result();
+		$data['payment'] =  $this->trans_m->getPaymentInfo($this->uri->segment(3));
+		$data['project'] =  $this->project_m->get($this->uri->segment(3))->row();
+	
+		$this->template->load('template/template_admin', 'admin/project/result',$data);
 	}
 
 	public function method()

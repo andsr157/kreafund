@@ -42,9 +42,10 @@
         <div class="col-12 col-lg-8 wrapper p-0" style="overflow: hidden;">
           <a href="<?= base_url('projects/' . $featured[0]['title'] . '/detail') ?>">
             <div class=" bg-child pt-5 px-lg-5 bg-fit border border-light border-5 w-100 h-100" style="background-image: url(<?= base_url('assets/img/' . $featured[0]['image']) ?>);">
-              <h4 class="fp ps-3"><?= $featured[0]['title'] ?></h4>
+              <h4 class="fp ps-3 mb-2">Classic Sports <br>Cars Posters</h4>
               <br>
-              <p class="ps-3"><?= $featured[0]['subtitle'] ?> </p>
+              <p class="ps-3 " style="display: inline;">I chose to depict some of the most classic sports <br> cars that have been made and tried to make the <br>
+                vehicles as accurate as possible</p>
             </div>
           </a>
         </div>
@@ -62,7 +63,7 @@
             <div class="col-lg-4 wrapper p-0" style="overflow: hidden;">
               <a href="<?= base_url('projects/' . $featured['title'] . '/detail') ?>">
                 <div class=" bg-child bg-fit pt-5 px-lg-5 border border-light border-5 border-top-0 w-100 h-100" style="background-image: url(<?= base_url('assets/img/' . $featured['image']) ?>);">
-                    <h4><?= $featured['title'] ?></h4>
+                  <h4><?= $featured['title'] ?></h4>
                 </div>
               </a>
             </div>
@@ -155,26 +156,24 @@
       <div class="row">
         <ul class="list-group list-group-horizontal position-relative overflow-auto ">
           <?php foreach ($fresh as $fresh) { ?>
-            <a href="<?=base_url('projects/' . $fresh->title . '/detail')?>">
-            <li class="list-group-item p-1 p-lg-2 ">
-              <div class="col-lg-3">
-                <div class="wrapperimg">
-                  <div class="boxImage bg-child">
-                    <img style="object-fit: cover;" class="w-100 h-100 p-0 rounded-0" src="<?= base_url('assets/img/' . $fresh->image) ?>" alt="">
+            <a href="<?= base_url('projects/' . $fresh->title . '/detail') ?>">
+              <li class="list-group-item p-1 p-lg-2 ">
+                <div class="col-lg-3">
+                  <div class="wrapperimg">
+                    <div class="boxImage bg-child">
+                      <img style="object-fit: cover;" class="w-100 h-100 p-0 rounded-0" src="<?= base_url('assets/img/' . $fresh->image) ?>" alt="">
+                    </div>
+                  </div>
+
+                  <div class="caption">
+                      <h4 class="mt-3 mb-lg-4 mb-3" style="font-weight: 600; color:#282828;"><?= $fresh->title ?></h4>
+                    <a href="">
+                      <p class="mb-lg-5 mb-3" style="font-family: 'maison_neuebook';"><?= $fresh->description ?></p>
+                    </a>
+                    <p class="author"><a href="">by <?= $fresh->username ?></a></p>
                   </div>
                 </div>
-
-                <div class="caption">
-                  <a href="">
-                    <h4 class="mt-3 mb-lg-4 mb-3 "><?= $fresh->title ?></h4>
-                  </a>
-                  <a href="">
-                    <p class="mb-lg-5 mb-3"><?= $fresh->description ?></p>
-                  </a>
-                  <p class="author"><a href="">by <?= $fresh->username ?></a></p>
-                </div>
-              </div>
-            </li>
+              </li>
             </a>
           <?php
           } ?>
@@ -204,7 +203,7 @@
               <h3 class=" mb-lg-4">Section Info</h3>
             </a>
             <a href="">
-              <p class="pe-lg-3">Get access to funds from nonprofits and foundations that back Kickstarter campaigns related
+              <p class="pe-lg-3">Get access to funds from nonprofits and foundations that back Kreafund campaigns related
                 to their visions for a more creative and equitable world.</p>
             </a>
           </div>
@@ -235,15 +234,17 @@
         <ul class="list-group list-group-horizontal position-relative overflow-auto ">
           <li class="list-group-item p-1 p-lg-2">
             <div class="col-lg-3">
-              <div class="boxImage">
+            <div class="wrapperimg">
+              <div class="boxImage bg-child">
                 <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/s1.avif" alt="">
               </div>
+            </div>
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 ">Leviathan Wilds</h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3">Leviathan Wild is an iconic cornerstone of the board game world that combines bidding, development and conquest mechanics.</p>
                 </a>
                 <p class="author"><a href="">by alex zorei</a></p>
               </div>
@@ -251,15 +252,17 @@
           </li>
           <li class="list-group-item p-1 p-lg-2">
             <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/s2.avif" alt="">
+              <div class="wrapperimg">
+                <div class="boxImage bg-child">
+                  <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/s2.avif" alt="">
+                </div>
               </div>
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 ">Pies, Mori, Lunar, Bacon</h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3">uick and tasty! In Pies, play fruit cards over the course of three rounds</p>
                 </a>
                 <p class="author"><a href="">by alex zorei</a></p>
               </div>
@@ -267,15 +270,17 @@
           </li>
           <li class="list-group-item p-1 p-lg-2">
             <div class="col-lg-3">
-              <div class="boxImage">
-                <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/s3.avif" alt="">
+              <div class="wrapperimg">
+                <div class="boxImage bg-child">
+                  <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/s3.avif" alt="">
+                </div>
               </div>
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 ">Adventure Intrigue Flowers</h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3">In 2012, Basic Action Games released Honor + Intrigue, a cinematic standalone swashbuckling RPG system built on the same streamlined engine as the BarbariansS!</p>
                 </a>
                 <p class="author"><a href="">by alex zorei</a></p>
               </div>
@@ -283,15 +288,17 @@
           </li>
           <li class="list-group-item p-1 p-lg-2">
             <div class="col-lg-3">
-              <div class="boxImage">
+            <div class="wrapperimg">
+              <div class="boxImage bg-child">
                 <img class="w-100 h-100 img-fluid img-thumbnail p-0 rounded-0" src="<?= base_url('assets/') ?>img/s4.avif" alt="">
               </div>
+            </div>
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 ">Fablecraft</h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3">This is Haunted Table's first crowdfunding campaign, but we've worked with experienced professionals to determine our budget, timeline, and creative plan</p>
                 </a>
                 <p class="author"><a href="">by alex zorei</a></p>
               </div>
@@ -304,10 +311,10 @@
               </div>
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 ">DIY Creative Starter tools</h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3">British Machete Co. (BMC) is positioning to become the UK's leading high quality large blade manufacturer. Our products are developed to be ergonomic,  </p>
                 </a>
                 <p class="author"><a href="">by alex zorei</a></p>
               </div>
@@ -320,10 +327,10 @@
               </div>
               <div class="caption">
                 <a href="">
-                  <h4 class="mt-3 mb-lg-4 mb-3 ">L'Arsene's Ledger of Treasures and Trinkets - A DnD 5e Tome</h4>
+                  <h4 class="mt-3 mb-lg-4 mb-3 ">Break Isekai Wolrd</h4>
                 </a>
                 <a href="">
-                  <p class="mb-lg-5 mb-3">400+ pages of Heliana-compatible craftable magic items that grow with your players! Fuel your hoarding addiction!</p>
+                  <p class="mb-lg-5 mb-3">Break is a Peru-based store that brings popular characters to the plane of pins, stickers, and cute things like that.</p>
                 </a>
                 <p class="author"><a href="">by alex zorei</a></p>
               </div>
@@ -336,7 +343,7 @@
 </section>
 <!-- end of fresh section -->
 <!-- info_corner section -->
-<section class="info_corner">
+<section class="info_corner" style="font-family: 'maison_neuebook';">
   <div class="container">
     <div class="col">
       <div class="row mb-lg-4">
@@ -362,7 +369,7 @@
               <img src="<?= base_url('assets/') ?>img/c2.png" class="img-fluid img-thumbnail p-0 rounded-0" alt="" width="180px">
             </div>
             <div class="col-8 ms-3 ms-lg-0">
-              <h3>How To Make Your Project Presentation</h3>
+              <h3>How To Tell Your Story</h3>
               <p>Our definitive roundup of everything from planning shipping to communicating with backers.</p>
               <a href="">Read More</a>
             </div>

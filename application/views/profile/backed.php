@@ -5,7 +5,7 @@
                 <ul class="list-group list-group-horizontal d-flex justify-content-end">
                     <li class="list-group-item bg-transparent border-0"><a href="" style="color: var(--kf-blue);">Backed Projects</a> </li>
                     <li class="list-group-item bg-transparent border-0"><a href="<?= base_url('profile/projects') ?>">Created Project</a></li>
-                    <li class="list-group-item bg-transparent border-0"> <a href="">Setting</a></li>
+                    <li class="list-group-item bg-transparent border-0"> <a href="<?= base_url('profile/account') ?>">Setting Account</a></li>
                     <li class="list-group-item bg-transparent border-0"><a href="<?= base_url('profile/' . $this->session->userdata('username')) ?>">Profile</a> </li>
                 </ul>
             </div>

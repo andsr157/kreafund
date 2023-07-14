@@ -1,12 +1,8 @@
 <div class="row">
     <div class="col-md-12 grid-margin">
         <div class="page-header d-flex justify-content-between align-items-center">
-            <h4 class="page-title">Data Barang</h4>
-            <div class="d-flex justify-content-start">
-                <a href="<?= base_url('item/add') ?>" class="btn btn-icons btn-inverse-primary btn-new ml-2">
-                    <i class="mdi mdi-plus"></i>
-                </a>
-            </div>
+            <h4 class="page-title">Data Transaksi Donasi</h4>
+            
         </div>
         <div class="card card-noborder b-radius">
             <div class="card-body">
@@ -64,11 +60,11 @@
                                         <td>
                                             <?php
                                             if ($data->status_code == 200) { ?>
-                                                <label for="" class="p-2 badge bg-success text-light">Success</label>
+                                                <label for="" class="p-2 badge bg-dark text-light">Success</label>
 
                                             <?php
                                             } else { ?>
-                                                <label for="" class=" p-2 badge bg-warning text-light">Pending</label>
+                                                <label for="" class=" p-2 badge bg-secondary">Pending</label>
                                             <?php
                                             }
                                             ?>

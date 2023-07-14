@@ -28,6 +28,13 @@ class Project_m extends CI_Model
         return $query;
     }
 
+    public function getDone(){
+        $this->db->from('project');
+        $this->db->where('status', 'selesai');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function getFeatured()
     {
         $this->db->select('*');
@@ -44,7 +51,8 @@ class Project_m extends CI_Model
         $this->db->from('project');
         $this->db->join('users', 'users.id = project.user_id');
         $this->db->order_by('project.created', 'DESC');
-        $this->db->limit(11);
+        $this->db->where('status','accepted');
+        $this->db->limit(7);
         $query = $this->db->get();
         return $query;
     }
@@ -116,7 +124,7 @@ class Project_m extends CI_Model
 
     public function getIdByTitle($name)
     {
-        $this->db->select('project_id');
+        $this->db->select('project_id, user_id');
         $this->db->from('project');
         $this->db->where('title', urldecode($name));
         $query = $this->db->get();

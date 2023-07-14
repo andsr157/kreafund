@@ -136,33 +136,31 @@
 
 
   <footer>
-    <div class="container-fluid">
+    <div class="container-fluid" style="font-family: 'maison-neubook'; background-image:url(<?=base_url('')?>); background-repeat:no-repeat; background-size:cover; background-position:-10px; " >
       <div class="row justify-content-beetween pl-20">
         <div class="col-4 col-lg-3">
-          <h4>About Us</h4>
+          <h4 class="mb-3 " style="font-weight: 600;" >ABOUT</h4>
           <ul>
-            <li>asasas</li>
-            <li>sas</li>
-            <li>asas</li>
-            <li>aasas</li>
+            <li class="mb-1">About us</li>
+            <li class="mb-1">Stats</li>
+            <li class="mb-1">Job</li>
           </ul>
         </div>
         <div class="col-4 col-lg-3">
-          <h4>About Us</h4>
+          <h4 class="mb-3"  style="font-weight: 600;"> PROJECT</h4>
           <ul>
-            <li>asasas</li>
-            <li>sas</li>
-            <li>asas</li>
-            <li>aasas</li>
+            <li class="mb-1">Art</li>
+            <li class="mb-1">Music</li>
+            <li class="mb-1">Film</li>
+            <li class="mb-1">Teknologi</li>
           </ul>
         </div>
         <div class="col-4 col-lg-3">
-          <h4>About Us</h4>
+          <h4 class="mb-3"  style="font-weight: 600;">SUPPORT</h4>
           <ul>
-            <li>asasas</li>
-            <li>sas</li>
-            <li>asas</li>
-            <li>aasas</li>
+            <li class="mb-1">Help Center</li>
+            <li class="mb-1">Our Rules</li>
+            <li class="mb-1">Brand assets</li>
           </ul>
         </div>
       </div>
@@ -172,9 +170,9 @@
             A Kreafund @2023
           </h4>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 " >
           <ul class="list-group list-group-horizontal">
-            <li class="list-group-item"><i class="fa-brands fa-facebook"></i></li>
+            <li class="list-group-item bg-transparent"><i class="fa-brands fa-facebook"></i></li>
             <li class="list-group-item"><i class="fa-brands fa-twitter"></i></li>
             <li class="list-group-item"><i class="fa-brands fa-instagram"></i></li>
             <li class="list-group-item"><i class="fa-brands fa-youtube"></i></li>
@@ -320,6 +318,16 @@
       setInterval(fetchData, 30000);
     });
   </script>
+
+<script>
+  function submitCustomForm(event) {
+    event.preventDefault(); 
+    var form = event.target.closest('form');
+    if (form) {
+      form.submit();
+    }
+  }
+</script>
 
 </body>
 

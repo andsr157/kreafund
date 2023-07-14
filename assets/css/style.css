@@ -395,7 +395,10 @@ color: var(--kf-primary-dark);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1. 5rem;
-  color: var(--kf-black);
+}
+.fresh h4:hover{
+ color: #037362;
+
 }
 
 .fresh .box{
@@ -428,6 +431,8 @@ color: var(--kf-primary-dark);
   padding-top : 0.5rem;
   width: 24rem;
 }
+
+
 
 .fresh .list-group{
   border-radius: 0;
@@ -1070,6 +1075,14 @@ footer .psc-8 ul{
 
 .project_detail{
   font-family: "maison_neuebook"
+}
+
+.project_detail .reward-box .list-group-item .rstat .backed{
+  background-color:var(--kf-ikon-pink);
+}
+
+.project_detail .reward-box .list-group-item .rstat .quantity{
+  background-color:var(--kf-ikon-green);
 }
 
 .project_detail a{

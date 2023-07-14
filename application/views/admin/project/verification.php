@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="buttonProcess d-flex justify-content-center px-5 pb-4">
-                        <button class="btn text-light p-3 px-4 mx-2 saveVerification"  style="background-color: #2752ff;" data-typestatus ="revisi">Revisi</button>
+                        <button class="btn text-light p-3 px-4 mx-2 saveVerification btn-dark"   data-typestatus ="revisi">Revisi</button>
                         <button class="btn text-light p-3 px-4 mx-2 saveVerification"  style="background-color: #ed4b4b;" data-typestatus ="rejected">Rejected</button>
                 </div>
             </div>

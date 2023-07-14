@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/kreafund/';
-// $config['base_url'] = 'https://e10a-103-164-115-58.ngrok-free.app/kreafund/';  
+// $config['base_url'] = 'https://0654-114-142-169-11.ngrok-free.app/kreafund/';  
 
 /*
 |--------------------------------------------------------------------------

@@ -1,5 +1,3 @@
-
-
 <section class="project_detail">
   <section class="hero">
     <div class="container">
@@ -11,15 +9,15 @@
         <div class="col-lg-8 content-box shadow ">
           <?php
           if ($project->row()->video != 'default.mp4') { ?>
-              <video id="project_video" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450" poster="<?= base_url('assets/img/' . $project->row()->image) ?>" data-setup="{}">
-                <source src="<?= base_url('assets/vid/' . $project->row()->video) ?>" type="video/mp4">
-              </video>
+            <video id="project_video" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450" poster="<?= base_url('assets/img/' . $project->row()->image) ?>" data-setup="{}">
+              <source src="<?= base_url('assets/vid/' . $project->row()->video) ?>" type="video/mp4">
+            </video>
           <?php
           } else { ?>
-               <img style="object-fit:cover" src="<?= base_url('assets/img/' . $project->row()->image) ?>" class="img-fluid p-0 w-100 h-100" alt="">
+            <img style="object-fit:cover" src="<?= base_url('assets/img/' . $project->row()->image) ?>" class="img-fluid p-0 w-100 h-100" alt="">
           <?php
           } ?>
-         
+
         </div>
 
         <?php
@@ -193,15 +191,43 @@
               <ul class="list-group list-group-vertical ">
                 <li class="list-group-item mb-4 px-4 pb-4">
                   <div class="row rcard ">
-                    <div class="image-box mx-auto my-3">
-                      <img src="" alt="">
-                    </div>
-                    <h3 class="my-3">Example Official </h3>
-                    <div class="row rdesc">
-                      <p>Get a hardcover printing of the Standard Landscape version 10" x 8".
-                        Thank you for supporting this project to shine a light on Burma.</p>
-                    </div>
+                    <style>
+                      .custom-submit {
+                        display: inline-block;
+                        padding: 4px 8px;
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        color: blue;
+                        text-decoration: underline;
+                      }
 
+                      .custom-submit:active {
+                        outline: none;
+                      }
+
+                      .round-img-circle {
+                        width: 72px;
+                        height: 72px;
+                        border-radius: 50%;
+                        background-size: cover;
+                        background-position: center;
+                      }
+                    </style>
+                    <div class="d-flex mx-auto mt-3 mb-2 justify-content-center">
+                      <img style="object-fit:cover;" class="round-img-circle" src="<?= base_url('assets/img/ikon/' . $user->avatar) ?>" alt="">
+                    </div>
+                    <h3 class="my-3"><?= $user->name ?> </h3>
+                    <form action="<?= base_url('profile/detail/' . $user->username) ?>" method="POST">
+                      <div class="row rdesc">
+                        <?php
+                        $words = explode(' ', $user->biography);
+                        $limitedWords = array_slice($words, 0, 30);
+                        $limitedBiography = implode(' ', $limitedWords);
+                        echo '<p>' . $limitedBiography . '...<button type="submit" class="custom-submit" onclick="submitCustomForm(event)">see details</button></p>';
+                        ?>
+                      </div>
+                    </form>
                   </div>
                 </li>
                 <form action="<?= base_url('snap/donate/withoutReward') ?>" method="POST">
@@ -225,6 +251,13 @@
                 </form>
                 <?php
                 foreach ($rewards as $reward) { ?>
+                  <?php
+                  updateRewardStock($project->row()->project_id, $reward->reward_id);
+                  $donaturReward = $this->trans_m->getDonaturReward($project->row()->project_id, $reward->reward_id);
+                  $estDelivery = $reward->est_delivery;
+                  $dateParts = explode("/", $estDelivery);
+                  $month = $dateParts[0];
+                  $year = $dateParts[1]; ?>
                   <form action="<?= base_url('snap/donate/' . formatCurrency($reward->amount)) ?>" method="POST">
                     <li class="list-group-item mb-3 ">
                       <div class="rimage">
@@ -234,9 +267,10 @@
                         <div class="row rcard">
                           <h2 class="my-4">Donasi <?= formatCurrency($reward->amount) ?> atau Lebih</h2>
                           <h3 class="mb-3"><?= $reward->title ?> </h3>
+                          
                           <div class="row rdesc">
                             <p><?= $reward->description ?></p>
-                            <span class="mb-2">Termasuk :</span>
+                            <span class="mb-2 ">Termasuk :</span>
                             <ul class="mb-2">
                               <?php
                               $itemlist = [];
@@ -252,20 +286,29 @@
                               ?>
                             </ul>
                           </div>
-                          <div class="row rstat">
-                            <div class="row-1 my-1">
-                              <button class="btn btn-xs btn-secondary">2 donatur</button>
+                          <div class="row rdesc pb-3">
+                          <span class="mb-2">Estimated Delivery</span>
+                          <ul>
+                            <li><?=$month?>-<?=$year?></li>
+                          </ul>
+                          
+                          </div>
+                          <div class="d-flex rstat ">
+                            <div class="row-1 me-3">
+                              <button class="btn btn-xs btn-secondary backed">
+                                <pre><?= $donaturReward ?> donatur</pre>
+                              </button>
                             </div>
                             <div class="row-1">
-                              <button class="btn btn-xs btn-secondary"><?php
+                              <button class="btn btn-xs btn-secondary quantity"><?php
                                                                         if ($reward->qty != 99999) {
-                                                                          echo '<span>Limited(' . $reward->qty . ')</span>';
+                                                                          echo '<span>Limited(' . $reward->temp_qty . ')</span>';
                                                                         } else if ($reward->qty == 99999) {
-                                                                          echo '<span>Unlimited</span>';
+                                                                          echo '<span >Unlimited</span>';
                                                                         }
                                                                         ?></button>
                             </div>
-                          </div>
+                          </div>  
                           <input type="hidden" name="rewardId" value="<?= $reward->reward_id ?>">
                           <input type="hidden" name="projectId" value="<?= $project->row()->project_id ?>">
                           <input type="hidden" name="rewardAmount" value="<?= $reward->amount ?>">
@@ -273,10 +316,20 @@
                           <input type="hidden" name="rewardTitle" value="<?= $reward->title ?>">
 
                           <div class="d-flex pt-3 justify-content-center">
+                            <?php
+                            if ($reward->temp_qty == 0) { ?>
+                              <button class="btn text-light rounded-0 w-50" style="background-color: #028858;" disabled>
+                                donasi <?= formatCurrency($reward->amount) ?>
+                              </button>
+                            <?php
+                            } else { ?>
+                              <button class="btn text-light rounded-0 w-50" style="background-color: #028858;">
+                                donasi <?= formatCurrency($reward->amount) ?>
+                              </button>
 
-                            <button class="btn text-light rounded-0 w-50" style="background-color: #028858;">
-                              donasi <?= formatCurrency($reward->amount) ?>
-                            </button>
+                            <?php
+                            }
+                            ?>
 
 
                           </div>

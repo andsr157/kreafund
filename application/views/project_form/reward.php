@@ -179,7 +179,7 @@
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-8">
-                    <button class="btn  p-2 btn-dark rounded-0 px-5" id="btn_add_item" style="background-color: var(--kf-primary); border-width: 0;" type="button">Save Reward
+                    <button class="btn  p-2 btn-dark rounded-0 px-5" id="btn_add_item" style="background-color: var(--kf-primary); border-width: 0;" type="button">Save Item
                     </button>
                 </div>
             </div>

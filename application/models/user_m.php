@@ -100,4 +100,6 @@ class User_m extends CI_Model
         $this->db->update('users', $params);
 
     }
+
+   
 }

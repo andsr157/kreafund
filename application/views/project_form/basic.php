@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="list-group-item mx-5 cat6">
-                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/launch') ?>>">
+                    <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $row->project_id . '/launch') ?>">
                         <div class="ikon">
                             <span>📢</span>
                             <p class="mt-3">Launch</p>

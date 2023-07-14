@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Website POS</title>
+  <title>Kreafund</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -69,15 +69,9 @@
       <!-- SideNav -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item nav-profile">
-            <a href="" class="nav-link">
-              <div class="text-wrapper">
-                <p class="profile-name"></p>
-                <p class="designation"></p>
-              </div>
-            </a>
+          <li style="margin-top:9rem;">
+
           </li>
-          <li class="nav-item nav-category">Daftar Menu</li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('dashboard') ?>">
               <span class="menu-title">Dashboard</span>
@@ -97,6 +91,11 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('projects/verification') ?>">
                 <span class="menu-title">Verifikasi Project</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('projects/done') ?>">
+                <span class="menu-title">Project Selesai</span>
               </a>
           </li>
           
@@ -173,6 +172,11 @@
 <script>
     $(document).ready(function() {
       $('#v_table').DataTable();
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('#done_table').DataTable();
     });
   </script>
 

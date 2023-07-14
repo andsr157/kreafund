@@ -54,7 +54,7 @@
 
                         <div class="d-flex justify-content-end me-3">
                             <?php if ($this->uri->segment(4) != "backer") { ?>
-                                <a href="<?= base_url('project/'.$this->session->userdata('username').'/' . $this->uri->segment(3)) .'/review'?>">
+                                <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3)) . '/review' ?>">
                                     <button class="btn btn-light text-light rounded-0 me-3 px-5 border-0" style="background-color:var(--kf-primary);"> Preview </button>
                                 </a>
                             <?php
@@ -201,7 +201,7 @@
         </div>
     </div>
 
-    
+
 
 
 
@@ -227,7 +227,7 @@
                                         <li class="my-1">Shirt 4x</li>
                                         <li class="my-1">Cap 1x</li>
                                     </ul>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1540,13 +1540,51 @@
             item += '<ul>'
             $.getJSON('<?= base_url('transaction/item/') ?>' + $(this).data('reward_id'), function(data) {
                 $.each(data, function(key, val) {
-                    item += '<li>' + val.item_name + ' '+ val.qty+'x'+'</li>'
+                    item += '<li>' + val.item_name + ' ' + val.qty + 'x' + '</li>'
                 })
                 item += '</ul>'
                 $('#detailBackerItem').html(item)
             })
 
         })
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#rtitle').keyup(function() {
+                var rewardTitlePrev = $(this).val();
+                $('#rTitlePreview').text(rewardTitlePrev);
+            });
+            $('#desc').keyup(function() {
+                var rewardDescPrev = $(this).val();
+                $('#rDescPreview').text(rewardDescPrev);
+            });
+
+            $('#amunt').keyup(function() {
+                var rewardAmountPrev = $(this).val();
+                $('#rAmountPreview').text(rewardAmountPrev);
+            });
+        })
+
+        $(document).ready(function() {
+            $('#reward-gambar').change(function() {
+                var fileInput = $(this)[0];
+                var previewElement = $('#rGambarPreview');
+
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        previewElement.attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                } else {
+                    previewElement.attr('src', '');
+                }
+            });
+        });
     </script>
 </body>
 

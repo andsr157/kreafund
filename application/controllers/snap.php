@@ -37,6 +37,7 @@ class Snap extends CI_Controller
 
 	public function donate()
 	{
+		check_not_login();
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->input->post('projectId'));
 		if ($check == false) {
 			$data['rewardId'] = $this->input->post('rewardId');
@@ -53,6 +54,7 @@ class Snap extends CI_Controller
 
 	public function specDonate()
 	{
+		check_not_login();
 		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->input->post('projectId'));
 		if ($check == false) {
 			$data['projectId'] = $this->input->post('projectId');

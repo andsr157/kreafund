@@ -24,10 +24,11 @@ class Reward extends CI_Controller
 			$params['description'] = $post['desc'];
 			$params['est_delivery'] = $post['month'] . "/" . $post['year'];
 			$params['project_id'] = $post['project_id'];
-			if (isset($post['unlimited'])) {
+			
+			if (isset($post['unlimited']) && !empty($post['unlimited']) ) {
 				$params['qty'] = $post['unlimited'];
 				$params['temp_qty'] = $post['unlimited'];
-			} else if (isset($post['limited'])) {
+			} else if (isset($post['limited']) && !empty($post['limited'])) {
 				$params['qty'] = $post['limited'];
 				$params['temp_qty'] = $post['limited'];
 			}
@@ -39,8 +40,8 @@ class Reward extends CI_Controller
 			}
 
 			$config['upload_path'] = './assets/img/reward';
-			$config['allowed_types'] = 'jpg|jpeg';
-			$config['max_size'] = 20480; // maksimum 2MB
+			$config['allowed_types'] = 'jpg|jpeg|png|avif';
+			$config['max_size'] = 204800; // maksimum 2MB
 			$config['encrypt_name'] = TRUE;
 
 			$this->upload->initialize($config);

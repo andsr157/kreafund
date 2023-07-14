@@ -2,7 +2,7 @@ html{
 	scroll-behavior: smooth;
 }
 .bg-blue{
-	background-color: #05CE78;
+	background-color: #282828;
 }
 
 .bg-blue-2{
@@ -46,7 +46,7 @@ html{
 .icon-round{
 	border-radius: 10px;
 	border: 1px solid #fff;
-	background: #05CE78;
+	background: #282828;
 	font-size: 18px;
 	font-weight: bold;
 	line-height: 25px;

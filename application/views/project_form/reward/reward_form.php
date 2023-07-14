@@ -2,7 +2,7 @@
     <div class="container px-5">
         <div class="ms-5">
             <div class="row">
-                <div class="title-form" >
+                <div class="title-form">
                     <h2>Add Rewardd</h2>
                 </div>
                 <div class="type-13">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="continer-fluid px-0 border-bottom border-2 my-5 "></div>
 
                     <div>
@@ -98,7 +98,7 @@
                             <button class="btn w-100 p-2 btn-dark rounded-0 " style="background-color: var(--kf-btn-grey);" onclick="show11()" type="button"> + New Item</button>
                         </div>
 
-    
+
 
                         <div class="row p-3 mt-3 border border-1 hide" id="itemform-wrap">
                             <div class="item-form">
@@ -123,12 +123,12 @@
                                     <input type="text" class="form-control rounded-0 " placeholder="Sticker" id="custom_item">
                                 </div>
                                 <div class="row px-3 mt-3">
-                                    <button class="btn w-100 p-2 btn-dark rounded-0" style="background-color: var(--kf-btn-grey);"  id="save_item" type="button">
+                                    <button class="btn w-100 p-2 btn-dark rounded-0" style="background-color: var(--kf-btn-grey);" id="save_item" type="button">
                                         save
                                     </button>
                                 </div>
                                 <div class="row px-3 mt-3">
-                                    <button class="btn w-100 p-2 btn-light rounded-0" style="background-color: var(--kf-bg-grey-color);"  onclick="hide1()" type="button">
+                                    <button class="btn w-100 p-2 btn-light rounded-0" style="background-color: var(--kf-bg-grey-color);" onclick="hide1()" type="button">
                                         cancel
                                     </button>
                                 </div>
@@ -269,12 +269,12 @@
                         </button>
                     </div>
                     <div class="row">
-                        
-                            <button class="btn w-100 p-2 border-0 rounded-0" style="background-color: var(--kf-bg-grey-color);" type="button">
+
+                        <button class="btn w-100 p-2 border-0 rounded-0" style="background-color: var(--kf-bg-grey-color);" type="button">
                             <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3) . '/edit/reward') ?>">
                                 cancel</a>
-                            </button>
-                        
+                        </button>
+
                     </div>
                 </div>
 
@@ -293,28 +293,46 @@
                         </div>
                         <div class="px-4 pb-4">
                             <div class="row rcard">
-                                <h2 class="my-4">Donasi 50K atau Lebih</h2>
-                                <h3 class="mb-3">A streaming link on May 20! </h3>
-                                <div class="row rdesc">
-                                    <p>Get a hardcover printing of the Standard Landscape version 10" x 8".
-
-                                        Thank you for supporting this project to shine a light on Burma.</p>
-                                    <span class="mb-2">Termasuk :</span>
-                                    <ul class="mb-2">
-                                        <li>
-                                            A very enthusiastic high five. Real or virtual.
-                                        </li>
-                                        <li>
-                                            A virtual meet-up to meet the author
-                                        </li>
-                                    </ul>
+                                <div class="rimage">
+                                    <img src="" class="img-fluid img-thumbnail rounded-0 w-100" alt="" id="rGambarPreview">
                                 </div>
-                                <div class="row rstat">
-                                    <div class="row-1 my-1">
-                                        <button class="btn btn-xs btn-secondary">2 donatur</button>
-                                    </div>
-                                    <div class="row-1">
-                                        <button class="btn btn-xs btn-secondary">Limited (97/98)</button>
+                                <div class="px-4 pb-4">
+                                    <div class="row rcard">
+                                        <h2 class="my-4">Donasi <span id="rAmountPreview"></span> atau Lebih</h2>
+                                        <h3 class="mb-3" id="rTitlePreview">Title Reward </h3>
+                                        <div class="row rdesc">
+                                            <p id="rDescPreview"></p>
+                                            <span class="mb-2">Termasuk :</span>
+                                            <ul class="mb-2">
+
+                                            </ul>
+                                        </div>
+                                        <div class="row rstat">
+                                            <div class="row-1 my-1">
+                                                <button class="btn btn-xs btn-secondary">
+                                                    <pre>0 donatur</pre>
+                                                </button>
+                                            </div>
+                                            <div class="row-1">
+                                                <button class="btn btn-xs btn-secondary">
+                                                    <span>Limited(90)</span>
+
+                                                    <!-- <span>Unlimited</span> -->
+
+                                                </button>
+                                            </div>
+                                        </div>
+                                       
+
+                                        <div class="d-flex pt-3 justify-content-center">
+                                            
+                                                <button class="btn text-light rounded-0 w-50" style="background-color: #028858;">
+                                                    donasi <span>20K</span>
+                                                </button>
+
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>

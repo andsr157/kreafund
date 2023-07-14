@@ -10,7 +10,7 @@
                   <i class="mdi mdi-dropbox"></i>
                 </div>
                 <div class="ml-3">
-                  <p class="m-0 text-white">Jumlah Item / Barang</p>
+                  <p class="m-0 text-white">Jumlah Project Aktif</p>
                   <h5 class="text-white"></h5>
                 </div>
               </div>
@@ -27,7 +27,7 @@
                   <i class="mdi mdi-wallet-membership"></i>
                 </div>
                 <div class="ml-3">
-                  <p class="m-0">Customer Member</p>
+                  <p class="m-0">Jumlah Projek Selesai</p>
                   <h5></h5>
                 </div>
               </div>
@@ -61,7 +61,7 @@
                   <i class="mdi mdi-truck "></i>
                 </div>
                 <div class="ml-3">
-                  <p class="m-0">Jumlah Supplier</p>
+                  <p class="m-0">Jumlah Projek Diajukan</p>
                   <h5></h5>
                 </div>
               </div>
@@ -75,9 +75,9 @@
         <div class="col-12">
             <div class="card b-radius card-noborder " style="height:500px;">
                 <div class="animate__animated animate__tada animate__infinite mx-auto" style="margin-top: 210px;">
-                    <h1 class="">
+                    <!-- <h1 class="">
                         Kamu nanye</b>
-                    </h1>
+                    </h1> -->
                 </div>
                 
             </div>

@@ -27,7 +27,7 @@
           <div>
             <span><?= $project->row()->duration ?></span>
 
-            <p>Hari</p>
+            <p>Hari Lagi</p>
           </div>
 
           <div class="row">
@@ -86,7 +86,7 @@
           </div>
           <div class="col-2"></div>
           <div class="col-2">
-            <a href="<?= base_url('project/'.$this->session->userdata('username').'/'.$this->uri->segment(3)) ?>">
+            <a href="<?= base_url('project/' . $this->session->userdata('username') . '/' . $this->uri->segment(3)) ?>">
               <button class="btn text-light rounded-0 w-75 me-5" style="background-color: var(--kf-primary-blue);">Kembali</button>
             </a>
           </div>
@@ -155,13 +155,21 @@
                   .custom-submit:active {
                     outline: none;
                   }
+
+                  .round-img-circle {
+                    width: 72px;
+                    height: 72px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    background-position: center;
+                  }
                 </style>
                 <form action="<?= base_url('profile/detail/' . $project->row()->username) ?>" method="POST">
                   <input type="hidden" name="userId" value="<?= $project->row()->user_id ?>">
                   <li class="list-group-item mb-4 px-4 pb-4">
                     <div class="row rcard">
-                      <div class="image-box mx-auto mt-3 mb-2" >
-                        <img style="object-fit:cover;" class="h-100" src="<?= base_url('assets/img/ikon/' . $project->row()->avatar) ?>" alt="">
+                      <div class="d-flex mx-auto mt-3 mb-2 justify-content-center">
+                        <img style="object-fit:cover;" class="round-img-circle" src="<?= base_url('assets/img/ikon/' . $project->row()->avatar) ?>" alt="">
                       </div>
                       <h3 class="my-3"><?= $project->row()->username ?></h3>
                       <div class="row rdesc">

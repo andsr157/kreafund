@@ -2,6 +2,7 @@
   <div class="container projects">
     <div class="row mb-5">
       <?php foreach ($projects->result() as $index => $project) { ?>
+       <?= updateProjectStatus($project->finish, $project->project_id)?>
         <div class="col-4 px-3 mt-5">
           <a href="<?= base_url('projects/' . $project->title . '/detail') ?>">
             <div class="procard">
@@ -10,7 +11,7 @@
               </div>
               <div class="caption p-3 pb-">
                 <h3><?= $project->title ?></h3>
-                <p><?= $project->subtitle ?></p>
+                <p><?= $project->subtitle ?></p>  
                 <a href=""><?= $project->username ?></a>
               </div>
               <?php

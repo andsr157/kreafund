@@ -57,7 +57,7 @@
 
                                                     <div>
                                                         <a href="<?= base_url('projects/review/' . $row->project_id) ?>">
-                                                            <button type="button" id="detail-report" class="btn btn-edit py-3 btn-warning" data-project_id="<?= $row->project_id ?>" data-toggle="modal">
+                                                            <button type="button" id="detail-report" class="btn btn-edit py-3 btn-secondary" data-project_id="<?= $row->project_id ?>" data-toggle="modal">
                                                                 <i class="mdi mdi-eye "></i> Review
                                                             </button>
                                                         </a>
@@ -67,7 +67,7 @@
                                                             </button>
                                                         </a>
                                                         <a href="<?= base_url('review/acc/' . $row->project_id) ?>" onclick="return confirm('Konfirmasi persetujuan project')">
-                                                            <button type="button" id="detail-report" class="btn btn-edit py-3 btn-success" data-project_id="<?= $row->project_id ?>" data-toggle="modal">
+                                                            <button type="button" id="detail-report" class="btn btn-edit py-3 btn-dark" data-project_id="<?= $row->project_id ?>" data-toggle="modal">
                                                                 <i class="mdi mdi-eye "></i> Accept
                                                             </button>
                                                         </a>

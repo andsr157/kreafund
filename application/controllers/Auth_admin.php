@@ -37,7 +37,10 @@ class Auth_admin extends CI_Controller{
                     </script>";
                 }
                 }else{
-                    redirect('home');
+                    echo "<script>
+                        alert('login gagal');
+                        window.location='".base_url('admin')."';
+                    </script>";
                 }
                 
         }
@@ -47,7 +50,7 @@ class Auth_admin extends CI_Controller{
     {
         $params = array('user_id','level');
         $this->session->unset_userdata($params);
-        redirect('admin');
+        redirect('amin');
     }
 }
 

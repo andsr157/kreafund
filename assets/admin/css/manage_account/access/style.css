@@ -114,9 +114,9 @@
 }
 
 .admin-span, .admin-span:hover{
-	color: #ff6258;
+	color: #fff;
 	font-weight: bold;
-	background-color: rgba(255, 98, 88, 0.2);
+	background-color: #282828;
 	padding: 4px 10px !important;
 }
 

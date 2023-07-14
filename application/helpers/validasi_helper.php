@@ -67,7 +67,9 @@ function checkStatusProject($id)
     $ci = &get_instance();
     $data = $ci->project_m->get_all($id)->row()->status;
     if ($data == 'accepted' || $data == "pending") {
-        redirect('project/' . $ci->session->userdata('username') . '/' . $id);
+        // redirect('project/' . $ci->session->userdata('username') . '/' . $id);
+        echo "<script>alert('data tidak disimpan')</script>";
+		echo "<script>window.location='" . base_url('project/' . $ci->session->userdata('username')) .'/'. $id . "'</script>";
     }
 }
 
@@ -110,3 +112,56 @@ function calculatePercentage($amount, $goal) {
     
     return $percentage;
 }
+
+function updateProjectStatus($finish, $id) {
+    $finishDate = date('Y-m-d', strtotime($finish));
+    $currentDate = date('Y-m-d');
+
+    if ($finishDate === $currentDate) {
+        $CI = &get_instance();
+        $CI->db->set('status', 'selesai');
+        $CI->db->where('project_id', $id);
+        $CI->db->update('project');
+    }
+}
+
+
+function updateRewardStock($project_id, $reward_id) {
+    $CI = &get_instance();
+    
+    // Menghitung jumlah transaksi dengan project_id, reward_id, dan status_code tertentu
+    $CI->db->select('COUNT(*) as total_transactions');
+    $CI->db->from('transaction');
+    $CI->db->where('project_id', $project_id);
+    $CI->db->where('reward_id', $reward_id);
+    $CI->db->where('status_code', 200);
+    $query = $CI->db->get();
+    $result = $query->row();
+    $total_transactions = $result->total_transactions;
+
+    // Mengambil nilai qty yang ada dalam tabel rewards
+    $CI->db->select('qty');
+    $CI->db->from('reward');
+    $CI->db->where('reward_id', $reward_id);
+    $query = $CI->db->get();
+    $result = $query->row();
+    $current_qty = $result->qty;
+
+    // Mengurangi total_transactions dari current_qty
+    if($current_qty == 99999){
+        $new_qty = $current_qty;
+    }else if($current_qty == 0){
+        $new_qty = 0;
+    }else{
+        $new_qty = $current_qty - $total_transactions;
+    }
+
+    // Update qty dengan new_qty
+    $CI->db->set('temp_qty', $new_qty);
+    $CI->db->where('reward_id', $reward_id);
+    $CI->db->update('reward');
+}
+
+
+
+
