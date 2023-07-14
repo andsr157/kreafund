@@ -25,12 +25,17 @@ Cara Menjalankan aplikasi
 **************************
 Akun Login
 **************************
+
+
 ------ user -------
 email = user@gmail.com
 Password = user123
 ------ admin ------
 email = admin@kreafund.com
 password = admin123
+
+
+
 *******************
 Server Requirements
 *******************
