@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -53,10 +53,11 @@ $route['default_controller'] = 'home';
 $route['404_override'] = 'Custom404';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['admin'] = 'auth_admin/login';
+
 $route['projects/process'] = 'projects/process';
+$route['admin'] = 'auth_admin/login';
 $route['projects/review/(:num)'] = 'review/preview';
-$route['project/delete/(:num)'] = 'projects/delete';    
+$route['project/delete/(:num)'] = 'projects/delete';
 $route['project/(:any)/(:num)'] = 'projects/project';
 $route['discovery'] = 'projects/discovery';
 $route['discovery/(:any)'] = 'projects/category';
@@ -90,5 +91,3 @@ $route['transaksi'] = 'transaction/transaksi';
 $route['review/submit/(:num)'] = 'review/submit';
 $route['snap/donate/withoutReward'] = 'snap/pureDonate';
 $route['snap/donate/(:any)'] = 'snap/specDonate';
-
-

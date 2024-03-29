@@ -77,7 +77,7 @@ class Snap extends CI_Controller
 			$data['DonateAmount'] = $this->input->post('noReward');
 
 			$this->template->load('template/template_clean', 'donate/puredonate', $data);
-		}else{
+		} else {
 			echo "<script>alert('Tidak bisa donate pada project sendiri')</script>";
 			echo "<script>window.location='" . base_url('discovery') . "'</script>";
 		}
@@ -85,8 +85,6 @@ class Snap extends CI_Controller
 
 	public function token()
 	{
-
-
 		$projectId = $this->input->post('projectId');
 		$rewardId = $this->input->post('rewardId');
 		$backer = $this->input->post('backer');

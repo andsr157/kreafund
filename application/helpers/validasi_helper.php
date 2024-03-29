@@ -69,7 +69,7 @@ function checkStatusProject($id)
     if ($data == 'accepted' || $data == "pending") {
         // redirect('project/' . $ci->session->userdata('username') . '/' . $id);
         echo "<script>alert('data tidak disimpan')</script>";
-		echo "<script>window.location='" . base_url('project/' . $ci->session->userdata('username')) .'/'. $id . "'</script>";
+        echo "<script>window.location='" . base_url('project/' . $ci->session->userdata('username')) . '/' . $id . "'</script>";
     }
 }
 
@@ -83,7 +83,8 @@ function format_datetime($datetime)
 }
 
 
-function calculate_datetime($startDateTime, $duration) {
+function calculate_datetime($startDateTime, $duration)
+{
     // Konversi tanggal mulai ke dalam format timestamp
     $startTimestamp = strtotime($startDateTime);
 
@@ -99,21 +100,23 @@ function calculate_datetime($startDateTime, $duration) {
     return $endDateTime;
 }
 
-function calculatePercentage($amount, $goal) {
+function calculatePercentage($amount, $goal)
+{
     if ($goal == 0) {
         return 0; // Mengembalikan 0 jika tujuan (goal) adalah 0
     }
-    
+
     $percentage = ($amount / $goal) * 100;
-    
+
     if ($percentage >= 100) {
         return 100; // Mengembalikan nilai 100 jika persentase melebihi atau sama dengan 100
     }
-    
-    return $percentage;
+
+    return floor($percentage);
 }
 
-function updateProjectStatus($finish, $id) {
+function updateProjectStatus($finish, $id)
+{
     $finishDate = date('Y-m-d', strtotime($finish));
     $currentDate = date('Y-m-d');
 
@@ -126,9 +129,10 @@ function updateProjectStatus($finish, $id) {
 }
 
 
-function updateRewardStock($project_id, $reward_id) {
+function updateRewardStock($project_id, $reward_id)
+{
     $CI = &get_instance();
-    
+
     // Menghitung jumlah transaksi dengan project_id, reward_id, dan status_code tertentu
     $CI->db->select('COUNT(*) as total_transactions');
     $CI->db->from('transaction');
@@ -148,11 +152,11 @@ function updateRewardStock($project_id, $reward_id) {
     $current_qty = $result->qty;
 
     // Mengurangi total_transactions dari current_qty
-    if($current_qty == 99999){
+    if ($current_qty == 99999) {
         $new_qty = $current_qty;
-    }else if($current_qty == 0){
+    } else if ($current_qty == 0) {
         $new_qty = 0;
-    }else{
+    } else {
         $new_qty = $current_qty - $total_transactions;
     }
 
@@ -161,7 +165,3 @@ function updateRewardStock($project_id, $reward_id) {
     $CI->db->where('reward_id', $reward_id);
     $CI->db->update('reward');
 }
-
-
-
-

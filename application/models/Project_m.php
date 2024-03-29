@@ -6,14 +6,14 @@ class Project_m extends CI_Model
     {
         $this->db->from('project');
         $this->db->join('users', 'users.id = project.user_id');
-        if ($id != null) {
-            $this->db->where('project_id', $id);
-        }
+
+        $this->db->where('project_id', $id);
+
         $query = $this->db->get();
         return $query;
     }
 
-    public function getByUserId($id )
+    public function getByUserId($id)
     {
         $this->db->from('project');
         $this->db->where('user_id', $id);
@@ -21,14 +21,16 @@ class Project_m extends CI_Model
         return $query;
     }
 
-    public function getVerification(){
+    public function getVerification()
+    {
         $this->db->from('project');
         $this->db->where('status', 'pending');
         $query = $this->db->get();
         return $query;
     }
 
-    public function getDone(){
+    public function getDone()
+    {
         $this->db->from('project');
         $this->db->where('status', 'selesai');
         $query = $this->db->get();
@@ -51,7 +53,7 @@ class Project_m extends CI_Model
         $this->db->from('project');
         $this->db->join('users', 'users.id = project.user_id');
         $this->db->order_by('project.created', 'DESC');
-        $this->db->where('status','accepted');
+        $this->db->where('status', 'accepted');
         $this->db->limit(7);
         $query = $this->db->get();
         return $query;
@@ -84,7 +86,7 @@ class Project_m extends CI_Model
         return $query;
     }
 
-    
+
 
     public function getAllByCategory($category = null, $status = null)
     {
@@ -187,25 +189,28 @@ class Project_m extends CI_Model
     }
 
 
-    public function getRevition($id){
+    public function getRevition($id)
+    {
         $this->db->from('verification');
-        $this->db->where('project_id',$id);
-        $this->db->order_by('created', 'desc'); 
+        $this->db->where('project_id', $id);
+        $this->db->order_by('created', 'desc');
         $query = $this->db->get();
         return $query;
     }
 
-    public function getRejected($id){
+    public function getRejected($id)
+    {
         $this->db->from('verification');
-        $this->db->where('project_id',$id);
-        $this->db->where('type','rejected');
+        $this->db->where('project_id', $id);
+        $this->db->where('type', 'rejected');
         $query = $this->db->get()->row();
         return $query;
     }
 
-    public function getDuration($id){
+    public function getDuration($id)
+    {
         $this->db->select('duration');
-        $this->db->where('project_id',$id);
+        $this->db->where('project_id', $id);
         $query = $this->db->get('project');
         return $query->row();
     }

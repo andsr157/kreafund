@@ -322,13 +322,13 @@
                                                 </button>
                                             </div>
                                         </div>
-                                       
+
 
                                         <div class="d-flex pt-3 justify-content-center">
-                                            
-                                                <button class="btn text-light rounded-0 w-50" style="background-color: #028858;">
-                                                    donasi <span>20K</span>
-                                                </button>
+
+                                            <button class="btn text-light rounded-0 w-50" style="background-color: #028858;">
+                                                donasi <span>20K</span>
+                                            </button>
 
 
 

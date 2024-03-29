@@ -2,7 +2,7 @@
   <div class="container projects">
     <div class="row mb-5">
       <?php foreach ($projects->result() as $index => $project) { ?>
-       <?= updateProjectStatus($project->finish, $project->project_id)?>
+        <?= updateProjectStatus($project->finish, $project->project_id) ?>
         <div class="col-4 px-3 mt-5">
           <a href="<?= base_url('projects/' . $project->title . '/detail') ?>">
             <div class="procard">
@@ -11,25 +11,25 @@
               </div>
               <div class="caption p-3 pb-">
                 <h3><?= $project->title ?></h3>
-                <p><?= $project->subtitle ?></p>  
+                <p><?= $project->subtitle ?></p>
                 <a href=""><?= $project->username ?></a>
               </div>
               <?php
-                  $amount = $this->trans_m->getById($project->project_id);
-                  $percentage = calculatePercentage($amount, $project->goal);
-                  ?> 
+              $amount = $this->trans_m->getById($project->project_id);
+              $percentage = calculatePercentage($amount, $project->goal);
+              ?>
               <div class="fund p-3">
                 <div class="bargrey mb-3">
-                  
-                  <div class="bargreen" style="width:<?=$percentage?>%"></div>
+
+                  <div class="bargreen" style="width:<?= $percentage ?>%"></div>
                 </div>
                 <div class="typef green mb-1">
-                  
-                  <span>Rp.<?=number_format($amount, 0, ',', '.')?></span>
+
+                  <span>Rp.<?= number_format($amount, 0, ',', '.') ?></span>
                   <span>diperoleh</span>
                 </div>
                 <div class="typef mb-1">
-                  <span><?=$percentage?>%</span> 
+                  <span><?= $percentage ?>%</span>
                   <span>target</span>
                 </div>
                 <?php

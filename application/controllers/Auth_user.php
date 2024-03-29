@@ -21,7 +21,7 @@ class Auth_user extends CI_Controller
         $this->_sendEmail();
     }
 
-    private function _sendEmail($token)
+    private function _sendEmail($token = null)
     {
         $config = [
             'protocol' => 'smtp',
@@ -32,7 +32,6 @@ class Auth_user extends CI_Controller
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
-
         ];
 
         $this->load->library('email', $config);
@@ -114,7 +113,7 @@ class Auth_user extends CI_Controller
                 $this->user_m->add($post);
                 if ($this->db->affected_rows() > 0) {
                 }
-                echo"alert('akun berhasil dibuat')";
+                echo "alert('akun berhasil dibuat')";
                 echo "<script>window.location='" . base_url('auth_user/login') . "'</script>";
             }
         }
@@ -198,7 +197,7 @@ class Auth_user extends CI_Controller
 
         if (isset($post['reset'])) {
 
-            if(!$this->session->userdata('reset_email')){
+            if (!$this->session->userdata('reset_email')) {
                 redirect('auth_user/login');
             }
             $this->form_validation->set_rules(
@@ -214,7 +213,8 @@ class Auth_user extends CI_Controller
             $this->form_validation->set_rules(
                 're_password',
                 'Passconf',
-                'required|trim|matches[password]',[
+                'required|trim|matches[password]',
+                [
                     'matches' => 'Password Tidak Sama!!',
                     'min_length' => 'Password minimal 5 karakter'
                 ]
@@ -222,25 +222,24 @@ class Auth_user extends CI_Controller
 
             if ($this->form_validation->run() == false) {
                 $this->template->load('template/template_basic', 'auth/reset');
-                
-            }else{
+            } else {
 
                 $post = $this->input->post(null, true);
                 $email = $this->session->userdata('reset_email');
                 $this->user_m->updatePassword($post, $email);
 
-                    $this->session->set_flashdata(
-                        'pesan',
-                        '<div class="alert alert-success d-flex align-items-center alert-message" role="alert">
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-success d-flex align-items-center alert-message" role="alert">
                             <div>
                               Password sukses diganti
                             </div>
                         </div>'
-                    );
-                    $params = array('user_id', 'level','username','avatar');
-                    $this->session->unset_userdata($params);
-                    redirect('auth_user/login');
-                
+                );
+                $params = array('user_id', 'level', 'username', 'avatar');
+                $this->session->unset_userdata($params);
+                redirect('auth_user/login');
+
                 $this->session->unset_userdata('reset_email');
             }
         }
@@ -249,7 +248,7 @@ class Auth_user extends CI_Controller
 
     public function logout()
     {
-        $params = array('user_id', 'level','username','avatar');
+        $params = array('user_id', 'level', 'username', 'avatar');
         $this->session->unset_userdata($params);
         redirect('home');
     }

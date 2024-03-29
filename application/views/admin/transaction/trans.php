@@ -2,14 +2,14 @@
     <div class="col-md-12 grid-margin">
         <div class="page-header d-flex justify-content-between align-items-center">
             <h4 class="page-title">Data Transaksi Donasi</h4>
-            
+
         </div>
         <div class="card card-noborder b-radius">
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 table-responsive">
 
-                        <table class="table table-custom"  id="table1">
+                        <table class="table table-custom" id="table1">
                             <thead>
                                 <tr>
                                     <th></th>

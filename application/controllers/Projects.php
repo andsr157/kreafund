@@ -25,14 +25,15 @@ class Projects extends CI_Controller
 
 	public function project()
 	{
-		$check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
-		if ($check == true) {
-			$id = $this->uri->segment(3);
-			$data['row'] = $this->project_m->get($id)->row();
-			$this->template->load('template/p_form_template', 'project_form/pform', $data);
-		} else {
-			redirect('home');
-		}
+		// $check = $this->validasi->check_own_project($this->session->userdata('user_id'), $this->uri->segment(3));
+		// $chcek = true;
+		// if ($check == true) {
+		$id = $this->uri->segment(3);
+		$data['row'] = $this->project_m->get(($id))->row();
+		$this->template->load('template/p_form_template', 'project_form/pform', $data);
+		// } else {
+		// 	redirect('home');
+		// }
 	}
 
 	public function pledge()
@@ -75,7 +76,7 @@ class Projects extends CI_Controller
 		check_not_login();
 
 		$post = $this->input->post(null, TRUE);
-		
+
 		if (isset($post['add'])) {
 			// $this->form_validation->set_rules('category', 'Category', 'required');
 			// $this->form_validation->set_rules('subcat', 'Subcategory', 'required');
@@ -321,7 +322,7 @@ class Projects extends CI_Controller
 
 		check_admin();
 		$data['project'] = $this->project_m->getDone()->result();
-	
+
 
 		$this->template->load('template/template_admin', 'admin/project/project_done', $data);
 	}
@@ -333,8 +334,8 @@ class Projects extends CI_Controller
 		$data['trans'] = $this->trans_m->getResult($this->uri->segment(3))->result();
 		$data['payment'] =  $this->trans_m->getPaymentInfo($this->uri->segment(3));
 		$data['project'] =  $this->project_m->get($this->uri->segment(3))->row();
-	
-		$this->template->load('template/template_admin', 'admin/project/result',$data);
+
+		$this->template->load('template/template_admin', 'admin/project/result', $data);
 	}
 
 	public function method()

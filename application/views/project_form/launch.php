@@ -95,7 +95,7 @@
             </div>
 
         </div>
-        <?php 
+        <?php
         if ($status == 'rejected') { ?>
             <div class="container text-center p-5  mt-4 " style="border: solid; border-color:red; border-width:2px; ">
                 <h4><?= $rejected->verification_desc ?></h4>
@@ -112,7 +112,7 @@
         <?php
         } ?>
         <?php if ($status == 'revisi') { ?>
-            <a href="<?= base_url('review/submit/' . $this->uri->segment(3)) ?>"  onclick="return confirm('Apakah anda yakin mensubmit project?')">
+            <a href="<?= base_url('review/submit/' . $this->uri->segment(3)) ?>" onclick="return confirm('Apakah anda yakin mensubmit project?')">
                 <button class="btn rounded-0 revisi-btn" style="background-color: var(--kf-primary-blue);">Submit Again!!</button>
             </a>
         <?php

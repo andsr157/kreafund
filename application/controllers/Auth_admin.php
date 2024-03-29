@@ -1,24 +1,24 @@
-<?php defined('BASEPATH') or exit ('no direct script access allowed');
-    
-class Auth_admin extends CI_Controller{
+<?php defined('BASEPATH') or exit('no direct script access allowed');
+
+class Auth_admin extends CI_Controller
+{
 
     public function Login()
     {
-        check_already_login_admin();
         $this->load->view('admin/auth/login');
     }
 
-    
+
 
     public function process()
     {
-        $post =$this->input->post(null, TRUE);
-        if(isset($post['login'])){
+        $post = $this->input->post(null, TRUE);
+        if (isset($post['login'])) {
             $query = $this->user_m->login($post);
-            if($query->num_rows() > 0){
-                
+            if ($query->num_rows() > 0) {
+
                 $row = $query->row();
-                if($row->level == 1){
+                if ($row->level == 1) {
                     $params = array(
                         'user_id' => $row->id,
                         'level' => $row->level,
@@ -27,30 +27,27 @@ class Auth_admin extends CI_Controller{
                     $this->session->set_userdata($params);
                     echo "<script>
                         alert('selamat ,login berhasil');
-                        window.location='".base_url('dashboard')."';
+                        window.location='" . base_url('dashboard') . "';
                     </script>";
-    
-                }else{
+                } else {
                     echo "<script>
                         alert('login gagal');
-                        window.location='".base_url('admin')."';
+                        window.location='" . base_url('admin') . "';
                     </script>";
                 }
-                }else{
-                    echo "<script>
+            } else {
+                echo "<script>
                         alert('login gagal');
-                        window.location='".base_url('admin')."';
+                        window.location='" . base_url('admin') . "';
                     </script>";
-                }
-                
+            }
         }
     }
 
     public function logout()
     {
-        $params = array('user_id','level');
+        $params = array('user_id', 'level');
         $this->session->unset_userdata($params);
         redirect('amin');
     }
 }
-
