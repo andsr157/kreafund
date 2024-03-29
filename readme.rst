@@ -18,7 +18,7 @@ Cara Menjalankan aplikasi
 *******************
 
 - Buka Folder Database
-- Buat database dengan nama kreafund.sql
+- Buat database dengan nama kreafund
 - Lalu import database pada folder tadi
 - install library yang dibutuhkan pada file composer.json
 
