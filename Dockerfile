@@ -1,12 +1,12 @@
 # --- STAGE 1: Build Composer Dependencies ---
-FROM composer:2 as composer_build
+FROM composer:2 AS composer_build
 WORKDIR /app
 
 # Copy only composer files to leverage cache
 COPY composer.json composer.lock ./
 
 # Install dependencies without dev packages
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 # --- STAGE 2: Main Application ---
 FROM php:8.3-apache
