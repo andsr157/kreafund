@@ -1,34 +1,39 @@
+# --- ENV and OS ---
+.env
 .DS_Store
 
+# --- Application Runtime Data ---
 application/cache/*
 !application/cache/index.html
-node_modules
 
 application/logs/*
 !application/logs/index.html
 
 !application/*/.htaccess
 
-composer.lock
+# --- Composer Files ---
+/vendor/
+
+# --- Testing & CI ---
 tests/mocks/database/ci_test.sqlite
+/tests/tests/
+/tests/results/
 
-
+# --- Documentation & Build Tools ---
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
-/vendor/
 
-# IDE Files
-#-------------------------
-/nbproject/
-.idea/*
-
-## Sublime Text cache files
+# --- IDEs & Editors ---
+/nbproject/         # NetBeans
+.idea/              # PhpStorm / WebStorm
+*.sublime-workspace
+*.sublime-project
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
-*.sublime-workspace
-*.sublime-project
-/tests/tests/
-/tests/results/
+
+# --- Node / Frontend (if any future frontend build) ---
+node_modules/
+dist/

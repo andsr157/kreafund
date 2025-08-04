@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/kreafund/';
+$config['base_url'] = $_ENV['APP_BASE_URL'] ?? 'http://localhost/kreafund/';
 // $config['base_url'] = 'https://0654-114-142-169-11.ngrok-free.app/kreafund/';  
 
 /*
@@ -103,7 +103,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

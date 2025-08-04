@@ -23,6 +23,24 @@ class Test extends CI_Controller {
         var_dump($query->result()).die();
     }
 
+    public function env_test()
+    {
+        echo "<h2>Testing Environment Variables</h2>";
+        echo "<p><strong>DB_HOST:</strong> " . ($_ENV['DB_HOST'] ?? 'NOT SET') . "</p>";
+        echo "<p><strong>DB_USER:</strong> " . ($_ENV['DB_USER'] ?? 'NOT SET') . "</p>";
+        echo "<p><strong>DB_NAME:</strong> " . ($_ENV['DB_NAME'] ?? 'NOT SET') . "</p>";
+        echo "<p><strong>APP_BASE_URL:</strong> " . ($_ENV['APP_BASE_URL'] ?? 'NOT SET') . "</p>";
+        
+        echo "<h3>Database Connection Test:</h3>";
+        try {
+            $this->load->database();
+            echo "<p style='color: green;'>✅ Database connection successful!</p>";
+            echo "<p>Connected to: " . $this->db->hostname . " / " . $this->db->database . "</p>";
+        } catch (Exception $e) {
+            echo "<p style='color: red;'>❌ Database connection failed: " . $e->getMessage() . "</p>";
+        }
+    }
+
 	
 	
 }
