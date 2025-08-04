@@ -14,6 +14,8 @@ FROM php:8.3-apache
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     libzip-dev zip unzip git libxml2-dev libxslt1-dev \
+    default-mysql-client \
+    && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install zip mysqli pdo pdo_mysql dom xml xmlreader xmlwriter xsl \
     && a2enmod rewrite
 
