@@ -1,14 +1,16 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Validasi
 {
     protected $ci;
 
-    function __construct()
+    public function __construct()
     {
         $this->ci = &get_instance();
     }
 
-    function user_login()
+    public function user_login()
     {
         $this->ci->load->model('user_m');
         $userid = $this->ci->session->userdata('user_id');
@@ -16,7 +18,7 @@ class Validasi
         return $user_data;
     }
 
-    function check_own_project($user_id, $project_id)
+    public function check_own_project($user_id, $project_id)
     {
         $query = $this->ci->project_m->get($project_id);
         if ($query->num_rows() > 0) {

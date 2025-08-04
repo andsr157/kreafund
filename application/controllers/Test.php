@@ -23,6 +23,37 @@ class Test extends CI_Controller {
         var_dump($query->result()).die();
     }
 
+    public function library_test()
+    {
+        echo "<h2>Testing Library Loading</h2>";
+        
+        // Test Template library
+        if (isset($this->template)) {
+            echo "<p style='color: green;'>✅ Template library loaded successfully!</p>";
+        } else {
+            echo "<p style='color: red;'>❌ Template library NOT loaded!</p>";
+        }
+        
+        // Test Validasi library
+        if (isset($this->validasi)) {
+            echo "<p style='color: green;'>✅ Validasi library loaded successfully!</p>";
+        } else {
+            echo "<p style='color: red;'>❌ Validasi library NOT loaded!</p>";
+        }
+        
+        // Test Database
+        if (isset($this->db)) {
+            echo "<p style='color: green;'>✅ Database library loaded successfully!</p>";
+        } else {
+            echo "<p style='color: red;'>❌ Database library NOT loaded!</p>";
+        }
+        
+        echo "<h3>Loaded Libraries:</h3>";
+        echo "<pre>";
+        print_r(get_object_vars($this));
+        echo "</pre>";
+    }
+
     public function env_test()
     {
         echo "<h2>Testing Environment Variables</h2>";
