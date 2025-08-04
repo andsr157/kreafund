@@ -165,3 +165,28 @@ function updateRewardStock($project_id, $reward_id)
     $CI->db->where('reward_id', $reward_id);
     $CI->db->update('reward');
 }
+
+/**
+ * Get environment variable with fallback support
+ * Works in both local development (.env file) and Docker container (environment variables)
+ * 
+ * @param string $key Environment variable key
+ * @param mixed $default Default value if environment variable is not found
+ * @return mixed
+ */
+function env($key, $default = null) 
+{
+    // First try $_ENV (populated by dotenv in development)
+    if (isset($_ENV[$key])) {
+        return $_ENV[$key];
+    }
+    
+    // Then try getenv() (works with Docker environment variables)
+    $value = getenv($key);
+    if ($value !== false) {
+        return $value;
+    }
+    
+    // Return default if not found
+    return $default;
+}

@@ -24,7 +24,13 @@ function load_dotenv() {
     // Load Composer autoloader
     require_once FCPATH . 'vendor/autoload.php';
     
-    // Load .env file
-    $dotenv = Dotenv\Dotenv::createImmutable(FCPATH);
-    $dotenv->load();
+    // Check if .env file exists (for local development)
+    $envFile = FCPATH . '.env';
+    if (file_exists($envFile)) {
+        // Load .env file for local development
+        $dotenv = Dotenv\Dotenv::createImmutable(FCPATH);
+        $dotenv->load();
+    }
+    // If no .env file exists (production/Docker), environment variables 
+    // from Docker Compose will be used automatically via $_ENV and getenv()
 }
