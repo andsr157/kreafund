@@ -48,10 +48,31 @@ class Test extends CI_Controller {
             echo "<p style='color: red;'>❌ Database library NOT loaded!</p>";
         }
         
-        echo "<h3>Loaded Libraries:</h3>";
-        echo "<pre>";
-        print_r(get_object_vars($this));
-        echo "</pre>";
+        echo "<h3>Testing Model Loading:</h3>";
+        
+        // Test User_m model
+        if (isset($this->user_m)) {
+            echo "<p style='color: green;'>✅ User_m model loaded successfully!</p>";
+            echo "<p>Testing User_m method: ";
+            try {
+                $result = $this->user_m->get();
+                echo "get() method works ✅</p>";
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage() . "</p>";
+            }
+        } else {
+            echo "<p style='color: red;'>❌ User_m model NOT loaded!</p>";
+        }
+        
+        // Test Project_m model
+        if (isset($this->project_m)) {
+            echo "<p style='color: green;'>✅ Project_m model loaded successfully!</p>";
+        } else {
+            echo "<p style='color: red;'>❌ Project_m model NOT loaded!</p>";
+        }
+        
+        echo "<h3>Autoloaded Items:</h3>";
+        echo "<p><strong>Libraries:</strong> " . implode(', ', array_keys(get_object_vars($this))) . "</p>";
     }
 
     public function env_test()
