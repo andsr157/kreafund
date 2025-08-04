@@ -1,12 +1,13 @@
 services:
-  app2:
+  app3:
     container_name: app-kreafund
     image: ghcr.io/andsr157/kreafund-app:prod
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.app2.rule=Host(`kreafund.dancok.fun`)"
-      - "traefik.http.routers.app2.entrypoints=websecure"
-      - "traefik.http.routers.app2.tls.certresolver=myresolver"
+      - "traefik.http.routers.app3.rule=Host(`kreafund.dancok.fun`)"
+      - "traefik.http.routers.app3.entrypoints=websecure"
+      - "traefik.http.routers.app3.tls.certresolver=myresolver"
+      - "traefik.http.services.app3.loadbalancer.server.port=80"
     volumes: []
     environment:
       - DB_HOST=${DB_HOST}
