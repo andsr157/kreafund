@@ -23,7 +23,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = $_ENV['APP_BASE_URL'] ?? 'http://localhost/kreafund/';
+// Set base_url based on environment
+if (isset($_ENV['APP_BASE_URL']) && !empty($_ENV['APP_BASE_URL'])) {
+    // Production environment - use environment variable
+    $config['base_url'] = $_ENV['APP_BASE_URL'];
+} elseif (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'kreafund.dancok.fun') {
+    // Fallback for production domain
+    $config['base_url'] = 'https://kreafund.dancok.fun/';
+} else {
+    // Development environment - auto-detect or use default
+    $config['base_url'] = 'http://localhost/kreafund/';
+}
 // $config['base_url'] = 'https://0654-114-142-169-11.ngrok-free.app/kreafund/';  
 
 /*
