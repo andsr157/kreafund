@@ -63,6 +63,67 @@ class Test extends CI_Controller {
         }
     }
 
+    public function env_debug()
+    {
+        echo "<h1>Environment Variables Debug</h1>";
+        
+        echo "<h2>$_ENV Variables:</h2>";
+        echo "<pre>";
+        foreach ($_ENV as $key => $value) {
+            if (strpos($key, 'DB_') === 0 || strpos($key, 'APP_') === 0 || strpos($key, 'CI_') === 0) {
+                echo "$key = $value\n";
+            }
+        }
+        echo "</pre>";
+        
+        echo "<h2>getenv() Test:</h2>";
+        $env_vars = ['DB_HOST', 'DB_USER', 'DB_NAME', 'APP_BASE_URL', 'CI_ENV'];
+        foreach ($env_vars as $var) {
+            $value = getenv($var);
+            echo "<p><b>$var:</b> " . ($value !== false ? $value : 'NOT SET') . "</p>";
+        }
+        
+        echo "<h2>Server Variables:</h2>";
+        $server_vars = ['HTTP_HOST', 'REQUEST_URI', 'DOCUMENT_ROOT', 'SERVER_NAME'];
+        foreach ($server_vars as $var) {
+            echo "<p><b>$var:</b> " . ($_SERVER[$var] ?? 'NOT SET') . "</p>";
+        }
+        
+        echo "<h2>CodeIgniter Config:</h2>";
+        echo "<p><b>base_url():</b> " . base_url() . "</p>";
+        echo "<p><b>ENVIRONMENT:</b> " . (defined('ENVIRONMENT') ? ENVIRONMENT : 'NOT SET') . "</p>";
+    }
+
+    public function debug()
+    {
+        echo "<!DOCTYPE html><html><head><title>Debug</title></head><body>";
+        echo "<h1>Debug Info</h1>";
+        echo "<p><b>base_url():</b> " . base_url() . "</p>";
+        echo "<p><b>HTTP_HOST:</b> " . ($_SERVER['HTTP_HOST'] ?? 'NOT SET') . "</p>";
+        echo "<p><b>REQUEST_URI:</b> " . ($_SERVER['REQUEST_URI'] ?? 'NOT SET') . "</p>";
+        echo "<p><b>DOCUMENT_ROOT:</b> " . ($_SERVER['DOCUMENT_ROOT'] ?? 'NOT SET') . "</p>";
+        echo "<p><b>APP_BASE_URL env:</b> " . ($_ENV['APP_BASE_URL'] ?? 'NOT SET') . "</p>";
+        echo "<p><b>getenv APP_BASE_URL:</b> " . (getenv('APP_BASE_URL') ?: 'NOT SET') . "</p>";
+        
+        echo "<h2>Test Asset URL</h2>";
+        $css_url = base_url('assets/css/style.css');
+        echo "<p><b>CSS URL:</b> <a href='$css_url' target='_blank'>$css_url</a></p>";
+        
+        echo "<h2>Check File Existence</h2>";
+        $asset_path = FCPATH . 'assets/css/style.css';
+        echo "<p><b>File Path:</b> $asset_path</p>";
+        echo "<p><b>File Exists:</b> " . (file_exists($asset_path) ? 'YES' : 'NO') . "</p>";
+        
+        if (file_exists($asset_path)) {
+            echo "<p><b>File Size:</b> " . filesize($asset_path) . " bytes</p>";
+        }
+        
+        echo "<h2>Test Direct CSS Load</h2>";
+        echo "<link rel='stylesheet' href='" . base_url('assets/css/style.css') . "'>";
+        echo "<style>body { background: #f0f0f0; }</style>";
+        echo "</body></html>";
+    }
+
     public function base_url_test()
     {
         echo "<h2>Testing Base URL Configuration</h2>";

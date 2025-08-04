@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset Test</title>
+</head>
+<body>
+    <h1>Testing Asset Loading</h1>
+    
+    <h2>1. Direct Asset URLs (should work)</h2>
+    <p><a href="assets/css/style.css" target="_blank">Direct CSS Link</a></p>
+    <p><a href="assets/css/bootstrap/bootstrap.css" target="_blank">Direct Bootstrap CSS Link</a></p>
+    
+    <h2>2. Image Test</h2>
+    <img src="assets/img/logo.png" alt="Logo Test" style="max-width: 200px;">
+    
+    <h2>3. CSS Test</h2>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+    
+    <div class="container">
+        <div class="alert alert-info">
+            If you can see Bootstrap styling on this alert, CSS is working!
+        </div>
+    </div>
+    
+    <h2>4. Current URL Info</h2>
+    <script>
+        document.write('<p>Current URL: ' + window.location.href + '</p>');
+        document.write('<p>Base URL: ' + window.location.origin + '</p>');
+    </script>
+</body>
+</html>

@@ -23,13 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// Set base_url based on environment
-if (isset($_ENV['APP_BASE_URL']) && !empty($_ENV['APP_BASE_URL'])) {
+// TEMPORARY DEBUG: Force base_url for production
+if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'kreafund.dancok.fun') {
+    // Force production URL - remove this after debugging
+    $config['base_url'] = 'https://kreafund.dancok.fun/';
+} elseif (isset($_ENV['APP_BASE_URL']) && !empty($_ENV['APP_BASE_URL'])) {
     // Production environment - use environment variable
     $config['base_url'] = $_ENV['APP_BASE_URL'];
-} elseif (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'kreafund.dancok.fun') {
-    // Fallback for production domain
-    $config['base_url'] = 'https://kreafund.dancok.fun/';
 } else {
     // Development environment - auto-detect or use default
     $config['base_url'] = 'http://localhost/kreafund/';
