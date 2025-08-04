@@ -9,7 +9,7 @@ COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 # --- STAGE 2: Main Application ---
-FROM php:8.3-apache
+FROM php:7.4-apache
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
