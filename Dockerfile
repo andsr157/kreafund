@@ -23,6 +23,9 @@ RUN apt-get update && apt-get install -y \
 COPY 000-default.conf /etc/apache2/sites-available/
 RUN a2ensite 000-default.conf
 
+#enable mod_rewrite
+RUN a2enmod rewrite
+
 # Set working directory
 WORKDIR /var/www/html
 
