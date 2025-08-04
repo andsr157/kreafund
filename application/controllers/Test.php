@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Test extends CI_Controller {
 
-
 	public function index()
 	{
 		$own = $this->validasi->check_own_project(4,1);
@@ -23,56 +22,45 @@ class Test extends CI_Controller {
         var_dump($query->result()).die();
     }
 
-    public function library_test()
+    public function model_test()
     {
-        echo "<h2>Testing Library Loading</h2>";
+        echo "<h2>Testing Model Loading with Aliases</h2>";
         
-        // Test Template library
-        if (isset($this->template)) {
-            echo "<p style='color: green;'>✅ Template library loaded successfully!</p>";
-        } else {
-            echo "<p style='color: red;'>❌ Template library NOT loaded!</p>";
-        }
-        
-        // Test Validasi library
-        if (isset($this->validasi)) {
-            echo "<p style='color: green;'>✅ Validasi library loaded successfully!</p>";
-        } else {
-            echo "<p style='color: red;'>❌ Validasi library NOT loaded!</p>";
-        }
-        
-        // Test Database
-        if (isset($this->db)) {
-            echo "<p style='color: green;'>✅ Database library loaded successfully!</p>";
-        } else {
-            echo "<p style='color: red;'>❌ Database library NOT loaded!</p>";
-        }
-        
-        echo "<h3>Testing Model Loading:</h3>";
-        
-        // Test User_m model
-        if (isset($this->user_m)) {
-            echo "<p style='color: green;'>✅ User_m model loaded successfully!</p>";
-            echo "<p>Testing User_m method: ";
+        // Test dengan property lowercase
+        if (isset($this->project_m)) {
+            echo "<p style='color: green;'>✅ project_m model loaded successfully!</p>";
+            
+            // Test methods
             try {
-                $result = $this->user_m->get();
-                echo "get() method works ✅</p>";
+                echo "<p>Testing getFeatured(): ";
+                $featured = $this->project_m->getFeatured();
+                echo "Success ✅</p>";
+                
+                echo "<p>Testing getFresh(): ";
+                $fresh = $this->project_m->getFresh();
+                echo "Success ✅</p>";
+                
             } catch (Exception $e) {
-                echo "Error: " . $e->getMessage() . "</p>";
+                echo "<p style='color: red;'>Error calling methods: " . $e->getMessage() . "</p>";
             }
         } else {
-            echo "<p style='color: red;'>❌ User_m model NOT loaded!</p>";
+            echo "<p style='color: red;'>❌ project_m model NOT loaded!</p>";
         }
         
-        // Test Project_m model
-        if (isset($this->project_m)) {
-            echo "<p style='color: green;'>✅ Project_m model loaded successfully!</p>";
+        // Test user_m
+        if (isset($this->user_m)) {
+            echo "<p style='color: green;'>✅ user_m model loaded successfully!</p>";
         } else {
-            echo "<p style='color: red;'>❌ Project_m model NOT loaded!</p>";
+            echo "<p style='color: red;'>❌ user_m model NOT loaded!</p>";
         }
         
-        echo "<h3>Autoloaded Items:</h3>";
-        echo "<p><strong>Libraries:</strong> " . implode(', ', array_keys(get_object_vars($this))) . "</p>";
+        echo "<h3>All Loaded Properties:</h3>";
+        $properties = get_object_vars($this);
+        foreach ($properties as $name => $value) {
+            if (is_object($value)) {
+                echo "<p><strong>$name:</strong> " . get_class($value) . "</p>";
+            }
+        }
     }
 
     public function env_test()
@@ -96,7 +84,4 @@ class Test extends CI_Controller {
             echo "<p style='color: red;'>❌ Database connection failed: " . $e->getMessage() . "</p>";
         }
     }
-
-	
-	
 }
